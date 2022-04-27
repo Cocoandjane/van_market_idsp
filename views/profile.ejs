@@ -1,12 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Van Market</title>
+    <link rel="stylesheet" href="profile.css">
+    <script defer src="profile.js"></script>
 </head>
+<header>
+    <section class="containesr">
+        <div class="roundPanel"></div>
+
+    </section>
+</header>
+
 <body>
-    <h1>profile page</h1>
+  <div class="afterPanel">
+    <div class="logo">
+        <img src="icons/logo.svg">
+    </div>
+
+    <div class="person">
+        <div class="image-cropper">
+            <img id="profile-pic"
+                src="<%=user.profile%>">
+        </div>
+        <div class="name-text">
+            <p class="profile">Hi <strong>
+                    <%=user.username%>!
+                </strong><br>
+                <small>Hope you're having a great day</small>
+            </p>
+        </div>
+    </div>
+</div>
+    <section class="orders">
+        <p>My Orders</p>
+        <% for(let i=0; i< orders.length; i++) {%>
+            <ul>
+                <li id="product">
+                    <div class="img-cropper-rectangle">
+                    <img id="order-pic" src="<%= orders[i].img%>" <p>
+                    </div>
+                    <div class="order-text">
+                    <%= orders[i].tittle%><br>
+                   <small>waiting for seller to ship</small></p>
+                </div>
+                   <div class="rightArrow">
+                   <img src="icons/Right_arrow.svg">
+                </div>
+                
+                </li>
+            </ul>
+            <%}%>
+    </section>
+
+    <div class="account">
+        <a class="account" href="account">Account Settings</a>  
+    </div>
+
+    <section class="five_list">
+       <ul class="setting">
+           <li class="setting_list"> <div class="left"><img class="setting_icon" src="icons/Credit_Card.svg"><p class="setting_text">Payment</p> </div><div><img class="arrow_icon" src="icons/Right_arrow.svg"></div></li>
+           <li class="setting_list"> <div class="left"><img class="setting_icon" src="icons/Addresses.svg"><p class="setting_text">My Address</p></div> <div><img class="arrow_icon" src="icons/Right_arrow.svg"></div></li>
+           <li class="setting_list"> <div class="left"><img class="setting_icon" src="icons/User_icon.svg"> <p class="setting_text">Manage your profile</p> </div><div><img class="arrow_icon" src="icons/Right_arrow.svg"></div></li>
+           <li class="setting_list"> <div class="left"><img class="setting_icon" src="icons/Vector.svg"> <p class="setting_text">Notification Setting</p> </div><div><img class="arrow_icon" src="icons/Right_arrow.svg"></div></li>
+           <li class="setting_list"> <div class="left"><img class="setting_icon" src="icons/Face_id.svg"> <p class="setting_text">Login and Security</p> </div><div><img class="arrow_icon" src="icons/Right_arrow.svg"></div></li>
+       </ul>
+    </section>
+
+    <nav class="nav">
+
+        <a href="" class="nav_link">
+            <img src="icons/Home.svg">
+        </a>
+        <a href="" class="nav_link">
+            <img src="icons/Explore.svg"> 
+        </a>
+        <a href="" class="nav_link">
+            <img src="icons/Add.svg">
+        </a>
+        <a href="" class="nav_link">
+            <img src="icons/NewMessageNo.svg">
+        </a>
+        <a href="" class="nav_link">
+            <img src="icons/Profile.svg">
+        </a>
+    </nav>
+
+
+
 </body>
+
 </html>
