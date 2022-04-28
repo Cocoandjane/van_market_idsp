@@ -1,1 +1,126 @@
 /* code your card UI here */
+.card {
+    width: 320px;
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+    background-color: #272727;
+    transform: translateX(-50%) translateY(-50%) scale(0.95);
+    /*scale of 0.95 makes the photo slighlty smaller than the top photo*/
+}
+
+.prdct-image img{
+    width: 280px;
+    height: 225px;
+    padding-left: 12px;
+    margin-top: 20px;
+    margin-left: 9px;
+    border-radius: 20px;
+}
+
+.prdct-name-price {
+    width: 280px;
+    height: 40px;
+    padding-left: 12px;
+    margin-top: 3px;
+    margin-left: 12px;
+    color: aliceblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-left: 0px;
+    padding-bottom: 0%;
+}
+
+
+.seller-prdct-info {
+    width: 280px;
+    height: 40px;
+    padding-left: 12px;
+    margin-top: 40px;
+    margin-left: 12px;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.decision {
+    width: 280px;
+    height: 40px;
+    padding-top: 50px;
+    padding-left: 12px;
+    margin-top: 40px;
+    margin-left: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.seller-prdct-info {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    /* justify-content: space-around; */
+}
+
+.seller-prdct-info h4 {
+    color: aliceblue;
+    margin-left: 10px;
+    /* margin-top: -0.5px; */
+}
+
+.seller-prdct-info p {
+    color: aliceblue;
+    margin-top: 0%;
+}
+
+.seller-name-info {
+    display: flex;
+    flex-direction: column;
+    /* justify-content:cent */
+}
+
+.seller-prdct-info img {
+    margin-left: 0px;
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+    margin-top: 12px;  
+}
+
+.seller-name{
+    margin-bottom: 10%;
+}
+
+
+/* html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#board {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: beige;
+}
+
+.card {
+    width: 320px;
+    height: 320px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 10%;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    transform: translateX(-50%) translateY(-50%) scale(0.95);
+}
+    /*scale of 0.95 makes the photo slighlty smaller than the top photo*/
