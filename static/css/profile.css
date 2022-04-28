@@ -170,6 +170,7 @@ li.setting_list {
 }
 
 .nav_link{
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -178,4 +179,10 @@ li.setting_list {
     min-width: 50px;
     overflow: hidden;
     white-space: nowrap;
+}
+
+
+span.material-symbols-outlined {
+    font-size: 30px;
+    color: black;
 }

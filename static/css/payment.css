@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0 0 85px 0;
+    overflow-x: hidden;
+    background-color: #F7F7F7;
+    font-family: 'Roboto', sans-serif;
+}
+
+.title {
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+
+}
+
+.card_frame{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+small{
+    margin-left: 20px;
+    color: #858585;
+}
+
+img.credit_card {
+    height: auto;
+    max-width: 350px;
+}
+
+.banner {
+    background-color: #F37C49;
+    width: 320px;
+    height: 69px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left:15px;
+    margin-top: 10px;
+    border-radius: 10px;
+
+}
+
+.method{
+    font-size: large;
+    position: relative;
+    margin-top: -1px;
+    color:#ffffff ;
+}
+.plus{
+ 
+    position: relative;
+    margin-top: -8px;
+    width: 20px;
+    height: 20px;
+}

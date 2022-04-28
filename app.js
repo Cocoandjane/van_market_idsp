@@ -25,5 +25,8 @@ app.get("/likedItems", (req, res) => {
   res.render("likedItems", {likeList})
 })
 
+app.get("/payment", (req, res) => {
+  res.render("payment")
+})
 
 module.exports = app;
