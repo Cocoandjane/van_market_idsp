@@ -12,12 +12,15 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+app.get("/swipe", (req, res) => {
+  res.render('home')
+})
+
 app.get("/profile", (req, res) => {
   user = database.getEmma()
   orders = database.getOrders()
   console.log(user)
   res.render("profile", {user, orders})
-  
 })
 
 app.get("/likedItems", (req, res) => {
@@ -28,5 +31,7 @@ app.get("/likedItems", (req, res) => {
 app.get("/payment", (req, res) => {
   res.render("payment")
 })
+
+
 
 module.exports = app;
