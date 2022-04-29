@@ -9,7 +9,8 @@ const database = new Database()
 //console.log(database.getProducts())
 
 app.get('/', (req, res) => {
-  res.render('index')
+  let products = database.getProducts()
+  res.render('index', {products})
 })
 
 app.get("/swipe", (req, res) => {
