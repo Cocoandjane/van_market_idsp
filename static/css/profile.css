@@ -141,16 +141,18 @@ li.setting_list {
 }
 
 .setting_icon {
-    margin-top: 15px;
+    margin-top: 2em;
 }
 
-.setting_text {
+a.setting_text {
     margin-left: 2em;
-
+    margin-top: 2em;
+    text-decoration: none;
+    color: black;
 }
 
 .arrow_icon {
-    margin-top: 20px;
+    margin-top: 30px;
     margin-right: 40px;
     width: auto;
     height: auto;
