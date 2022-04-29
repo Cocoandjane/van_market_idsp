@@ -141,16 +141,18 @@ li.setting_list {
 }
 
 .setting_icon {
-    margin-top: 15px;
+    margin-top: 2em;
 }
 
-.setting_text {
+a.setting_text {
     margin-left: 2em;
-
+    margin-top: 2em;
+    text-decoration: none;
+    color: black;
 }
 
 .arrow_icon {
-    margin-top: 20px;
+    margin-top: 30px;
     margin-right: 40px;
     width: auto;
     height: auto;
@@ -170,6 +172,7 @@ li.setting_list {
 }
 
 .nav_link{
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -178,4 +181,10 @@ li.setting_list {
     min-width: 50px;
     overflow: hidden;
     white-space: nowrap;
+}
+
+
+span.material-symbols-outlined {
+    font-size: 30px;
+    color: black;
 }

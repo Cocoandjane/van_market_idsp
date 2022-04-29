@@ -9,8 +9,7 @@ const database = new Database()
 //console.log(database.getProducts())
 
 app.get('/', (req, res) => {
-  let products = database.getProducts()
-  res.render('index', {products})
+  res.render('home')
 })
 
 app.get("/swipe", (req, res) => {
@@ -20,7 +19,6 @@ app.get("/swipe", (req, res) => {
 app.get("/profile", (req, res) => {
   user = database.getEmma()
   orders = database.getOrders()
-  console.log(user)
   res.render("profile", {user, orders})
 })
 
@@ -29,7 +27,14 @@ app.get("/likedItems", (req, res) => {
   res.render("likedItems", {likeList})
 })
 
+app.get("/payment", (req, res) => {
+  myOrders = database.gerPaidOrders()
+  res.render("payment")
+})
 
+app.get("/addPayment", (req, res)=>{
+  res.render("addPayment")
+})
 
 
 module.exports = app;
