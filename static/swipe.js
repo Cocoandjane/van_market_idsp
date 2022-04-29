@@ -1,9 +1,63 @@
-//write your swipe javascript code here
+// import db from '../mockDatabase'
 class Carousel {
+
 
     constructor(element) {
 
+        this.products = [
+            {
+                "id": 1,
+                "seller-name": "Michael Jackson",
+                "title": "t-shirt",
+                "price": "$19.99",
+                "description": "good looking white t-shirt, want it or not",
+                "img": "https://cdn.pixabay.com/photo/2017/01/13/04/56/blank-1976334_1280.png"
+            },
+            {
+                "id": 2,
+                "seller-name": "Oliver Nguyen",
+                "title": "pants",
+                "price": "$19.99",
+                "description": "good looking black pants, want it or not",
+                "img": "https://media.istockphoto.com/photos/modern-womens-business-suit-picture-id1332743987?b=1&k=20&m=1332743987&s=170667a&w=0&h=Qem1BVt_P2Cy8pS87gMuFiL1x4qE4INHRg0cHp6le-o="
+            },
+            {
+                "id": 3,
+                "seller-name": "Sejin Oh",
+                "title": "shoes",
+                "price": "$19.99",
+                "description": "good looking white shoes, want it or not",
+                "img": "https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619__340.jpg"
+            },
+
+
+            {
+                "id": 4,
+                "seller-name": "Suji Oh",
+                "title": "mac book",
+                "price": "$1299.09",
+                "description": "I am a reasonable price, get me?",
+                "img": "https://cdn.pixabay.com/photo/2015/11/19/11/45/macbook-pro-1050973__340.jpg"
+            },
+            {
+                "id": 5,
+                "seller-name": "Jeremy Hole-man",
+                "title": "head phones",
+                "price": "$399.99",
+                "description": "I am a bit expensive, but you decide i am worth it or not",
+                "img": "https://media.istockphoto.com/photos/modern-professional-headphones-isolated-on-wooden-table-picture-id1222428599?b=1&k=20&m=1222428599&s=170667a&w=0&h=qiKLnklZvi3lZ9WXYkELOmxtN4hE9jxerBukAesJ2ms="
+            },
+            {
+                "id": 6,
+                "seller-name": "Sam Meech-Ward",
+                "title": "camera",
+                "price": "$50",
+                "description": "seconde hand camera, old school, you deserve me",
+                "img": "https://cdn.pixabay.com/photo/2016/01/09/18/27/camera-1130731__480.jpg"
+            }
+        ]
         this.board = element
+
 
         // add first two cards programmatically
         this.push()
@@ -48,7 +102,7 @@ class Carousel {
                 this.onPan(e)
             })
 
-        }
+        } 
 
     }
 
@@ -90,7 +144,13 @@ class Carousel {
         // console.log('propX: ', propX, 'propY: ', propY)
         // get swipe direction, left (-1) or right (1)
         let dirX = e.deltaX < 0 ? -1 : 1 // deltaX makes this possible, 
-        if (dirX === -1) {
+
+        let cards = document.querySelectorAll('.card')
+        for (let i = 0; i < cards.length; i++) {
+            const element = cards[i];
+        }
+
+        if (e.isFinal && dirX === -1) {
             console.log('left')
         } else if (dirX === 1) {
             console.log('right')
@@ -166,77 +226,77 @@ class Carousel {
 
     push() {
 
-        // prdct-image > img // 
-        // prdct-name-price > h2 h2 //
-        // seller-prdct-info > img & div > h4 p
-        // decision > a img X3
+        // we need to loop over the products here and for each product do all of the stuff under this line
+        // need to change things down there like the src or the images, name of the seller and so on...
 
-        let card = document.createElement('div')
-        card.classList.add('card')
+        this.products.forEach(product => {
 
-        let productImageSection = document.createElement('section')
-        let productImage = document.createElement('img')
-        productImage.classList.add('prdct-img')
-        productImageSection.classList.add('prdct-image')
-        productImageSection.append(productImage)
-        productImage.src = 'photos/Screen Shot 2022-04-27 at 4.05.01 PM.png';
-        let productDescriptionSecion = document.createElement('section')
-        let productName = document.createElement('h2')
-        productName.textContent = 'MacBook Pro'
-        let productPrice = document.createElement('h2')
-        productPrice.textContent = '$2094'
-        productName.classList.add('prdct-name')
-        productName.classList.add('prdct-price')
-        productDescriptionSecion.classList.add('prdct-name-price')
-        productDescriptionSecion.append(productName, productPrice)
+            let card = document.createElement('div')
+            card.classList.add('card')
 
-        let sellerInfoSection = document.createElement('section')
-        let sellerPfp = document.createElement('img')
-        sellerPfp.src = 'photos/smw.png';
-        let productDescriptionDiv = document.createElement('div')
-        let sellerName = document.createElement('h4')
-        sellerName.classList.add('seller-name')
-        sellerName.textContent = 'Murad Qumizakis'
-        let productDescription = document.createElement('p')
-        productDescription.textContent = 'New Macbook Pro, great condition. Looking to upgrade! HMU for offers :-)'
-        productDescription.classList.add('prdct-desc')
-        sellerName.classList.add('seller-name')
-        productDescriptionDiv.classList.add('prdct-div')
-        sellerPfp.classList.add('pfp-img')
-        sellerInfoSection.classList.add('seller-prdct-info')
+            let productImageSection = document.createElement('section')
+            let productImage = document.createElement('img')
+            productImage.classList.add('prdct-img')
+            productImageSection.classList.add('prdct-image')
+            productImageSection.append(productImage)
+            productImage.src = product.img
+            let productDescriptionSection = document.createElement('section')
+            let productName = document.createElement('h2')
+            productName.textContent = product.title;
+            let productPrice = document.createElement('h2')
+            productPrice.textContent = product.price
+            productName.classList.add('prdct-name')
+            productName.classList.add('prdct-price')
+            productDescriptionSection.classList.add('prdct-name-price')
+            productDescriptionSection.append(productName, productPrice)
 
-        productDescriptionDiv.append(sellerName, productDescription)
+            let sellerInfoSection = document.createElement('section')
+            let sellerPfp = document.createElement('img')
+            sellerPfp.src = 'photos/smw.png';
+            let productDescriptionDiv = document.createElement('div')
+            let sellerName = document.createElement('h4')
+            sellerName.classList.add('seller-name')
+            sellerName.textContent = product["seller-name"]
+            let productDescription = document.createElement('p')
+            productDescription.textContent = product.description
+            productDescription.classList.add('prdct-desc')
+            sellerName.classList.add('seller-name')
+            productDescriptionDiv.classList.add('prdct-div')
+            sellerPfp.classList.add('pfp-img')
+            sellerInfoSection.classList.add('seller-prdct-info')
 
-        sellerInfoSection.append(sellerPfp, productDescriptionDiv)
+            productDescriptionDiv.append(sellerName, productDescription)
 
-        let decisionSection = document.createElement('section')
-        decisionSection.classList.add('decision')
+            sellerInfoSection.append(sellerPfp, productDescriptionDiv)
 
-        let dislikeA = document.createElement('a')
-        let chatA = document.createElement('a')
-        let likeA = document.createElement('a')
-        let disLikeImg = document.createElement('img')
-        let chatImg = document.createElement('img')
-        let likeImg = document.createElement('img')
+            let decisionSection = document.createElement('section')
+            decisionSection.classList.add('decision')
 
-        disLikeImg.src = 'icons/Dislike.svg';
-        chatImg.src = 'icons/Chat.svg';
-        likeImg.src = 'icons/Like.svg';
+            let dislikeA = document.createElement('a')
+            let chatA = document.createElement('a')
+            let likeA = document.createElement('a')
+            let disLikeImg = document.createElement('img')
+            let chatImg = document.createElement('img')
+            let likeImg = document.createElement('img')
 
-        dislikeA.append(disLikeImg)
-        chatA.append(chatImg)
-        likeA.append(likeImg)
+            disLikeImg.src = 'icons/Dislike.svg';
+            chatImg.src = 'icons/Chat.svg';
+            likeImg.src = 'icons/Like.svg';
 
-        decisionSection.append(dislikeA, chatA, likeA)
+            dislikeA.append(disLikeImg)
+            chatA.append(chatImg)
+            likeA.append(likeImg)
 
-        card.append(productImageSection, productDescriptionSecion, productDescriptionSecion, sellerInfoSection, decisionSection)
+            decisionSection.append(dislikeA, chatA, likeA)
+            card.append(productImageSection, productDescriptionSection, sellerInfoSection, decisionSection)
+
+            this.board.insertBefore(card, this.board.firstChild)
+        })
         // card.style.backgroundImage =
         //     "url('https://picsum.photos/320/320/?random=" + Math.round(Math.random() * 1000000) + "')"
 
-        this.board.insertBefore(card, this.board.firstChild)
 
     }
-
 }
 
 let board = document.querySelector('#board')
