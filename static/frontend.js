@@ -1,5 +1,3 @@
-
-console.log("working")
 let addNewPost = document.querySelector(".postNew")
 addNewPost.addEventListener("click", function (event) {
     let catagorySlide = document.querySelector("div.createNew.displayNone")
