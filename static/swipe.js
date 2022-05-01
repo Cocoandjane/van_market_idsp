@@ -236,7 +236,7 @@ class Carousel {
             let productImageSection = document.createElement('section')
             let productImage = document.createElement('img')
             productImage.classList.add('prdct-img')
-            productImageSection.classList.add('prdct-image')
+            productImageSection.classList.add('prdct-image_frame')
             productImageSection.append(productImage)
             productImage.src = product.img
             let productDescriptionSection = document.createElement('section')
@@ -278,9 +278,15 @@ class Carousel {
             chatA.href = ""
             likeA.href = ""
             let disLikeImg = document.createElement('img')
+            disLikeImg.addEventListener("click", function(e) {
+                disLikeImg.src='icons/broken_filled_heart.svg';
+            })
             let chatImg = document.createElement('img')
             let likeImg = document.createElement('img')
-
+            likeA.addEventListener("click", function(e){
+                console.log("working")
+                likeImg.src="icons/filled_heart.svg";
+            })
             disLikeImg.src = 'icons/Dislike.svg';
             chatImg.src = 'icons/Chat.svg';
             likeImg.src = 'icons/Like.svg';
