@@ -1,7 +1,7 @@
 /* code your card UI here */
 .card {
     width: 320px;
-    height: 500px;
+    height: 560px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -9,12 +9,24 @@
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
     background-color: #272727;
     transform: translateX(-50%) translateY(-50%) scale(0.95);
-    /*scale of 0.95 makes the photo slighlty smaller than the top photo*/
 }
 
-.prdct-image img{
-    width: 280px;
-    height: 225px;
+
+/* div.above-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 40px;
+    margin-left: 40%;
+    
+} */
+
+
+
+
+.prdct-image img {
+    width: 270px;
+    height: 261px;
     padding-left: 12px;
     margin-top: 20px;
     margin-left: 9px;
@@ -25,7 +37,7 @@
     width: 280px;
     height: 40px;
     padding-left: 12px;
-    margin-top: 3px;
+    margin-top: 20px;
     margin-left: 12px;
     color: aliceblue;
     display: flex;
@@ -40,7 +52,7 @@
     width: 280px;
     height: 40px;
     padding-left: 12px;
-    margin-top: 40px;
+    margin-top: 50px;
     margin-left: 12px;
     display: flex;
     flex-direction: row;
@@ -51,7 +63,7 @@
     width: 280px;
     height: 40px;
     padding-top: 50px;
-    padding-left: 12px;
+    padding-left: 8px;
     margin-top: 40px;
     margin-left: 12px;
     display: flex;
@@ -88,10 +100,10 @@
     max-width: 50px;
     max-height: 50px;
     border-radius: 50%;
-    margin-top: 12px;  
+    margin-top: 12px;
 }
 
-.seller-name{
+.seller-name {
     margin-bottom: 10%;
 }
 

@@ -1,4 +1,3 @@
-// import db from '../mockDatabase'
 class Carousel {
 
 
@@ -275,6 +274,9 @@ class Carousel {
             let dislikeA = document.createElement('a')
             let chatA = document.createElement('a')
             let likeA = document.createElement('a')
+            dislikeA.href = ""
+            chatA.href = ""
+            likeA.href = ""
             let disLikeImg = document.createElement('img')
             let chatImg = document.createElement('img')
             let likeImg = document.createElement('img')
