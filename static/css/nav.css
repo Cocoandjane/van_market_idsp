@@ -69,3 +69,12 @@ a.catagories {
 .cata_icon {
     color:#858585; ;
 }
+
+section#sec_nav{
+    width: auto;
+    height: 600px;
+    padding-top:30px;
+    z-index: 1;
+    background-color: red;
+
+}
