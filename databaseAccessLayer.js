@@ -10,7 +10,7 @@ async function getProducts() {
     JOIN image
     ON post.post_id = image.post_id;`
     const [rows] = await database.query(query)
-    //console.log(rows)
+    console.log(rows)
     return rows
 }
 
