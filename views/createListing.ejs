@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/createListing.css">
+    <script src="frontend.js" defer></script>
+    <title>VanMarket</title>
+</head>
+
+<body>
+
+    <div class="new-prdct-form">
+        <form method="post" action="createListing">
+
+            <label class="details" for="fileUpload">Upload Image</label>
+            <div class="addImage">
+                <div class="addImageIcon">
+                    <img src="icons/addImageIcon.svg" alt="">
+                </div>
+                <div>Add Photos and Videos</div>
+            </div>
+            <input class="imageUpload" type="file" name="fileUpload" accept="image/png, image/gif, image/jpeg" hidden>
+
+            <label class="details" for="title">Title</label>
+            <input type="text" name="title">
+
+            <label class="details" for="price">Price</label>
+            <input type="number" name="price">
+
+            <label class="details" for="condition">Condition</label>
+            <select name="condition" id="condition">
+                <option value="choose">Choose</option>
+                <option value="new">New</option>
+                <option value="used - like new">Used - Like New</option>
+                <option value="used - good">Used - Good</option>
+                <option value="used - fair">Used - Fair</option>
+            </select>
+
+            <label class="details" for="description">Description</label>
+            <input type="text" name="description">
+
+            <label class="details" for="location">Location</label>
+            <input id="autocomplete" type="text" placeholder="Enter a place..." name="location">
+
+            <button>Create Listing</button>
+        </form>
+    </div>
+    <script>
+        let autocomplete;
+        function initMap() {
+            autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('autocomplete'), {
+                types: ['establishment'],
+                componentRestrictions: { 'country:': ['AU'] }, // idk if its CAN
+                fields: ['places_id', 'geometry', 'name']
+            })
+
+        }
+    </script>
+    <!-- <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEEdlSNtFmvvp-6Gc3hS2dBxuP_0gDsI8&libraries=places&callback=initMap"
+        async defer></script> -->
+
+</body>
+
+</html>
