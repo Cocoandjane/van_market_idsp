@@ -33,7 +33,7 @@
         <%for (let i=0; i < likeList.length; i++) {%>
             <div class="white_frame">
                 <div class="img_cropper">              
-                    <img class="liked_img" src="<%= likeList[i].img%>">
+                    <img class="liked_img" src="<%= likeList[i].url%>">
                 </div>
                 <div class="item_description">
                     <p><%= likeList[i].description%></p>
@@ -46,7 +46,7 @@
 </main>
     <nav class="nav">
 
-        <a href="" class="nav_link">
+        <a href="/" class="nav_link">
             <img src="icons/Home.svg">
         </a>
         <a href="" class="nav_link">
@@ -60,7 +60,7 @@
                 chat_bubble
                 </span>
         </a>
-        <a href="" class="nav_link">
+        <a href="profile" class="nav_link">
             <img src="icons/Profile.svg">
         </a>
     </nav>

@@ -22,6 +22,7 @@ class Database {
     products = [
         {
             "id": 1,
+            "seller-name": "saM",
             "tittle": "t-shirt",
             "price": "$19.99",
             "description": "good looking white t-shirt, want it or not",
@@ -29,6 +30,7 @@ class Database {
         },
         {
             "id": 2,
+            "seller-name": "Michael Jackson",
             "tittle": "pants",
             "price": "$19.99",
             "description": "good looking black pants, want it or not",
@@ -36,6 +38,7 @@ class Database {
         },
         {
             "id": 3,
+            "seller-name": "Michael Jackson",
             "tittle": "shoes",
             "price": "$19.99",
             "description": "good looking white shoes, want it or not",
@@ -45,6 +48,7 @@ class Database {
 
         {
             "id": 4,
+            "seller-name": "Michael Jackson",
             "tittle": "mac book",
             "price": "$1299.09",
             "description": "I am a reasonable price, get me?",
@@ -52,6 +56,7 @@ class Database {
         },
         {
             "id": 5,
+            "seller-name": "Michael Jackson",
             "tittle": "head phones",
             "price": "$399.99",
             "description": "I am a bit expensive, but you decide i am worth it or not",
@@ -59,6 +64,7 @@ class Database {
         },
         {
             "id": 6,
+            "seller-name": "Michael Jackson",
             "tittle": "camera",
             "price": "$50",
             "description": "seconde hand camera, old school, you deserve me",

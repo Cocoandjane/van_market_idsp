@@ -8,13 +8,9 @@ body {
     overflow-x: hidden;
     background-color: #F7F7F7;
     font-family: 'Roboto', sans-serif;
-    
 }
 
-body {
-    position: relative;
-    margin: -3px;
-}
+
 
 .roundPanel {
     position: relative;
@@ -157,5 +153,3 @@ a.setting_text {
     width: auto;
     height: auto;
 }
-
-

@@ -10,6 +10,16 @@ app.use(express.urlencoded({ extended: false }));
 const database = new Database()
 
 
+app.get("/posts", async (req, res) => {
+  try {
+    const posts = await database.getProducts()
+    res.send(posts)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send({ error: "🖕" })
+  }
+})
+
 app.get('/', (req, res) => {
   res.render('home')
 })
