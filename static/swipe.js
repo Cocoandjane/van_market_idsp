@@ -92,16 +92,13 @@ class Carousel {
         // get swipe direction, left (-1) or right (1)
         let dirX = e.deltaX < 0 ? -1 : 1 // deltaX makes this possible, 
 
-        let cards = document.querySelectorAll('.card')
-        for (let i = 0; i < cards.length; i++) {
-            const element = cards[i];
-        }
 
-        if (e.isFinal && dirX === -1) {
-            console.log('left')
-        } else if (e.isFinal && dirX === 1) {
-            console.log('right')
-        }
+
+        // if (e.isFinal && dirX === -1) {
+        //     console.log('left')
+        // } else if (e.isFinal && dirX === 1) {
+        //     console.log('right')
+        // }
 
         // get degrees of rotation, between 0 and +/- 45
         let deg = this.isDraggingFrom * dirX * Math.abs(propX) * 40
@@ -143,9 +140,16 @@ class Carousel {
 
             if (successful) {
 
-                console.log("successfull")
-
                 // Here you probably need to make a axios.post request to tell the server what happened
+                // in the server make a post route to send the item to the wishlist
+                const productId = this.topCard.id.replace("product-id-", "")
+
+                if (dirX === -1) {
+                    console.log('went off screen to the left', productId)
+                } else if (dirX === 1) {
+                    console.log('went off screen to the right', productId)
+                }
+                // debugger
 
                 // throw card in the chosen direction
                 this.topCard.style.transform =
@@ -183,6 +187,7 @@ class Carousel {
         this.products.forEach(product => {
 
             let card = document.createElement('div')
+            card.setAttribute("id", `product-id-${product.post_id}`)
             card.classList.add('card')
 
             let productImageSection = document.createElement('section')
@@ -195,7 +200,7 @@ class Carousel {
             let productName = document.createElement('h2')
             productName.textContent = product.title;
             let productPrice = document.createElement('h2')
-            productPrice.textContent = product.price
+            productPrice.textContent = "$" + product.price;
             productName.classList.add('prdct-name')
             productName.classList.add('prdct-price')
             productDescriptionSection.classList.add('prdct-name-price')

@@ -14,6 +14,6 @@
 
 
 
-document.querySelector(".addImage").addEventListener("click", () => {
-    document.querySelector('.imageUpload').click()
-})
+// document.querySelector(".addImage").addEventListener("click", () => {
+//     document.querySelector('.imageUpload').click()
+// })
