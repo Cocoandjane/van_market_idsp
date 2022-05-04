@@ -188,7 +188,7 @@ class Carousel {
             let productImageSection = document.createElement('section')
             let productImage = document.createElement('img')
             productImage.classList.add('prdct-img')
-            productImageSection.classList.add('prdct-image_frame')
+            productImageSection.classList.add('prdct-image')
             productImageSection.append(productImage)
             productImage.src = product.url
             let productDescriptionSection = document.createElement('section')
@@ -207,7 +207,7 @@ class Carousel {
             let productDescriptionDiv = document.createElement('div')
             let sellerName = document.createElement('h4')
             sellerName.classList.add('seller-name')
-            sellerName.textContent = product["seller-name"]
+            sellerName.textContent = product["username"] // username on card
             let productDescription = document.createElement('p')
             productDescription.textContent = product.description
             productDescription.classList.add('prdct-desc')
