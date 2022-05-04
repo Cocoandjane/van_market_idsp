@@ -14,6 +14,6 @@ main.addEventListener("click", function (event) {
 
 
 
-document.querySelector(".addImage").addEventListener("click", () => {
-    document.querySelector('.imageUpload').click()
-})
+// document.querySelector(".addImage").addEventListener("click", () => {
+//     document.querySelector('.imageUpload').click()
+// })
