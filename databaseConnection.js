@@ -28,5 +28,4 @@ else {
 }
 
 module.exports = database;
-		
-		
+
