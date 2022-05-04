@@ -1,0 +1,61 @@
+.new-prdct-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5%;
+    width: 90%;
+    margin-top: 2%;
+}
+
+.new-prdct-form form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    row-gap: 8px;
+}
+
+input {
+    height: 30px;
+
+}
+
+input[name="fileUpload"] {
+    color: red;
+}
+
+div.addImage {
+    display: flex;
+    border-style: solid;
+    border-color: #858585;
+    align-items: center;
+    border-radius: 10px;
+    height: 120px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+
+input#file-upload-button {
+    color: yellow !important;
+}
+
+select#condition {
+    height: 30px
+}
+
+button {
+    width: 180px;
+    height: 40px;
+    border: 0ch;
+    border-radius: 20px;
+    background-color: #F37C49;
+    color: white;
+    margin-top: 5%;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+@media all {}
