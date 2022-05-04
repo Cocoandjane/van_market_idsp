@@ -1,4 +1,3 @@
-const { post } = require("./app.js");
 
 const database = require('./databaseConnection.js');
 //const passwordPepper = "SeCretPeppa4MySal+";
