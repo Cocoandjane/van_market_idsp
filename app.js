@@ -36,12 +36,7 @@ app.get("/swipe", (req, res) => {
 app.get("/profile", async (req, res) => {
   let users = await database.getUser()
   let posts = await database.getMyPost()
-  res.render("profile", { users, posts })
-  for (let user of users) {
-    if (user.user_id === 1) {
-      console.log(user.username)
-    }
-  }
+  res.render("profile", {users, posts})
 })
 
 

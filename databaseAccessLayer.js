@@ -4,12 +4,14 @@ const database = require('./databaseConnection.js');
 
 async function getPosts() {
     let query = `
-    SELECT post.post_id, post.title, post.description, post.price, image.url 
+    SELECT post.post_id, post.title, post.description, post.price, user.username, image.url 
     FROM post
     JOIN image
-    ON post.post_id = image.post_id;`
+    ON post.post_id = image.post_id
+    JOIN user
+    ON post.user_id = user.user_id;`
     const [rows] = await database.query(query)
-    console.log(rows)
+    //console.log(rows)
     return rows
 }
 

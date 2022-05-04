@@ -49,6 +49,23 @@
      margin-right: 20%;
  }
  
+ /* .prdct-image_frame{
+    width: 260px;
+    height: 260px;
+    margin-top: 20px;
+    margin-left: 25px;
+    position: relative;
+    overflow: hidden;
+}
+.prdct-img{
+    height: auto;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+} */
  
  .prdct-image img {
      width: 270px;
