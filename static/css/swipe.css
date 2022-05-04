@@ -49,32 +49,15 @@
      margin-right: 20%;
  }
  
- .prdct-image_frame{
-    width: 260px;
-    height: 260px;
-    margin-top: 20px;
-    margin-left: 25px;
-    position: relative;
-    overflow: hidden;
-}
-.prdct-img{
-    height: auto;
-    max-width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 10px;
-    transform: translate(-50%, -50%);
-}
  
- /* .prdct-image img {
+ .prdct-image img {
      width: 270px;
      height: 261px;
-     padding-left: 12px;
      margin-top: 20px;
-     margin-left: 9px;
      border-radius: 20px;
- } */
+     margin-left: 10%;
+     width: 80%;
+ }
  
  .prdct-name-price {
      width: 280px;

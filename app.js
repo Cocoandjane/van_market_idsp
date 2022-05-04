@@ -56,6 +56,18 @@ app.get("/payment", (req, res) => {
   res.render("payment")
 })
 
+app.get("/createListing", (req, res) => {
+  res.render("createListing")
+})
+
+app.post("/createListing", (req, res) => {
+  let data = req.body;
+  console.log(data)
+  res.render("createListing")
+  // redirect 
+})
+
+
 app.get("/addPayment", (req, res)=>{
   res.render("addPayment")
 })

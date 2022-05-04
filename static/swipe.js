@@ -188,7 +188,7 @@ class Carousel {
             let productImageSection = document.createElement('section')
             let productImage = document.createElement('img')
             productImage.classList.add('prdct-img')
-            productImageSection.classList.add('prdct-image_frame')
+            productImageSection.classList.add('prdct-image')
             productImageSection.append(productImage)
             productImage.src = product.url
             let productDescriptionSection = document.createElement('section')
