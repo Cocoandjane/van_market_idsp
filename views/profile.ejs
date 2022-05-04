@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="css/nav.css">
     <script defer src="frontend.js"></script>
-    <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <header>
     <section class="containesr">
@@ -20,67 +21,90 @@
 
 <body>
     <main>
-  <div class="afterPanel">
-    <div class="logo">
-        <img src="icons/logo.svg">
-    </div>
+        <div class="afterPanel">
+            <div class="logo">
+                <img src="icons/logo.svg">
+            </div>
 
-    <div class="person">
-        <div class="image-cropper">
-            <img id="profile-pic"
-                src="<%=user.profile%>">
-        </div>
-        <div class="name-text">
-            <p class="profile">Hi <strong>
-                    <%=user.username%>!
-                </strong><br>
-                <small>Hope you're having a great day</small>
-            </p>
-        </div>
-    </div>
-</div>
-    <section class="orders">
-        <p>My Orders</p>
-        <% for(let i=0; i< orders.length; i++) {%>
-            <ul>
-                <li id="product">
-                    <div class="img-cropper-rectangle">
-                    <img id="order-pic" src="<%= orders[i].img%>" <p>
-                    </div>
-                    <div class="order-text">
-                    <%= orders[i].tittle%><br>
-                   <small>waiting for seller to ship</small></p>
+            <div class="person">
+                <div class="image-cropper">
+                    <% for (let user of users) { %>
+                        <%if(user.use_id===1){ %>
+                            <img id="profile-pic" src="<%=user.profile_img%>">
                 </div>
-                   <div class="rightArrow">
-                   <img src="icons/Right_arrow.svg">
+                <div class="name-text">
+                    <p class="profile">Hi <strong>
+                            <%=user.username%>!
+                                <% } %>
+                                    <%}%>
+                        </strong><br>
+                        <small>Hope you're having a great day</small>
+                    </p>
                 </div>
-                
+            </div>
+        </div>
+        <section class="orders">
+            <p>My posts</p>
+            <% for(let i=0; i< posts.length; i++) {%>
+                <ul>
+                    <li id="product">
+                        <div class="img-cropper-rectangle">
+                            <img id="order-pic" src="<%= posts[i].url%>" <p>
+                        </div>
+                        <div class="order-text">
+                            <%= posts[i].title%><br>
+                                <small>waiting for seller to ship</small></p>
+                        </div>
+                        <div class="rightArrow">
+                            <img src="icons/Right_arrow.svg">
+                        </div>
+
+                    </li>
+                </ul>
+                <%}%>
+        </section>
+
+        <div class="account">
+            <a class="account" href="account">Account Settings</a>
+        </div>
+
+        <section class="five_list">
+            <ul class="setting">
+                <li class="setting_list">
+                    <div class="left"><img class="setting_icon" src="icons/Credit_Card.svg"><a href="payment"
+                            class="setting_text">Payment</a> </div>
+                    <div><img class="arrow_icon" src="icons/Right_arrow.svg"></div>
+                </li>
+                <li class="setting_list">
+                    <div class="left"><img class="setting_icon" src="icons/Addresses.svg"><a href="#"
+                            class="setting_text">My Address</a></div>
+                    <div><img class="arrow_icon" src="icons/Right_arrow.svg"></div>
+                </li>
+                <li class="setting_list">
+                    <div class="left"><img class="setting_icon" src="icons/User_icon.svg"> <a href="#"
+                            class="setting_text">Manage your profile</a> </div>
+                    <div><img class="arrow_icon" src="icons/Right_arrow.svg"></div>
+                </li>
+                <li class="setting_list">
+                    <div class="left"><img class="setting_icon" src="icons/Vector.svg"> <a href="#"
+                            class="setting_text">Notification Setting</a> </div>
+                    <div><img class="arrow_icon" src="icons/Right_arrow.svg"></div>
+                </li>
+                <li class="setting_list">
+                    <div class="left"><img class="setting_icon" src="icons/Face_id.svg"> <a href="#"
+                            class="setting_text">Login and Security</a> </div>
+                    <div><img class="arrow_icon" src="icons/Right_arrow.svg"></div>
                 </li>
             </ul>
-            <%}%>
-    </section>
-
-    <div class="account">
-        <a class="account" href="account">Account Settings</a>  
-    </div>
-
-    <section class="five_list">
-       <ul class="setting">
-           <li class="setting_list"> <div class="left"><img class="setting_icon" src="icons/Credit_Card.svg"><a href="payment" class="setting_text">Payment</a> </div><div><img class="arrow_icon" src="icons/Right_arrow.svg"></div></li>
-           <li class="setting_list"> <div class="left"><img class="setting_icon" src="icons/Addresses.svg"><a href="#" class="setting_text">My Address</a></div> <div><img class="arrow_icon" src="icons/Right_arrow.svg"></div></li>
-           <li class="setting_list"> <div class="left"><img class="setting_icon" src="icons/User_icon.svg"> <a href="#" class="setting_text">Manage your profile</a> </div><div><img class="arrow_icon" src="icons/Right_arrow.svg"></div></li>
-           <li class="setting_list"> <div class="left"><img class="setting_icon" src="icons/Vector.svg"> <a href="#" class="setting_text">Notification Setting</a> </div><div><img class="arrow_icon" src="icons/Right_arrow.svg"></div></li>
-           <li class="setting_list"> <div class="left"><img class="setting_icon" src="icons/Face_id.svg"> <a href="#" class="setting_text">Login and Security</a> </div><div><img class="arrow_icon" src="icons/Right_arrow.svg"></div></li>
-       </ul>
-    </section>
-</main>
+        </section>
+    </main>
     <nav class="nav">
 
-        <a href="" class="nav_link">
+        <a href="/" class="nav_link">
             <img src="icons/Home.svg">
         </a>
         <a href="" class="nav_link">
-            <img src="icons/Explore.svg"> 
+            <img src="icons/Explore.svg">
         </a>
         <a href="" class="nav_link postNew">
             <img src="icons/Add.svg">
@@ -88,9 +112,9 @@
         <a href="" class="nav_link">
             <span class="material-symbols-outlined">
                 chat_bubble
-                </span>
+            </span>
         </a>
-        <a href="" class="nav_link">
+        <a href="profile" class="nav_link">
             <img src="icons/Profile.svg">
         </a>
     </nav>

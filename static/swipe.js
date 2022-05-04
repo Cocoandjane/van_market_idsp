@@ -1,70 +1,17 @@
+import axios from 'https://cdn.skypack.dev/axios'
+
 class Carousel {
-
-
     constructor(element) {
-
-        this.products = [
-            {
-                "id": 1,
-                "seller-name": "Michael Jackson",
-                "title": "t-shirt",
-                "price": "$19.99",
-                "description": "good looking white t-shirt, want it or not",
-                "img": "https://cdn.pixabay.com/photo/2017/01/13/04/56/blank-1976334_1280.png"
-            },
-            {
-                "id": 2,
-                "seller-name": "Oliver Nguyen",
-                "title": "pants",
-                "price": "$19.99",
-                "description": "good looking black pants, want it or not",
-                "img": "https://media.istockphoto.com/photos/modern-womens-business-suit-picture-id1332743987?b=1&k=20&m=1332743987&s=170667a&w=0&h=Qem1BVt_P2Cy8pS87gMuFiL1x4qE4INHRg0cHp6le-o="
-            },
-            {
-                "id": 3,
-                "seller-name": "Sejin Oh",
-                "title": "shoes",
-                "price": "$19.99",
-                "description": "good looking white shoes, want it or not",
-                "img": "https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619__340.jpg"
-            },
-
-
-            {
-                "id": 4,
-                "seller-name": "Suji Oh",
-                "title": "mac book",
-                "price": "$1299.09",
-                "description": "I am a reasonable price, get me?",
-                "img": "https://cdn.pixabay.com/photo/2015/11/19/11/45/macbook-pro-1050973__340.jpg"
-            },
-            {
-                "id": 5,
-                "seller-name": "Jeremy Hole-man",
-                "title": "head phones",
-                "price": "$399.99",
-                "description": "I am a bit expensive, but you decide i am worth it or not",
-                "img": "https://media.istockphoto.com/photos/modern-professional-headphones-isolated-on-wooden-table-picture-id1222428599?b=1&k=20&m=1222428599&s=170667a&w=0&h=qiKLnklZvi3lZ9WXYkELOmxtN4hE9jxerBukAesJ2ms="
-            },
-            {
-                "id": 6,
-                "seller-name": "Sam Meech-Ward",
-                "title": "camera",
-                "price": "$50",
-                "description": "seconde hand camera, old school, you deserve me",
-                "img": "https://cdn.pixabay.com/photo/2016/01/09/18/27/camera-1130731__480.jpg"
-            }
-        ]
-        this.board = element
-
-
-        // add first two cards programmatically
-        this.push()
-        this.push()
-
-        // handle gestures
-        this.handle()
-
+        axios.get("/api/products")
+            .then(response => {
+                this.products = response.data.products
+                this.board = element
+                // add first two cards programmatically
+                this.push()
+                this.push()
+                // handle gestures
+                this.handle()
+            })
     }
 
     handle() {
@@ -101,7 +48,7 @@ class Carousel {
                 this.onPan(e)
             })
 
-        } 
+        }
 
     }
 
@@ -151,7 +98,7 @@ class Carousel {
 
         if (e.isFinal && dirX === -1) {
             console.log('left')
-        } else if (dirX === 1) {
+        } else if (e.isFinal && dirX === 1) {
             console.log('right')
         }
 
@@ -194,6 +141,10 @@ class Carousel {
             }
 
             if (successful) {
+
+                console.log("successfull")
+
+                // Here you probably need to make a axios.post request to tell the server what happened
 
                 // throw card in the chosen direction
                 this.topCard.style.transform =
@@ -238,7 +189,7 @@ class Carousel {
             productImage.classList.add('prdct-img')
             productImageSection.classList.add('prdct-image_frame')
             productImageSection.append(productImage)
-            productImage.src = product.img
+            productImage.src = product.url
             let productDescriptionSection = document.createElement('section')
             let productName = document.createElement('h2')
             productName.textContent = product.title;
@@ -278,14 +229,14 @@ class Carousel {
             chatA.href = ""
             likeA.href = ""
             let disLikeImg = document.createElement('img')
-            disLikeImg.addEventListener("click", function(e) {
-                disLikeImg.src='icons/broken_filled_heart.svg';
+            disLikeImg.addEventListener("click", function (e) {
+                disLikeImg.src = 'icons/broken_filled_heart.svg';
             })
             let chatImg = document.createElement('img')
             let likeImg = document.createElement('img')
-            likeA.addEventListener("click", function(e){
+            likeA.addEventListener("click", function (e) {
                 console.log("working")
-                likeImg.src="icons/filled_heart.svg";
+                likeImg.src = "icons/filled_heart.svg";
             })
             disLikeImg.src = 'icons/Dislike.svg';
             chatImg.src = 'icons/Chat.svg';
