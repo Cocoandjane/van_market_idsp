@@ -1,16 +1,31 @@
-const { post } = require("./app.js");
 
 const database = require('./databaseConnection.js');
 //const passwordPepper = "SeCretPeppa4MySal+";
 
 async function getPosts() {
     let query = `
-    SELECT post.post_id, post.title, post.description, post.price, image.url 
+    SELECT post.post_id, post.title, post.description, post.price, user.username, image.url 
     FROM post
-    JOIN image
-    ON post.post_id = image.post_id;`
+    LEFT JOIN image
+    ON post.post_id = image.post_id
+    LEFT JOIN user
+    ON post.user_id = user.user_id;`
     const [rows] = await database.query(query)
-    console.log(rows)
+    //console.log(rows)
+    return rows
+}
+
+async function getPost(id) {
+    let query = `
+    SELECT post.post_id, post.title, post.description, post.price, user.username, image.url 
+    FROM post
+    LEFT JOIN image
+    ON post.post_id = image.post_id
+    LEFT JOIN user
+    ON post.user_id = user.user_id
+    WHERE post.post_id = ?`
+    const [rows] = await database.query(query, [id])
+    //console.log(rows)
     return rows
 }
 
@@ -57,13 +72,21 @@ async function getMyPost() {
 }
 
 
-async function addPost(title, description, price, user_id, condition_type_id, category_id) {
-    let query = `INSERT INTO post (title, description, price, user_id, condition_type_id, category_id)  VALUES (?, ?, ?, ?, ?, ?)`
-    const [result] = await database.query(query, [title, description, price, user_id, condition_type_id, category_id])
-    const id = result.insertId
-    const post = await getPosts(id)
+async function addPost(title, description, price, user_id, condition_type_id, category_id, post_id, url) {
+    let query1 =
+        `INSERT INTO post (title, description, price, user_id, condition_type_id, category_id) VALUES (?, ?, ?, ?, ?, ?);`
+    let query2 =
+        `INSERT INTO image (post_id, url) VALUES (?, ?);`
+
+    const [postResult] = await database.query(query1, [title, description, price, user_id, 1, 1])
+    const postId = postResult.insertId
+    const [imageResult] = await database.query(query2, [postId, "https://http.cat/404"])
+    console.log(postResult, imageResult)
+
+    const post = await getPost(postId) // i cahnged price to bar carcahr on workbench, change it back
+
     return post
 }
-
+// step 1: make that form an jax request and make sure everything is working with that ajax requiest
+// step 2: query select for the form 
 module.exports = { getPosts, getUserLikedItems, getUser, getMyPost, addPost };
-

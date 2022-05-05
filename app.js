@@ -51,6 +51,7 @@ app.get("/createListing", (req, res) => {
   res.render("createListing")
 })
 
+
 app.post("/createListing", async (req, res) => {
   // title, description, price, user_id, condition_type_id, category_id
   // let img = req.body.img;
@@ -63,10 +64,11 @@ app.post("/createListing", async (req, res) => {
   // let location = req.body.location;
   console.log(req.body)
   try {
-    await database.addPost(title, description, price, user, 1, 1)
+    await database.addPost(title, description, 1, 1, 1, 1, 1, "muradd")
     res.redirect('/')
   }
-  catch (err) {
+  // 1, "https://img.ltwebstatic.com/images3_pi/2020/12/17/1608191555ab585116fb1b3f892150e679c960f03e_thumbnail_900x.webp"
+  catch (err){
     console.log(err)
     res.status(500).send('Something went wrong...')
   }

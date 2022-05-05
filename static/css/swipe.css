@@ -19,12 +19,9 @@ main {
     margin-left: calc((100vw - 320px)/2);
     display: flex;
     justify-content: flex-end;
-    margin-top: 10%;
+    margin-top: 10vh;
     cursor: pointer;
 }
-
-
-
 
 
 .card {
@@ -41,12 +38,9 @@ main {
 }
 
 
-
 .swipe_text {
     display: none;
 }
-
-
 
 
 .prdct-image img {
@@ -136,4 +130,8 @@ main {
 img.pfp-img {
     height: 60px;
     width: 60px;
+}
+
+.prdct-desc {
+    margin-left: 10px;
 }
