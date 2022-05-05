@@ -19,7 +19,7 @@ main {
     margin-left: calc((100vw - 320px)/2);
     display: flex;
     justify-content: flex-end;
-    margin-top: 10vh;
+    margin-top: 3vh;
     cursor: pointer;
 }
 

@@ -7,7 +7,7 @@ const dbConfigHeroku = {
 	user: "i40wodotvago9jjp",
 	password: "fwde7xuqb907y8k2",
 	database: "su8ad2o8zsnbmrtn",
-	multipleStatements: true,
+	multipleStatements: false,
 	namedPlaceholders: true
 };
 
