@@ -192,6 +192,7 @@ class Carousel {
 
             let productImageSection = document.createElement('section')
             let productImage = document.createElement('img')
+            productImage.draggable = false;
             productImage.classList.add('prdct-img')
             productImageSection.classList.add('prdct-image')
             productImageSection.append(productImage)
@@ -209,6 +210,7 @@ class Carousel {
             let sellerInfoSection = document.createElement('section')
             let sellerPfp = document.createElement('img')
             sellerPfp.src = 'photos/smw.png';
+            sellerPfp.draggable = false;
             let productDescriptionDiv = document.createElement('div')
             let sellerName = document.createElement('h4')
             sellerName.classList.add('seller-name')

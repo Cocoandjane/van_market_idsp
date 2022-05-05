@@ -1,10 +1,17 @@
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 13%;
+}
+
+
 .new-prdct-form {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 5%;
     width: 90%;
-    margin-top: 2%;
+    margin-top: 15%;
 }
 
 .new-prdct-form form {

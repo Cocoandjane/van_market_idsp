@@ -11,6 +11,10 @@
 </head>
 
 <body>
+    <div class="afterPanel">
+        <div class="logo">
+            <img src="icons/logo.svg">
+        </div>
 
     <div class="new-prdct-form">
         <form method="post" action="createListing">
@@ -52,17 +56,18 @@
         let autocomplete;
         function initMap() {
             autocomplete = new google.maps.places.Autocomplete(
-                document.getElementById('autocomplete'), {
-                types: ['establishment'],
-                componentRestrictions: { 'country:': ['AU'] }, // idk if its CAN
-                fields: ['places_id', 'geometry', 'name']
-            })
+                document.getElementById('autocomplete'), ({'country': []}))
 
         }
+
+        document.querySelector(".addImage").addEventListener("click", () => {
+        document.querySelector('.imageUpload').click()
+})
     </script>
-    <!-- <script
+    <script
+
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEEdlSNtFmvvp-6Gc3hS2dBxuP_0gDsI8&libraries=places&callback=initMap"
-        async defer></script> -->
+        async defer></script>
 
 </body>
 

@@ -36,7 +36,7 @@ app.get("/swipe", (req, res) => {
 app.get("/profile", async (req, res) => {
   let users = await database.getUser()
   let posts = await database.getMyPost()
-  res.render("profile", {users, posts})
+  res.render("profile", { users, posts })
 })
 
 
@@ -66,7 +66,7 @@ app.post("/createListing", async (req, res) => {
     await database.addPost(title, description, price, user, 1, 1)
     res.redirect('/')
   }
-  catch (err){
+  catch (err) {
     console.log(err)
     res.status(500).send('Something went wrong...')
   }
