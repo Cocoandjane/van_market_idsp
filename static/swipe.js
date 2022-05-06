@@ -196,7 +196,7 @@ class Carousel {
             productImage.classList.add('prdct-img')
             productImageSection.classList.add('prdct-image')
             productImageSection.append(productImage)
-            productImage.src = product.url
+            productImage.src = product.post_image
             let productDescriptionSection = document.createElement('section')
             let productName = document.createElement('h2')
             productName.textContent = product.title;

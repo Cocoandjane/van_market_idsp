@@ -18,7 +18,7 @@
         </div>
 
     <div class="new-prdct-form">
-        <form method="post" action="createListing">
+        <form id="form" method="post" action="createListing">
 
             <label class="details" for="fileUpload">Upload Image</label>
             <div class="addImage">
@@ -27,7 +27,7 @@
                 </div>
                 <div>Add Photos and Videos</div>
             </div>
-            <input class="imageUpload" type="file" name="fileUpload" accept="image/png, image/gif, image/jpeg" hidden>
+            <input id="files" class="imageUpload" type="file" name="fileUpload" accept="image/*">
 
             <label class="details" for="title">Title</label>
             <input class="title" type="text" name="title">
@@ -61,7 +61,7 @@
                 document.getElementById('autocomplete'), ({'country': []}))
 
         }
-
+        
         document.querySelector(".addImage").addEventListener("click", () => {
         document.querySelector('.imageUpload').click()
         
