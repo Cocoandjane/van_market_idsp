@@ -158,7 +158,9 @@ class Carousel {
                 .catch((err) => {
                     console.log(err)
                 })
-                
+
+            
+
                 // debugger
 
                 // throw card in the chosen direction
