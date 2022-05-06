@@ -159,6 +159,7 @@ class Carousel {
                     console.log(err)
                 })
 
+            
 
                 // debugger
 
