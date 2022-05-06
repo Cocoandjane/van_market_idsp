@@ -117,10 +117,10 @@ export async function addToWishlist(user_id, post_id) {
 // step 2: query select for the form 
 
 
-async function addToWishlist(user_id, post_id) {
-let query = `INSERT INTO user_liked_post (user_id, post_id) VALUE (?, ?)`
-const [likedItem] = await database.query(query, [user_id, post_id])
-return likedItem
-}
+// export async function addToWishlist(user_id, post_id) {
+// let query = `INSERT INTO user_liked_post (user_id, post_id) VALUE (?, ?)`
+// const [likedItem] = await database.query(query, [user_id, post_id])
+// return likedItem
+// }
 
-module.exports = { getPosts, getUserLikedItems, getUser, getMyPost, addPost, addToWishlist };
+// module.exports = { getPosts, getUserLikedItems, getUser, getMyPost, addPost, addToWishlist };
