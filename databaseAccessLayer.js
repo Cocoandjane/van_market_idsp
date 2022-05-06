@@ -87,6 +87,30 @@ async function addPost(title, description, price, user_id, condition_type_id, ca
 
     return post
 }
+
+
+async function insertPost(postData, cb) {
+    let sqlInsertSalt = "INSERT INTO post (title, description, price, user_id, category_id, condition_type_id ) VALUES (:title, :description, :price, :user_id, :category_id, :condition_type_id);";
+    let params = {
+        title: postData.title,
+        description: postData.description,
+        price: postData.price,
+        category_id: 1,
+        user_id: 1,
+        condition_type_id: 1
+        
+    };
+   await database.query(sqlInsertSalt, params, (err, results, fields) => {
+        if (err) {
+            console.log(err);
+            callback(err, null);
+        } else {
+
+            callback(null, results);
+        }
+    })
+}
+// async function inserPost(title, )
 // step 1: make that form an jax request and make sure everything is working with that ajax requiest
 // step 2: query select for the form 
-module.exports = { getPosts, getUserLikedItems, getUser, getMyPost, addPost };
+module.exports = { getPosts, getUserLikedItems, getUser, getMyPost, addPost, insertPost };
