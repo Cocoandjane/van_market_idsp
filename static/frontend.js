@@ -8,12 +8,12 @@ addNewPost.addEventListener("click", function (event) {
     event.preventDefault()
 })
 
-let main = document.querySelector("main")
-main.addEventListener("click", function (event) {
-    let catagorySlide = document.querySelector("div.createNew")
-    catagorySlide.classList.add("displayNone")
-    event.preventDefault()
-})
+// let main = document.querySelector("main")
+// main.addEventListener("click", function (event) {
+//     let catagorySlide = document.querySelector("div.createNew")
+//     catagorySlide.classList.add("displayNone")
+//     event.preventDefault()
+// })
 
 let addPostElectronics = document.querySelector('.catagories.electronics')
 addPostElectronics.addEventListener('click', () => {

@@ -66,21 +66,21 @@ export async function getMyPost() {
 }
 
 
-export async function addPost(title, description, price, user_id, condition_type_id, category_id, post_id, url) {
-    let query1 =
-        `INSERT INTO post (title, description, price, user_id, condition_type_id, category_id) VALUES (?, ?, ?, ?, ?, ?);`
-    let query2 =
-        `INSERT INTO image (post_id, url) VALUES (?, ?);`
+// export async function addPost(title, description, price, user_id, condition_type_id, category_id, post_id, url) {
+//     let query1 =
+//         `INSERT INTO post (title, description, price, user_id, condition_type_id, category_id) VALUES (?, ?, ?, ?, ?, ?);`
+//     let query2 =
+//         `INSERT INTO image (post_id, url) VALUES (?, ?);`
 
-    const [postResult] = await database.query(query1, [title, description, price, user_id, 1, 1])
-    const postId = postResult.insertId
-    const [imageResult] = await database.query(query2, [postId, "https://http.cat/404"])
-    console.log(postResult, imageResult)
+//     const [postResult] = await database.query(query1, [title, description, price, user_id, 1, 1])
+//     const postId = postResult.insertId
+//     const [imageResult] = await database.query(query2, [postId, "https://http.cat/404"])
+//     console.log(postResult, imageResult)
 
-    const post = await getPost(postId) // i cahnged price to bar carcahr on workbench, change it back
+//     const post = await getPost(postId) // i cahnged price to bar carcahr on workbench, change it back
 
-    return post
-}
+//     return post
+// }
 
 
 export async function insertPost(postData, cb) {

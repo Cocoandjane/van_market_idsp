@@ -60,28 +60,6 @@ app.get("/createListing", (req, res) => {
 })
 
 
-app.post("/createListing", async (req, res) => {
-  // title, description, price, user_id, condition_type_id, category_id
-  // let img = req.body.img;
-  let user = 1;
-  let title = req.body.title;
-  let price = req.body.price;
-  let condition = req.body.condition_type_id;
-  let description = req.body.description;
-  let category = req.body.category_id;
-  // let location = req.body.location;
-  console.log(req.body)
-  try {
-    await database.addPost(title, description, price, 1, 1, 1, 1, "muradd")
-    res.redirect('/')
-  }
-  // 1, "https://img.ltwebstatic.com/images3_pi/2020/12/17/1608191555ab585116fb1b3f892150e679c960f03e_thumbnail_900x.webp"
-  catch (err){
-    console.log(err)
-    res.status(500).send('Something went wrong...')
-  }
-})
-
 app.post('/likedItems', (req, res) => {
   let userId = 1;
   let direction = req.body.dirX
