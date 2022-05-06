@@ -153,7 +153,7 @@ class Carousel {
                 axios
                 .post(('/likedItems'), {successful, productId, dirX})
                 .then((res) => {
-                    // console.log('res', res)
+                    console.log(res)
                 })
                 .catch((err) => {
                     console.log(err)
