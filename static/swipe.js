@@ -149,6 +149,16 @@ class Carousel {
                 } else if (dirX === 1) {
                     console.log('went off screen to the right', productId)
                 }
+
+                axios
+                .post(('/likedItems'), {successful, productId, dirX})
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+                
                 // debugger
 
                 // throw card in the chosen direction

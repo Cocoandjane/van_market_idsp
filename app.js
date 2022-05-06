@@ -69,18 +69,18 @@ app.get("/s3Url", async (req, res) => {
 app.post("/createListing", async (req, res) => {
   database.insertPost(req.body, (err, result) => {
     console.log(req.body)
-    // if (err) {
-    //   res.render('error', { message: 'Error writing to MySQL' });
-    //   console.log("Error writing to mysql");
-    //   console.log(err);
-    // }
-    // else { //success
-    //   res.redirect("/");
-    //   //Output the results of the query to the Heroku Logs
-    //   console.log(result);
-    // }
+
   })
   res.redirect("/")
+})
+
+app.post('/likedItems', (req, res) => {
+  let userId = 1;
+  let direction = req.body.dirX
+  let productId = +req.body.productId
+  if (direction === 1) {
+    database.addToWishlist(userId, productId)
+  }
 })
 
 export default app;

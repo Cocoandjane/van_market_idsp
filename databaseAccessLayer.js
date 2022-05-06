@@ -111,6 +111,12 @@ export async function insertPost(postData, cb) {
         }
     })
 }
+
+export async function addToWishlist(user_id, post_id) {
+    let query = `INSERT INTO user_liked_post (user_id, post_id) VALUE (?, ?)`
+    const [likedItem] = await database.query(query, [user_id, post_id])
+    return likedItem
+    }
 // async function inserPost(title, )
 // step 1: make that form an jax request and make sure everything is working with that ajax requiest
 // step 2: query select for the form 
