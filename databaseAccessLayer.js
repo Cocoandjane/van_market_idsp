@@ -1,20 +1,20 @@
 
-const database = require('./databaseConnection.js');
+//const database = require('./databaseConnection.js');
 //const passwordPepper = "SeCretPeppa4MySal+";
+import database from './databaseConnection.js'
 
-async function getPosts() {
+export async function getPosts() {
     let query = `
-    SELECT post.post_id, post.title, post.description, post.price, user.username, image.url 
+    SELECT post.post_id, post.title, post.description, post.price, post.post_image, user.username
     FROM post
-    LEFT JOIN image
-    ON post.post_id = image.post_id
     LEFT JOIN user
-    ON post.user_id = user.user_id;`
+    ON post.user_id = user.user_id
+    ORDER BY post.post_id DESC;`
     const [rows] = await database.query(query)
     return rows
 }
 
-async function getPost(id) {
+export async function getPost(id) {
     let query = `
     SELECT post.post_id, post.title, post.description, post.price, user.username, image.url 
     FROM post
@@ -27,7 +27,7 @@ async function getPost(id) {
     return rows
 }
 
-async function getUserLikedItems() {
+export async function getUserLikedItems() {
     let query = `
     SELECT user.user_id,user.username, post.title, post.description, image.url
     FROM user
@@ -42,7 +42,7 @@ async function getUserLikedItems() {
     return rows
 }
 
-async function getUser() {
+export async function getUser() {
     let query = `
     SELECT user_id, username, profile_img 
     FROM user;  
@@ -51,7 +51,7 @@ async function getUser() {
     return rows
 }
 
-async function getMyPost() {
+export async function getMyPost() {
     let query = `
     SELECT user.user_id, user.username, post.title, image.url
     FROM user
@@ -67,7 +67,7 @@ async function getMyPost() {
 }
 
 
-async function addPost(title, description, price, user_id, condition_type_id, category_id, post_id, url) {
+export async function addPost(title, description, price, user_id, condition_type_id, category_id, post_id, url) {
     let query1 =
         `INSERT INTO post (title, description, price, user_id, condition_type_id, category_id) VALUES (?, ?, ?, ?, ?, ?);`
     let query2 =
@@ -82,6 +82,31 @@ async function addPost(title, description, price, user_id, condition_type_id, ca
 
     return post
 }
+
+
+export async function insertPost(postData, cb) {
+    let sqlInsertSalt = "INSERT INTO post (title, description, price, post_image, user_id, category_id, condition_type_id ) VALUES (:title, :description, :price, :post_image, :user_id, :category_id, :condition_type_id);";
+    let params = {
+        title: postData.title,
+        description: postData.description,
+        price: postData.price,
+        post_image: postData.imageUrl,
+        category_id: 1,
+        user_id: 1,
+        condition_type_id: 1
+        
+    };
+   await database.query(sqlInsertSalt, params, (err, results, fields) => {
+        if (err) {
+            console.log(err);
+            callback(err, null);
+        } else {
+
+            callback(null, results);
+        }
+    })
+}
+// async function inserPost(title, )
 // step 1: make that form an jax request and make sure everything is working with that ajax requiest
 // step 2: query select for the form 
 

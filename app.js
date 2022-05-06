@@ -1,11 +1,18 @@
-const express = require('express')
+ //const express = require('express')
+ import express from 'express'
 const app = express()
-const bodyParser = require('body-parser')
-const mysql = require('mysql2')
+//const bodyParser = require('body-parser')
+//const mysql = require('mysql2')
+
 app.use(express.static("static"))
 app.set('view engine', 'ejs')
 
-let database = require('./databaseAccessLayer.js');
+import bodyParser from 'body-parser'
+import mysql from 'mysql2'
+import { generateUploadURL } from "./s3.js";
+
+//let database = require('./databaseAccessLayer.js');
+import * as database from './databaseAccessLayer.js'
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 
@@ -26,6 +33,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/products', async (req, res) => {
   let products = await database.getPosts()
+  console.log(products)
   res.json({ products })
 })
 
@@ -83,9 +91,32 @@ app.post('/likedItems', (req, res) => {
   }
 })
 
+//s3
+app.get("/s3Url", async (req, res) => {
+  const url = await generateUploadURL()
+  console.log(url)
+  res.send({url})
+})
 
+app.post("/createListing", async (req, res) => {
+  database.insertPost(req.body, (err, result) => {
+    console.log(req.body)
+    // if (err) {
+    //   res.render('error', { message: 'Error writing to MySQL' });
+    //   console.log("Error writing to mysql");
+    //   console.log(err);
+    // }
+    // else { //success
+    //   res.redirect("/");
+    //   //Output the results of the query to the Heroku Logs
+    //   console.log(result);
+    // }
+  })
+  res.redirect("/")
+})
 
-module.exports = app;
+export default app;
+//module.exports = app;
   // let data = req.body;
   // console.log(data)
   // res.render('createListing')
