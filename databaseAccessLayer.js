@@ -11,7 +11,6 @@ export async function getPosts() {
     ON post.user_id = user.user_id
     ORDER BY post.post_id DESC;`
     const [rows] = await database.query(query)
-    //console.log(rows)
     return rows
 }
 
@@ -25,7 +24,6 @@ export async function getPost(id) {
     ON post.user_id = user.user_id
     WHERE post.post_id = ?`
     const [rows] = await database.query(query, [id])
-    //console.log(rows)
     return rows
 }
 
@@ -41,7 +39,6 @@ export async function getUserLikedItems() {
     ON post.post_id = image.post_id;
     `
     const [rows] = await database.query(query)
-    //console.log(rows)
     return rows
 }
 
@@ -51,7 +48,6 @@ export async function getUser() {
     FROM user;  
     `
     const [rows] = await database.query(query)
-    //console.log(rows)
     return rows
 }
 
@@ -67,7 +63,6 @@ export async function getMyPost() {
     ON post.post_id = image.image_id;
     `
     const [rows] = await database.query(query)
-    //console.log(rows)
     return rows
 }
 
@@ -120,4 +115,12 @@ export async function addToWishlist(user_id, post_id) {
 // async function inserPost(title, )
 // step 1: make that form an jax request and make sure everything is working with that ajax requiest
 // step 2: query select for the form 
-//module.exports = { getPosts, getUserLikedItems, getUser, getMyPost, addPost, insertPost };
+
+
+async function addToWishlist(user_id, post_id) {
+let query = `INSERT INTO user_liked_post (user_id, post_id) VALUE (?, ?)`
+const [likedItem] = await database.query(query, [user_id, post_id])
+return likedItem
+}
+
+module.exports = { getPosts, getUserLikedItems, getUser, getMyPost, addPost, addToWishlist };

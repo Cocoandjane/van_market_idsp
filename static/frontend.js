@@ -1,3 +1,4 @@
+
 import axios from 'https://cdn.skypack.dev/axios'
 
 let addNewPost = document.querySelector(".postNew")
