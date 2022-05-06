@@ -68,7 +68,7 @@ app.post("/createListing", async (req, res) => {
     res.redirect('/')
   }
   // 1, "https://img.ltwebstatic.com/images3_pi/2020/12/17/1608191555ab585116fb1b3f892150e679c960f03e_thumbnail_900x.webp"
-  catch (err) {
+  catch (err){
     console.log(err)
     res.status(500).send('Something went wrong...')
   }
