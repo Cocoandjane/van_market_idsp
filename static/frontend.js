@@ -1,3 +1,6 @@
+
+import axios from 'https://cdn.skypack.dev/axios'
+
 let addNewPost = document.querySelector(".postNew")
 addNewPost.addEventListener("click", function (event) {
     let catagorySlide = document.querySelector("div.createNew.displayNone")
@@ -26,7 +29,17 @@ let addPostFurniture = document.querySelector('.catagories.furniture')
 addPostFurniture.addEventListener('click', () => {
     location.href = '/createListing'
 })
-import axios from 'https://cdn.skypack.dev/axios'
+
+
+let addPostOther = document.querySelector('.catagories.other')
+addPostOther.addEventListener('click', () => {
+    location.href = '/createListing'
+})
+
+let likedItems = document.querySelector('.idkwtf')
+likedItems.addEventListener('click', () => {
+    location.href = '/likedItems'
+})
 
 // let addNewPost = document.querySelector(".postNew")
 // addNewPost.addEventListener("click", function (event) {
@@ -55,15 +68,7 @@ import axios from 'https://cdn.skypack.dev/axios'
 //     let description = document.querySelector(".description").value
 //     //location
 
-let addPostOther = document.querySelector('.catagories.other')
-addPostOther.addEventListener('click', () => {
-    location.href = '/createListing'
-})
 
-let likedItems = document.querySelector('.idkwtf')
-likedItems.addEventListener('click', () => {
-    location.href = '/likedItems'
-})
 //     console.log(title, price, condition, description)
 
 //  axios.post("/createListing", {title, price, condition, description})
@@ -115,8 +120,8 @@ imageForm.addEventListener("submit", async event => {
             console.log(response)
             location.href = '/'
         })
-        .catch(() => {
-
+        .catch((err) => {
+            console.log(err)
         })
 
 
