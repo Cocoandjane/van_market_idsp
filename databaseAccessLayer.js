@@ -1,6 +1,5 @@
 
-//const database = require('./databaseConnection.js');
-//const passwordPepper = "SeCretPeppa4MySal+";
+
 import database from './databaseConnection.js'
 
 export async function getPosts() {
@@ -67,21 +66,21 @@ export async function getMyPost() {
 }
 
 
-export async function addPost(title, description, price, user_id, condition_type_id, category_id, post_id, url) {
-    let query1 =
-        `INSERT INTO post (title, description, price, user_id, condition_type_id, category_id) VALUES (?, ?, ?, ?, ?, ?);`
-    let query2 =
-        `INSERT INTO image (post_id, url) VALUES (?, ?);`
+// export async function addPost(title, description, price, user_id, condition_type_id, category_id, post_id, url) {
+//     let query1 =
+//         `INSERT INTO post (title, description, price, user_id, condition_type_id, category_id) VALUES (?, ?, ?, ?, ?, ?);`
+//     let query2 =
+//         `INSERT INTO image (post_id, url) VALUES (?, ?);`
 
-    const [postResult] = await database.query(query1, [title, description, price, user_id, 1, 1])
-    const postId = postResult.insertId
-    const [imageResult] = await database.query(query2, [postId, "https://http.cat/404"])
-    console.log(postResult, imageResult)
+//     const [postResult] = await database.query(query1, [title, description, price, user_id, 1, 1])
+//     const postId = postResult.insertId
+//     const [imageResult] = await database.query(query2, [postId, "https://http.cat/404"])
+//     console.log(postResult, imageResult)
 
-    const post = await getPost(postId) // i cahnged price to bar carcahr on workbench, change it back
+//     const post = await getPost(postId) // i cahnged price to bar carcahr on workbench, change it back
 
-    return post
-}
+//     return post
+// }
 
 
 export async function insertPost(postData, cb) {
@@ -94,9 +93,9 @@ export async function insertPost(postData, cb) {
         category_id: 1,
         user_id: 1,
         condition_type_id: 1
-        
+
     };
-   await database.query(sqlInsertSalt, params, (err, results, fields) => {
+    await database.query(sqlInsertSalt, params, (err, results, fields) => {
         if (err) {
             console.log(err);
             callback(err, null);
@@ -111,16 +110,5 @@ export async function addToWishlist(user_id, post_id) {
     let query = `INSERT INTO user_liked_post (user_id, post_id) VALUE (?, ?)`
     const [likedItem] = await database.query(query, [user_id, post_id])
     return likedItem
-    }
-// async function inserPost(title, )
-// step 1: make that form an jax request and make sure everything is working with that ajax requiest
-// step 2: query select for the form 
+}
 
-
-// export async function addToWishlist(user_id, post_id) {
-// let query = `INSERT INTO user_liked_post (user_id, post_id) VALUE (?, ?)`
-// const [likedItem] = await database.query(query, [user_id, post_id])
-// return likedItem
-// }
-
-// module.exports = { getPosts, getUserLikedItems, getUser, getMyPost, addPost, addToWishlist };
