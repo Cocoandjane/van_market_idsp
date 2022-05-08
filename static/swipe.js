@@ -150,13 +150,12 @@ class Carousel {
                     console.log('went off screen to the right', productId)
                 }
 
-                axios
-                .post(('/likedItems'), {successful, productId, dirX})
+                axios.post(('/likedItems'), {successful, productId, dirX})
                 .then((res) => {
-                    console.log(res)
+                    console.log('res', res)
                 })
                 .catch((err) => {
-                    console.log(err)
+                    console.log('ERR', err)
                 })
 
             

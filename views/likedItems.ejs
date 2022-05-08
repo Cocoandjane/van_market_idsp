@@ -30,17 +30,17 @@
     </div>
 
     <section class="icon_views">
+        <% console.log('OLIVER:',likeList) %> 
         <%for (let i=0; i < likeList.length; i++) {%>
             <div class="white_frame">
                 <div class="img_cropper">              
-                    <img class="liked_img" src="<%= likeList[i].url%>">
+                    <img class="liked_img" src="<%= likeList[i].post_image%>">
                 </div>
                 <div class="item_description">
                     <p><%= likeList[i].title%></p>
                 </div>
             </div>
             <%}%>
-
     </section>
 
 </main>
