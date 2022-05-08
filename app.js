@@ -84,13 +84,13 @@ app.post("/createListing", async (req, res) => {
   res.redirect("/")
 })
 
-app.post('/likedItems', (req, res) => {
-  let userId = 1;
-  let direction = req.body.dirX
-  let productId = +req.body.productId
-  if (direction === 1) {
-    database.addToWishlist(userId, productId)
-  }
-})
+// app.post('/likedItems', (req, res) => {
+//   let userId = 1;
+//   let direction = req.body.dirX
+//   let productId = +req.body.productId
+//   if (direction === 1) {
+//     database.addToWishlist(userId, productId)
+//   }
+// })
 
 export default app;
