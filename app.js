@@ -49,8 +49,9 @@ app.get("/profile", async (req, res) => {
 
 
 app.get("/likedItems", async (req, res) => {
+
   let likeList = await database.getUserLikedItems()
-  //console.log(likeList)
+  console.log('likedList' , likeList)
   res.render("likedItems", { likeList })
 })
 
@@ -59,13 +60,20 @@ app.get("/createListing", (req, res) => {
   res.render("createListing")
 })
 
-
-app.post('/likedItems', (req, res) => {
-  let userId = 1;
-  let direction = req.body.dirX
-  let productId = +req.body.productId
-  if (direction === 1) {
-    database.addToWishlist(userId, productId)
+// app.get('/likedItems', (req, res) => {
+  //   res.render('/likedItems')
+  // })
+  
+  app.post('/likedItems', async (req, res) => {
+    let likeList = await database.getUserLikedItems()
+    let userId = 1;
+    let direction = req.body.dirX
+    let productId = +req.body.productId
+    console.log('here:', userId, direction, productId) 
+    if (direction === 1) {
+      // let addedToWishList = 
+      await database.addToWishlist(userId, productId)
+      // res.render('likedItems', {addedToWishList, likeList})
   }
 })
 
@@ -83,7 +91,6 @@ app.post("/createListing", async (req, res) => {
   })
   res.redirect("/")
 })
-
 
 
 export default app;

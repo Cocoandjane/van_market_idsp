@@ -1,5 +1,6 @@
 
-
+//const database = require('./databaseConnection.js');
+//const passwordPepper = "SeCretPeppa4MySal+";
 import database from './databaseConnection.js'
 
 export async function getPosts() {
@@ -28,14 +29,8 @@ export async function getPost(id) {
 
 export async function getUserLikedItems() {
     let query = `
-    SELECT user.user_id,user.username, post.title, post.description, image.url
-    FROM user
-    JOIN user_liked_post
-    ON user.user_id = user_liked_post.user_id
-    JOIN post
-    ON user_liked_post.post_id = post.post_id
-    JOIN image
-    ON post.post_id = image.post_id;
+    SELECT user.user_id,user.username, post.title, post.description, post.post_image FROM user, post, user_liked_post
+    WHERE user.user_id = 1 AND user_liked_post.user_id = user.user_id AND user_liked_post.post_id = post.post_id
     `
     const [rows] = await database.query(query)
     return rows
@@ -93,9 +88,9 @@ export async function insertPost(postData, cb) {
         category_id: 1,
         user_id: 1,
         condition_type_id: 1
-
+        
     };
-    await database.query(sqlInsertSalt, params, (err, results, fields) => {
+   await database.query(sqlInsertSalt, params, (err, results, fields) => {
         if (err) {
             console.log(err);
             callback(err, null);
@@ -105,10 +100,15 @@ export async function insertPost(postData, cb) {
         }
     })
 }
+// async function inserPost(title, )
+// step 1: make that form an jax request and make sure everything is working with that ajax requiest
+// step 2: query select for the form 
+
 
 export async function addToWishlist(user_id, post_id) {
-    let query = `INSERT INTO user_liked_post (user_id, post_id) VALUE (?, ?)`
-    const [likedItem] = await database.query(query, [user_id, post_id])
-    return likedItem
+let query = `INSERT INTO user_liked_post (user_id, post_id) VALUE (?, ?)`
+const [likedItem] = await database.query(query, [user_id, post_id])
+return likedItem
 }
 
+// module.exports = { getPosts, getUserLikedItems, getUser, getMyPost, addPost, addToWishlist };
