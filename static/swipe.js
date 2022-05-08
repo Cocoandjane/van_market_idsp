@@ -273,8 +273,6 @@ class Carousel {
         })
         // card.style.backgroundImage =
         //     "url('https://picsum.photos/320/320/?random=" + Math.round(Math.random() * 1000000) + "')"
-
-
     }
 }
 
