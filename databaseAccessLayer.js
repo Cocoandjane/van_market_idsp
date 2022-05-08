@@ -29,8 +29,8 @@ export async function getPost(id) {
 
 export async function getUserLikedItems() {
     let query = `
-    SELECT user.user_id,user.username, post.title, post.description, post.post_image FROM user, post, user_liked_post
-    WHERE user.user_id = 1 AND user_liked_post.user_id = user.user_id AND user_liked_post.post_id = post.post_id
+    SELECT user.user_id,user.username, post.title, post.description, post.post_image FROM user, post, wishlist
+    WHERE user.user_id = 1 AND wishlist.user_id = user.user_id AND wishlist.post_id = post.post_id
     `
     const [rows] = await database.query(query)
     return rows
@@ -106,7 +106,7 @@ export async function insertPost(postData, cb) {
 
 
 export async function addToWishlist(user_id, post_id) {
-let query = `INSERT INTO user_liked_post (user_id, post_id) VALUE (?, ?)`
+let query = `INSERT INTO wishlist (user_id, post_id) VALUE (?, ?)`
 const [likedItem] = await database.query(query, [user_id, post_id])
 return likedItem
 }
