@@ -85,8 +85,8 @@ export async function insertPost(postData, cb) {
         description: postData.description,
         price: postData.price,
         post_image: postData.imageUrl,
-        category_id: 1,
         user_id: 1,
+        category_id: 1,
         condition_type_id: 1
         
     };
