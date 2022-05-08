@@ -85,7 +85,7 @@ app.get("/s3Url", async (req, res) => {
 })
 
 app.post("/createListing", async (req, res) => {
-  database.insertPost(req.body, (err, result) => {
+ await database.insertPost(req.body, (err, result) => {
     console.log(req.body)
 
   })
