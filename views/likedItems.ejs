@@ -30,8 +30,7 @@
     </div>
 
     <section class="icon_views">
-        <% console.log('OLIVER:',likeList) %> 
-        <%for (let i=0; i < likeList.length; i++) {%>
+        <%for (let i=0; i < likeList.reverse().length; i++) {%>
             <div class="white_frame">
                 <div class="img_cropper">              
                     <img class="liked_img" src="<%= likeList[i].post_image%>">
