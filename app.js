@@ -32,32 +32,52 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/products', async (req, res) => {
-  let products = await database.getPosts()
+ try{ let products = await database.getPosts()
   //console.log(products)
   res.json({ products })
+ } catch (error) {
+  console.error(error)
+  res.status(500).send({ error: "🖕" })
+}
 })
 
 app.get("/swipe", (req, res) => {
-  res.render('home')
+  try {res.render('home')
+} catch (error) {
+    console.error(error)
+    res.status(500).send({ error: "🖕" })
+  }
 })
 
 app.get("/profile", async (req, res) => {
-  let users = await database.getUser()
+ try{ let users = await database.getUser()
   let posts = await database.getMyPost()
   res.render("profile", { users, posts })
+ }catch (error) {
+  console.error(error)
+  res.status(500).send({ error: "🖕" })
+}
 })
 
 
 app.get("/likedItems", async (req, res) => {
 
-  let likeList = await database.getUserLikedItems()
+  try {let likeList = await database.getUserLikedItems()
   console.log('likedList' , likeList)
   res.render("likedItems", { likeList })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send({ error: "🖕" })
+  }
 })
 
 
 app.get("/createListing", (req, res) => {
-  res.render("createListing")
+  try {res.render("createListing")
+}catch (error) {
+  console.error(error)
+  res.status(500).send({ error: "🖕" })
+}
 })
 
 // app.get('/likedItems', (req, res) => {
@@ -65,7 +85,7 @@ app.get("/createListing", (req, res) => {
   // })
   
   app.post('/likedItems', async (req, res) => {
-    let likeList = await database.getUserLikedItems()
+  try{  let likeList = await database.getUserLikedItems()
     let userId = 1;
     let direction = req.body.dirX
     let productId = +req.body.productId
@@ -75,21 +95,33 @@ app.get("/createListing", (req, res) => {
       await database.addToWishlist(userId, productId)
       // res.render('likedItems', {addedToWishList, likeList})
   }
+} catch (error) {
+    console.error(error)
+    res.status(500).send({ error: "🖕" })
+  }
 })
 
 //s3
 app.get("/s3Url", async (req, res) => {
-  const url = await generateUploadURL()
+ try{ const url = await generateUploadURL()
   console.log(url)
   res.send({url})
+ }catch (error) {
+  console.error(error)
+  res.status(500).send({ error: "🖕" })
+}
 })
 
 app.post("/createListing", async (req, res) => {
- await database.insertPost(req.body, (err, result) => {
+try{ await database.insertPost(req.body, (err, result) => {
     console.log(req.body)
 
   })
   res.redirect("/")
+}catch (error) {
+  console.error(error)
+  res.status(500).send({ error: "🖕" })
+}
 })
 
 
