@@ -16,7 +16,7 @@ export async function getPosts() {
 
 export async function getPost(id) {
     let query = `
-    SELECT post.post_id, post.title, post.description, post.price, user.username, image.url 
+    SELECT  post.user_id, post.post_id, post.title, post.description, post.price, user.username, post.post_image
     FROM post
     LEFT JOIN image
     ON post.post_id = image.post_id
@@ -77,33 +77,23 @@ export async function getMyPost() {
 //     return post
 // }
 
+// export async function addTask(title) {
+//     let query = `INSERT INTO tasks (title) VALUES (?)`
+//     const result = await pool.query(query, [title]) 
+//     console.log(result)
+//     const id = result[0].insertId
+//     return getTask(id)
+// }
 
-export async function insertPost(postData, cb) {
-    let sqlInsertSalt = "INSERT INTO post (title, description, price, post_image, user_id, category_id, condition_type_id ) VALUES (:title, :description, :price, :post_image, :user_id, :category_id, :condition_type_id);";
-    let params = {
-        title: postData.title,
-        description: postData.description,
-        price: postData.price,
-        post_image: postData.imageUrl,
-        user_id: 1,
-        category_id: 1,
-        condition_type_id: 1
-        
-    };
-   await database.query(sqlInsertSalt, params, (err, results, fields) => {
-        if (err) {
-            console.log(err);
-            callback(err, null);
-        } else {
 
-            callback(null, results);
-        }
-    })
+export async function insertPost(title, description, price, post_image, user_id, category_id, condition_type_id){
+    let query = "INSERT INTO post (title, description, price, post_image, user_id, category_id, condition_type_id) VALUES (?,?,?,?,?,?,?);";
+    const result = await database.query(query, [title, description, price, post_image, user_id, category_id, condition_type_id])
+    console.log(result)
+    const id = result[0].insertId
+    return id
 }
-// async function inserPost(title, )
-// step 1: make that form an jax request and make sure everything is working with that ajax requiest
-// step 2: query select for the form 
-
+   
 
 export async function addToWishlist(user_id, post_id) {
 let query = `INSERT INTO wishlist (user_id, post_id) VALUE (?, ?)`
@@ -111,4 +101,10 @@ const [likedItem] = await database.query(query, [user_id, post_id])
 return likedItem
 }
 
-// module.exports = { getPosts, getUserLikedItems, getUser, getMyPost, addPost, addToWishlist };
+export async function  getNewPost(id) {
+    let query = "SELECT * FROM post where post_id = ?;"
+    const [newPost] = await database.query(query, [id])
+    return newPost  
+}
+
+

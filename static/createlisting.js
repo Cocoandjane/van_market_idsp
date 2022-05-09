@@ -30,16 +30,16 @@ imageForm.addEventListener("submit", async event => {
     //location
     //console.log(title, price, condition, description)
     axios.post("/createListing", { title, price, condition, description, imageUrl })
-        // axios.post("/createListing", {})
         .then(response => {
-            console.log(response)
-            location.href = '/'
+            console.log(response.data)
+            let id = response.data
+            //location.href = `/viewListing`
+            // success go to the next page
+        window.location = `viewListing/${id}`
         })
         .catch((err) => {
             console.log(err)
         })
-
-
     // post requet to my server with the iamgeUrl
     // title
     // price
