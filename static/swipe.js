@@ -4,7 +4,6 @@ class Carousel {
     constructor(element) {
         axios.get("/api/products")
             .then(response => {
-                console.log(response.data.products)
                 this.products = response.data.products
                 this.board = element
                 // add first two cards programmatically
