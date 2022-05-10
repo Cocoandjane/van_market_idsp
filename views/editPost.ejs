@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/createListing.css">
+
+    <title>VanMarket</title>
+</head>
+
+<body>
+    <main>
+        <div class="afterPanel">
+            <div class="logo">
+                <img src="/icons/logo.svg">
+            </div>
+
+            <div class="new-prdct-form">
+                <form id="form" method="post" action="/editPost/<%= post.post_id %>" method="POST">
+
+                    <label class="details" for="fileUpload">Upload Image</label>
+                    <div class="addImage">
+                        <div class="addImageIcon">
+                            <img src="/icons/addImageIcon.svg" alt="">
+                        </div>
+                        <div>Add Photos and Videos</div>
+                    </div>
+                    <input id="files" class="imageUpload" type="file" name="fileUpload" accept="image/*"
+                        value=<%=post.post_image %>>
+
+                    <label class="details" for="title">Title</label>
+                    <% // console.log(post) %>
+                        <input class="title" type="text" name="title" value="<%= post.title %>">
+
+                        <label class="details" for="price">Price</label>
+                        <input class="price" type="number" name="price" value="<%= post.price %>">
+
+                        <label class="details" for="condition">Condition</label>
+                        <select name="condition" id="condition" value="<%= post.condition %>">
+                            <option value="choose">Choose</option>
+                            <option value="new">New</option>
+                            <option value="used - like new">Used - Like New</option>
+                            <option value="used - good">Used - Good</option>
+                            <option value="used - fair">Used - Fair</option>
+                        </select>
+
+                        <label class="details" for="description">Description</label>
+                        <input class="description" type="text" name="description" value="<%= post.description %>">
+
+                        <label class="details" for="location">Location</label>
+                        <input id="autocomplete" type="text" placeholder="Enter a place..." name="location"
+                            value="<%= post.location %>">
+
+                        <button id="edit" class="submit-btn" type='submit'>Edit Listing</button>
+                        <!--   -->
+                </form>
+            </div>
+    </main>
+    <script>
+        let autocomplete;
+        function initMap() {
+            autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('autocomplete'), ({ 'country': [] }))
+
+        }
+
+        document.querySelector(".addImage").addEventListener("click", () => {
+            document.querySelector('.imageUpload').click()
+
+        })
+
+    </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEEdlSNtFmvvp-6Gc3hS2dBxuP_0gDsI8&libraries=places&callback=initMap"
+        async defer></script>
+    <script src="/editPost.js" defer type="module"></script>
+</body>
+
+</html>
