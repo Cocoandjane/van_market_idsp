@@ -4,7 +4,7 @@ const imageForm = document.querySelector("#form")
 const imageInput = document.querySelector("#files")
 
 imageForm.addEventListener("submit", async event => {
-    // event.preventDefault()
+    event.preventDefault()
     const file = imageInput.files[0]
 
     //get secure url form our server
