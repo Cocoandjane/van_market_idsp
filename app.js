@@ -1,5 +1,5 @@
 
-import {DateTime}from "luxon";
+import { DateTime } from "luxon";
 //const express = require('express')
 import express from 'express'
 const app = express()
@@ -121,15 +121,15 @@ app.get("/s3Url", async (req, res) => {
 
 app.post("/createlisting", async (req, res) => {
   let axiosData = req.body
-  let title =  axiosData.title;
-  let description =  axiosData.description;
+  let title = axiosData.title;
+  let description = axiosData.description;
   let price = axiosData.price;
   let date = DateTime.now().toISODate()
   let image = axiosData.imageUrl;
   let user_id = 1;
-  let category_id= 1;
-  let condition_type_id=1;
-  let id = await database.insertPost(title,description,price,date,image,user_id,category_id,condition_type_id)
+  let category_id = 1;
+  let condition_type_id = 1;
+  let id = await database.insertPost(title, description, price, date, image, user_id, category_id, condition_type_id)
   res.json(id)
 })
 
@@ -137,15 +137,28 @@ app.post("/createlisting", async (req, res) => {
 app.get("/viewListing/:id", async (req, res) => {
   let id = +req.params.id
   try {
-   let post = await database.getNewPost(id)
-   res.render(`viewListing`, {post})
+    if (!id) {
+      res.status(400).send({ message: "this post doesn't exist" })
+    } else {
+      let post = await database.getNewPost(id)
+      res.render(`viewListing`, { post })
+    }
   } catch (error) {
     console.error(error)
     res.status(500).send({ error: "🖕" })
   }
-  res.json(id)
 })
 
+app.post("/deletePost/:id", async (req, res) => {
+  let id = +req.params.id
+  try {
+    let result = await database.deletePost(id)
+    res.redirect("/")
+  } catch (error) {
+    console.error(error)
+    res.status(500).send({ error: "🖕" })
+  }
+})
 
 
 export default app;

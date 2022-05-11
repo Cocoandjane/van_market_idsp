@@ -21,7 +21,7 @@ imageForm.addEventListener("submit", async event => {
     })
 
     const imageUrl = url.split("?")[0]
-    console.log(imageUrl)
+    //console.log(imageUrl)
 
     let title = document.querySelector(".title").value
     let price = document.querySelector(".price").value
