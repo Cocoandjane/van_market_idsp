@@ -83,6 +83,14 @@
         </a>
     </nav>
     <section class="delete-sec">
+        <div class="card displayNone">
+            <strong>Confirm Delete?</strong>
+            <p>this can not be undone</p>
+            <button class="no">No</button>
+            <form action="/deletePost/<%=post.post_id%>" method="post">
+            <button class="yes" type="submit" > COMFIRM DELETE</button>
+        </form>
+        </div>
 
     </section>
     <div class="createNew displayNone">

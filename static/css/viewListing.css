@@ -135,3 +135,7 @@ button.yes{
 div.card.disapear{
     display: none;
 }
+
+div.card.displayNone{
+    display: none;
+}

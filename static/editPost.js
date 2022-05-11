@@ -46,6 +46,11 @@ imageForm.addEventListener("submit", async event => {
         .catch((err) => {
             console.log('ERR', err)
         })
+
+    let editButton = document.querySelector('.icon-edit-post');
+    editButton.addEventListener('click', () => {
+        location.href = '/viewListing/88'
+    })
     // post requet to my server with the iamgeUrl
     // title
     // price

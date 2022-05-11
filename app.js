@@ -128,9 +128,9 @@ app.post("/createlisting", async (req, res) => {
   let date = luxon.DateTime.now().toISODate()
   let image = axiosData.imageUrl;
   let user_id = 1;
-  let category_id= 1;
-  let condition_type_id=1;
-  let id = await database.insertPost(title,description,price,date,image,user_id,category_id,condition_type_id)
+  let category_id = 1;
+  let condition_type_id = 1;
+  let id = await database.insertPost(title, description, price, date, image, user_id, category_id, condition_type_id)
   res.json(id)
 })
 
@@ -187,6 +187,33 @@ app.get('/showProduct/:id', (req, res) => {
   let postId = +req.params.id;
 
 res.render('viewListing', {postId})
+})
+
+
+app.get("/viewListing/:id", async (req, res) => {
+  let id = +req.params.id
+  try {
+    if (!id) {
+      res.status(400).send({ message: "this post doesn't exist" })
+    } else {
+      let post = await database.getNewPost(id)
+      res.render(`viewListing`, { post })
+    }
+  } catch (error) {
+    console.error(error)
+    res.status(500).send({ error: "🖕" })
+  }
+})
+
+app.post("/deletePost/:id", async (req, res) => {
+  let id = +req.params.id
+  try {
+    let result = await database.deletePost(id)
+    res.redirect("/")
+  } catch (error) {
+    console.error(error)
+    res.status(500).send({ error: "🖕" })
+  }
 })
 
 

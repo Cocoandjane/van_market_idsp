@@ -157,7 +157,10 @@ class Carousel {
                     console.log('ERR', err)
                 })
 
-                axios.get(('/productPage/:id'), {successful, productId, dirX})
+                let idkSomeArray = location.href.split("/")
+                let postId = idkSomeArray[idkSomeArray.length-1]
+                console.log(postId)
+                axios.get((`/productPage/87`), {successful, productId, dirX})
                 .then((res) => {
                     console.log('res', res)
                     productId
