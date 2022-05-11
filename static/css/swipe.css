@@ -138,3 +138,10 @@ img.pfp-img {
 .prdct-desc {
     margin-left: 10px;
 }
+
+.viewProductButton {
+    height: 20px;
+    width: auto;
+    margin-left: 10%;
+
+}

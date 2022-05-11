@@ -23,6 +23,7 @@ export async function getPost(id) {
     LEFT JOIN user
     ON post.user_id = user.user_id
     WHERE post.post_id = ?`
+
     const [rows] = await database.query(query, [id])
     return rows
 }
@@ -46,6 +47,7 @@ export async function getUser() {
 }
 
 export async function getMyPost() {
+
     let query = `
     SELECT user.user_id, user.username, post.title, image.url
     FROM user
@@ -86,6 +88,10 @@ export async function getMyPost() {
 // }
 
 
+// export async function insertPost(title, description, price, post_image, user_id, category_id, condition_type_id) {
+//     let query = "INSERT INTO post (title, description, price, post_image, user_id, category_id, condition_type_id) VALUES (?,?,?,?,?,?,?);";
+//     const result = await database.query(query, [title, description, price, post_image, user_id, category_id, condition_type_id])
+//     console.log(result)
 export async function insertPost(title, description, price, date, post_image, user_id, category_id, condition_type_id){
     let query = "INSERT INTO post (title, description, price, date, post_image, user_id, category_id, condition_type_id) VALUES (?,?,?,?,?,?,?,?);";
     const result = await database.query(query, [title, description, price, date, post_image, user_id, category_id, condition_type_id])
@@ -93,20 +99,32 @@ export async function insertPost(title, description, price, date, post_image, us
     const id = result[0].insertId
     return id
 }
-   
+
 
 export async function addToWishlist(user_id, post_id) {
-let query = `INSERT INTO wishlist (user_id, post_id) VALUE (?, ?)`
-const [likedItem] = await database.query(query, [user_id, post_id])
-return likedItem
+    let query = `INSERT INTO wishlist (user_id, post_id) VALUE (?, ?)`
+    const [likedItem] = await database.query(query, [user_id, post_id])
+    return likedItem
 }
 
-export async function  getNewPost(id) {
+export async function getNewPost(id) {
     let query = "SELECT * FROM post where post_id = ?;"
     const [newPost] = await database.query(query, [id])
-    return newPost  
+    return newPost
 }
 
+
+
+export async function updatePost(post_id, title, description, price, post_image, user_id, condition_type_id) {
+    console.log("haha", post_id)
+    let query = `
+    UPDATE post
+     SET title = ?, description = ?, price = ?, post_image = ? , user_id = ?, condition_type_id = ?
+    WHERE post_id = ?;
+    `
+    let [result] = await database.query(query, [title, description, price, post_image, user_id, condition_type_id, post_id]) // do these have to be in the same order that they are in the sql statement
+    return result
+}
 export async function deletePost(id) {
     let query="DELETE FROM post WHERE post_id = ?;"
     const result = await database.query(query, [id])

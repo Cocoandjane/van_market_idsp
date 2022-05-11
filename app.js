@@ -1,5 +1,6 @@
 
-import { DateTime } from "luxon";
+import luxon from "luxon";
+// const {DateTime} = 'luxon'
 //const express = require('express')
 import express from 'express'
 const app = express()
@@ -110,10 +111,10 @@ app.post('/likedItems', async (req, res) => {
 app.get("/s3Url", async (req, res) => {
   try {
     const url = await generateUploadURL()
-    console.log(url)
+    // console.log('URLLL ',url)
     res.send({ url })
   } catch (error) {
-    console.error(error)
+    console.error('this is the erroe', error)
     res.status(500).send({ error: "🖕" })
   }
 })
@@ -124,13 +125,68 @@ app.post("/createlisting", async (req, res) => {
   let title = axiosData.title;
   let description = axiosData.description;
   let price = axiosData.price;
-  let date = DateTime.now().toISODate()
+  let date = luxon.DateTime.now().toISODate()
   let image = axiosData.imageUrl;
   let user_id = 1;
   let category_id = 1;
   let condition_type_id = 1;
   let id = await database.insertPost(title, description, price, date, image, user_id, category_id, condition_type_id)
   res.json(id)
+})
+
+app.get('/editPost/:id', async (req, res) => {
+  let postId = +req.params.id;
+  let [post] = await database.getPost(postId)
+  console.log(post)
+  // return;
+
+  console.log('here', post.post_id)
+  res.render('editPost', { post }) 
+})
+
+
+app.post('/editPost/:id', async (req, res) => { 
+    let postId = +req.params.id;
+    let data = req.body;
+    console.log('dataaa', data)
+    let title = req.body.title;
+    let description = req.body.description;
+    let price = req.body.price;
+    let postImage = req.body.imageUrl;
+    let userId = 1;
+    let categoryId = req.body.category_id;
+    let conditionTypeid = 1;
+    console.log("lmao",postId)
+    await database.getPosts(postId)
+    // console.log('post', post)
+    // console.log('postid', post.post_id)
+    let id = await database.updatePost(postId, title, description, price, postImage, userId, conditionTypeid)
+    console.log('this is the id', postId)
+    res.json(postId)
+    // res.redirect('home')
+})
+
+
+
+
+app.get("/viewListing/:id", async (req, res) => {
+  console.log('murrrraddddd', req.params)
+  let id = +req.params.id
+  try {
+    const [post] = await database.getNewPost(id)
+    console.log('this is the post: ', post)
+    res.render("viewListing", { post })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send({ error: "🖕" })
+  }
+})
+
+
+app.get('/showProduct/:id', (req, res) => {
+  let postId = +req.params.id;
+
+res.render('viewListing', {postId})
 })
 
 

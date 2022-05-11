@@ -4,7 +4,7 @@ const imageForm = document.querySelector("#form")
 const imageInput = document.querySelector("#files")
 
 imageForm.addEventListener("submit", async event => {
-    event.preventDefault()
+    // event.preventDefault()
     const file = imageInput.files[0]
 
     //get secure url form our server
@@ -21,7 +21,11 @@ imageForm.addEventListener("submit", async event => {
     })
 
     const imageUrl = url.split("?")[0]
-    //console.log(imageUrl)
+    console.log(imageUrl)
+
+    if(imageUrl === ""){
+        imageUrl.value
+    }
 
     let title = document.querySelector(".title").value
     let price = document.querySelector(".price").value
@@ -29,17 +33,24 @@ imageForm.addEventListener("submit", async event => {
     let description = document.querySelector(".description").value
     //location
     //console.log(title, price, condition, description)
-    axios.post("/createListing", { title, price, condition, description, imageUrl })
+    let idkSomeArray = location.href.split("/")
+    let postId = idkSomeArray[idkSomeArray.length-1]
+    axios.post(`/editPost/${postId}`, {title, price, condition, description, imageUrl })
         .then(response => {
-            console.log(response.data)
+            console.log('responseData', response)
             let id = response.data
             //location.href = `/viewListing`
             // success go to the next page
-        window.location = `/` //`/viewListing/${id}`
+            window.location = `/`
         })
         .catch((err) => {
-            console.log(err)
+            console.log('ERR', err)
         })
+
+    let editButton = document.querySelector('.icon-edit-post');
+    editButton.addEventListener('click', () => {
+        location.href = '/viewListing/88'
+    })
     // post requet to my server with the iamgeUrl
     // title
     // price

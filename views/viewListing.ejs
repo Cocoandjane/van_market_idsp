@@ -17,23 +17,23 @@
 <body>
     <main>
         <section class="top">
-            <% for(let p of post) { %>
+            <% //for(let p of post) { %>
                 <div class="postInfo">
                     <div class="imgFrame">
-                        <img class="postImage" src="<%=p.post_image%>">
+                        <img class="postImage" src="<%=post.post_image%>">
                     </div>
                     <div class="lineOne">
                         <p class="title">
-                           <strong> <%=p.title%></strong>
+                           <strong> <%=post.title%></strong>
                         </p>
                         <p class="date">
-                           Listed on <%=p.date%>
+                           Listed on <%=post.date%>
                         </p>
                     </div>
 
                     <div class="lineOne lineTwo">
                         <p class="price">
-                            C$<%=p.price%>
+                            C$<%=post.price%>
                         </p>
                         <p class="location">
                             Vancouver, BC
@@ -43,11 +43,11 @@
                     <div class="lineThree">
                         <h3>Details</h3>
                     <p>
-                        <%=p.description%>
+                        <%=post.description%>
                     </p>
                     </div>
                     
-                </div <% } %>
+                </div <% //} %>
         </section>
 
         <div class="btnFrame">
@@ -87,7 +87,7 @@
             <strong>Confirm Delete?</strong>
             <p>this can not be undone</p>
             <button class="no">No</button>
-            <form action="/deletePost/<%=post[0].post_id%>" method="post">
+            <form action="/deletePost/<%=post.post_id%>" method="post">
             <button class="yes" type="submit" > COMFIRM DELETE</button>
         </form>
         </div>
