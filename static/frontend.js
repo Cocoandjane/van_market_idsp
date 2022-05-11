@@ -38,12 +38,12 @@ addPostOther.addEventListener('click', () => {
 })
 
 
-let viewProductButton = document.querySelector(`.card`); // change this to be the .viewProductButton
-viewProductButton.addEventListener('click', (e) => {
-    let cardWithId = e.target.closest("div").id.split("-")[2]
-    console.log(cardWithId)
-    location.href = `/viewListing/${cardWithId}`
-})
+// let viewProductButton = document.querySelector(`.card`); // change this to be the .viewProductButton
+// viewProductButton.addEventListener('click', (e) => {
+//     let cardWithId = e.target.closest("div").id.split("-")[2]
+//     console.log(cardWithId)
+//     location.href = `/viewListing/${cardWithId}`
+// })
 
 
 let createBtn = document.querySelector("#create")

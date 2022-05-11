@@ -157,17 +157,17 @@ class Carousel {
                     console.log('ERR', err)
                 })
 
-                let idkSomeArray = location.href.split("/")
-                let postId = idkSomeArray[idkSomeArray.length-1]
-                console.log(postId)
-                axios.get((`/productPage/87`), {successful, productId, dirX})
-                .then((res) => {
-                    console.log('res', res)
-                    productId
-                })
-                .catch((err) => {
-                    console.log('ERR', err)
-                })
+                // let idkSomeArray = location.href.split("/")
+                // let postId = idkSomeArray[idkSomeArray.length-1]
+                // console.log(postId)
+                // axios.get((`/productPage/`), {successful, productId, dirX})
+                // .then((res) => {
+                //     console.log('res', res)
+                //     productId
+                // })
+                // .catch((err) => {
+                //     console.log('ERR', err)
+                // })
             
 
                 // debugger
