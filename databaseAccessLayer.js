@@ -113,8 +113,6 @@ export async function getNewPost(id) {
     return newPost
 }
 
-
-
 export async function updatePost(post_id, title, description, price, post_image, user_id, condition_type_id) {
     console.log("haha", post_id)
     let query = `

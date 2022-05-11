@@ -1,17 +1,5 @@
 import axios from 'https://cdn.skypack.dev/axios'
 
-// function createCard() {
-//     let card = document.createElement("div");
-//     card.innerHTML = `
-//     <strong>Confirm Delete?</strong>
-//     <p>this can not be undone</p>
-//     <button class="no">No</button>
-//     <button class="yes">COMFIRM DELETE</button>
-//     `
-//     card.classList.add("card")
-//     return card;
-// }
-
 let idkSomeArray = location.href.split("/")
 let postId = idkSomeArray[idkSomeArray.length-1]
 axios.get(`/viewListing/${postId}`)

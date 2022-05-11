@@ -168,21 +168,6 @@ app.post('/editPost/:id', async (req, res) => {
 
 
 
-
-app.get("/viewListing/:id", async (req, res) => {
-  console.log('murrrraddddd', req.params)
-  let id = +req.params.id
-  try {
-    const [post] = await database.getNewPost(id)
-    console.log('this is the post: ', post)
-    res.render("viewListing", { post })
-  } catch (error) {
-    console.error(error)
-    res.status(500).send({ error: "🖕" })
-  }
-})
-
-
 app.get('/showProduct/:id', (req, res) => {
   let postId = +req.params.id;
 
