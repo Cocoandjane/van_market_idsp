@@ -193,11 +193,11 @@ res.render('viewListing', {postId})
 app.get("/viewListing/:id", async (req, res) => {
   let id = +req.params.id
   try {
-    if (!id) {
-      res.status(400).send({ message: "this post doesn't exist" })
+    let posts = await database.getNewPost(id)
+    if (posts.length === 0) {
+      res.status(404).send({ message: "this post doesn't exist" })
     } else {
-      let post = await database.getNewPost(id)
-      res.render(`viewListing`, { post })
+      res.render(`viewListing`, { post: posts })
     }
   } catch (error) {
     console.error(error)
