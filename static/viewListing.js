@@ -17,6 +17,7 @@ deleteBtn.addEventListener("click", (event) => {
         let x = yes.action
         window.alert("product deleted")
         window.location = x
+        event.stopPropagation();
     })
     event.preventDefault();
 })
