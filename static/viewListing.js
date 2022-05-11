@@ -4,7 +4,13 @@ let idkSomeArray = location.href.split("/")
 let postId = idkSomeArray[idkSomeArray.length-1]
 axios.get(`/viewListing/${postId}`)
 .then(res => {
-    console.log(res.data)
+    //console.log(res.data)
+})
+
+let editBtn = document.querySelector("a.edit") 
+editBtn.addEventListener("click", (event) => {
+    let editPage = editBtn.href
+    window.location = editPage
 })
 
 let deleteBtn = document.querySelector("a.delete")
@@ -18,7 +24,6 @@ yes.addEventListener("click", (event) => {
     let x = yes.action
     window.alert("product deleted")
     window.location = x
-    event.stopPropagation();
 })
 
 let no = document.querySelector("button.no");

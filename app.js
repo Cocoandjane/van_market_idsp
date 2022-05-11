@@ -137,10 +137,10 @@ app.post("/createlisting", async (req, res) => {
 app.get('/editPost/:id', async (req, res) => {
   let postId = +req.params.id;
   let [post] = await database.getPost(postId)
-  console.log(post)
+  //console.log(post)
   // return;
 
-  console.log('here', post.post_id)
+  //console.log('here', post.post_id)
   res.render('editPost', { post }) 
 })
 
@@ -148,7 +148,7 @@ app.get('/editPost/:id', async (req, res) => {
 app.post('/editPost/:id', async (req, res) => { 
     let postId = +req.params.id;
     let data = req.body;
-    console.log('dataaa', data)
+    //console.log('dataaa', data)
     let title = req.body.title;
     let description = req.body.description;
     let price = req.body.price;
@@ -156,7 +156,7 @@ app.post('/editPost/:id', async (req, res) => {
     let userId = 1;
     let categoryId = req.body.category_id;
     let conditionTypeid = 1;
-    console.log("lmao",postId)
+    //console.log("lmao",postId)
     await database.getPosts(postId)
     // console.log('post', post)
     // console.log('postid', post.post_id)
