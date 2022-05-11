@@ -1,0 +1,131 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 10px 0 85px 0;
+    overflow-x: hidden;
+    background-color: #F7F7F7;
+    font-family: 'Roboto', sans-serif;
+}
+
+section.top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.imgFrame {
+    width: 400px;
+    height: 300px;
+    background-color: rgb(236, 233, 233);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.postImage{
+width: 80%;
+height: auto;
+border-radius: 30px;
+}
+
+div.lineOne{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    margin-bottom: -10px;
+    font-size: large;
+}
+
+div.lineThree{
+    margin-left: 20px;
+}
+
+p.date{
+   color:#858585;
+}
+
+p.price{
+    color:#858585;
+}
+
+p.location{
+    color:#3E3E3E;
+}
+
+
+img.icon{
+    width: 55px;
+    margin-left: 10px;
+}
+
+a.all{
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+}
+
+div.btnFrame{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 40px;
+ 
+}
+
+div.card{
+    background-color: white;
+    border-radius: 10%;
+    width: 300px;
+    height: 165px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.card > strong{
+   padding: 2px;
+}
+
+div.card > p{
+    color:#858585;
+    margin-top: -1px;
+   
+    
+}
+
+button {
+    margin: 5px;
+}
+
+button.no{
+    color: white;
+    background-color: #3E3E3E;
+    border: none;
+    width: 80px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+button.yes{
+    color: white;
+    background-color: #DE5A60;
+    border:none;
+    width: 140px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+div.card.disapear{
+    display: none;
+}

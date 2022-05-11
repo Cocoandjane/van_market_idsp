@@ -1,4 +1,7 @@
-// const express = require('express')
+
+// import {DateTime}from "luxon";
+const {DateTime} = 'luxon'
+//const express = require('express')
 import express from 'express'
 const app = express()
 //const bodyParser = require('body-parser')
@@ -116,16 +119,18 @@ app.get("/s3Url", async (req, res) => {
   }
 })
 
+
 app.post("/createlisting", async (req, res) => {
   let axiosData = req.body
   let title = axiosData.title;
   let description = axiosData.description;
   let price = axiosData.price;
+  let date = DateTime.now().toISODate()
   let image = axiosData.imageUrl;
   let user_id = 1;
-  let category_id = 1;
-  let condition_type_id = 1;
-  let id = await database.insertPost(title, description, price, image, user_id, category_id, condition_type_id)
+  let category_id= 1;
+  let condition_type_id=1;
+  let id = await database.insertPost(title,description,price,date,image,user_id,category_id,condition_type_id)
   res.json(id)
 })
 
@@ -176,5 +181,7 @@ app.get("/viewListing/:id", async (req, res) => {
     res.status(500).send({ error: "🖕" })
   }
 })
+
+
 
 export default app;
