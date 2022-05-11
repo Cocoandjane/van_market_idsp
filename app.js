@@ -163,7 +163,7 @@ app.post('/editPost/:id', async (req, res) => {
     let id = await database.updatePost(postId, title, description, price, postImage, userId, conditionTypeid)
     console.log('this is the id', postId)
     // res.json(postId)
-    // res.redirect('home')
+    res.redirect('home')
 })
 
 
