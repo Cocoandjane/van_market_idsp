@@ -157,6 +157,14 @@ class Carousel {
                     console.log('ERR', err)
                 })
 
+                axios.get(('/productPage/:id'), {successful, productId, dirX})
+                .then((res) => {
+                    console.log('res', res)
+                    productId
+                })
+                .catch((err) => {
+                    console.log('ERR', err)
+                })
             
 
                 // debugger
@@ -233,7 +241,11 @@ class Carousel {
             sellerPfp.classList.add('pfp-img')
             sellerInfoSection.classList.add('seller-prdct-info')
 
-            productDescriptionDiv.append(sellerName, productDescription)
+            let viewProductButton = document.createElement(['button']);
+            viewProductButton.textContent = "View Product"
+            viewProductButton.className = 'viewProductButton'
+
+            productDescriptionDiv.append(sellerName, productDescription, viewProductButton)
 
             sellerInfoSection.append(sellerPfp, productDescriptionDiv)
 
@@ -264,8 +276,10 @@ class Carousel {
             chatA.append(chatImg)
             likeA.append(likeImg)
 
+          
+            // 
             decisionSection.append(dislikeA, chatA, likeA)
-            card.append(productImageSection, productDescriptionSection, sellerInfoSection, decisionSection)
+            card.append(productImageSection, productDescriptionSection,  sellerInfoSection, decisionSection)
 
             this.board.insertBefore(card, this.board.firstChild)
         })

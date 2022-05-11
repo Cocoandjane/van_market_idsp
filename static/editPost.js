@@ -22,6 +22,11 @@ imageForm.addEventListener("submit", async event => {
 
     const imageUrl = url.split("?")[0]
     console.log(imageUrl)
+
+    if(imageUrl === ""){
+        imageUrl.value
+    }
+
     let title = document.querySelector(".title").value
     let price = document.querySelector(".price").value
     let condition = document.querySelector("#condition").value
@@ -36,7 +41,7 @@ imageForm.addEventListener("submit", async event => {
             let id = response.data
             //location.href = `/viewListing`
             // success go to the next page
-            window.location = `/viewListing/${id}`
+            window.location = `/`
         })
         .catch((err) => {
             console.log('ERR', err)

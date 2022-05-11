@@ -1,6 +1,6 @@
 
-// import {DateTime}from "luxon";
-const {DateTime} = 'luxon'
+import luxon from "luxon";
+// const {DateTime} = 'luxon'
 //const express = require('express')
 import express from 'express'
 const app = express()
@@ -125,7 +125,7 @@ app.post("/createlisting", async (req, res) => {
   let title = axiosData.title;
   let description = axiosData.description;
   let price = axiosData.price;
-  let date = DateTime.now().toISODate()
+  let date = luxon.DateTime.now().toISODate()
   let image = axiosData.imageUrl;
   let user_id = 1;
   let category_id= 1;
@@ -182,6 +182,12 @@ app.get("/viewListing/:id", async (req, res) => {
   }
 })
 
+
+app.get('/showProduct/:id', (req, res) => {
+  let postId = +req.params.id;
+
+res.render('viewListing', {postId})
+})
 
 
 export default app;
