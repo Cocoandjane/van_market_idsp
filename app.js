@@ -34,6 +34,21 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
+app.get("/login", (req, res) => {
+  res.render("login")
+})
+
+app.get("/signup", (req, res) => {
+  res.render("signup")
+})
+
+app.post("/login", (req, res) => {
+  let givenUsername = req.body.username;
+  let givenPassword = req.body.passeword
+})
+
+
+
 app.get('/api/products', async (req, res) => {
   try {
     let products = await database.getPosts()

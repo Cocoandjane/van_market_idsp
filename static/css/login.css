@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 10px 0 85px 0;
+    overflow-x: hidden;
+    background-color: #E5E5E5;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2{
+    color:#272727;
+    margin-bottom: -10px;
+}
+
+p.text{
+    color: #A9A9AB;
+}
+
+p.big {
+    font-size: x-large;
+    color: #272727;
+}
+
+p.forget{
+    align-self: flex-start;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    padding-left: 5px;
+}
+
+p.small {
+    font-size: small;
+}
+
+form.login{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+input.input {
+    padding-left: 15px;
+    margin-top: 5px;
+    width: 315px;
+    height: 40px;
+    border-radius: 10px;
+    border: solid 2px #DADADA;
+}
+
+::placeholder{
+    color: #A9A9AB;
+}
+div.loginFrame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+}
+
+button.loginBtn{
+    width:120px;
+    height: 40px;
+    background-color:#EB690A;
+    color:#FFFFFF;
+    border: none;
+    border-radius: 10px;
+    font-size: large;
+}
+
+a.otherLogin{
+    width: 275px;
+    height: 40px;
+    color: #FFFFFF;
+    background-color:#3E3E3E;
+    text-decoration: none;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 15px;
+}
+
+button.signupBtn{
+    width:135px;
+    height: 40px;
+    background-color:#EB690A;
+    color:#FFFFFF;
+    border: none;
+    border-radius: 10px;
+    font-size: large;
+}
+/* for signup page */
+
+form.signup{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin-bottom: 20px;
+}
+
+input.signupInput {
+    padding-left: 15px;
+    margin-top: 5px;
+    width: 315px;
+    height: 40px;
+    border-radius: 10px;
+    border: solid 2px #DADADA;
+}
+
+img.signupLogo{
+    margin-top: 50px;
+}
+
+a.redirect{
+    text-decoration: none;
+    color:#EB690A;
+}
