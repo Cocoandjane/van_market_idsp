@@ -6,7 +6,7 @@ import express from 'express'
 const app = express()
 //const bodyParser = require('body-parser')
 //const mysql = require('mysql2')
-
+import cookieSession from "cookie-session";
 app.use(express.static("static"))
 app.set('view engine', 'ejs')
 
@@ -18,7 +18,13 @@ import { generateUploadURL } from "./s3.js";
 import * as database from './databaseAccessLayer.js'
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieSession({
+  name: 'session',
+  keys: ["vthhfhn"],
 
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
 
 app.get("/posts", async (req, res) => {
   try {
@@ -31,28 +37,45 @@ app.get("/posts", async (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  res.render('home')
+  res.render('login')
 })
 
-app.get("/login", (req, res) => {
+app.get("/login", async (req, res) => {
   res.render("login")
 })
 
+app.post("/login", async (req, res) =>{
+  let foundUser = await database.authenticateUser(req.body.email,req.body.password)
+  console.log(foundUser)
+  let userId = foundUser[0].user_id
+  if (foundUser) {
+    req.session.userId = userId
+    res.sendStatus(200)
+    console.log(`login attempt from user ${foundUser[0].username}, SUCCESS`)
+  } else {
+    res.status(404).send({ error: `username or passwor is incorrect` })
+    console.log(`login attempt form user ${userEmail}, failure`)
+  }
+})
+
+
+
 app.get("/signup", (req, res) => {
-  res.render("signup")
+   res.render("signup", { userId: req.session.userId })
+
 })
 
-app.post("/login", (req, res) => {
-  let givenUsername = req.body.username;
-  let givenPassword = req.body.passeword
+app.post("/singup", async (req, res) => {
+  console.log(req.body)
+  await database.createUser(req.body.name, req.body.email, req.body.password);
+  res.sendStatus(200)
 })
 
 
 
-app.get('/api/products', async (req, res) => {
+app.get('/api/products',  async (req, res) => {
   try {
     let products = await database.getPosts()
-    //console.log(products)
     res.json({ products })
   } catch (error) {
     console.error(error)
@@ -60,7 +83,20 @@ app.get('/api/products', async (req, res) => {
   }
 })
 
-app.get("/swipe", (req, res) => {
+
+function authorized(req, res, next) {
+  if (!req.session.userId) {
+    res.redirect("/login")
+    return
+  }
+  next()
+}
+
+app.get("/home",authorized, (req, res) => {
+  res.render("home")
+})
+
+app.get("/swipe", authorized, (req, res) => {
   try {
     res.render('home')
   } catch (error) {
@@ -69,7 +105,7 @@ app.get("/swipe", (req, res) => {
   }
 })
 
-app.get("/profile", async (req, res) => {
+app.get("/profile", authorized, async (req, res) => {
   try {
     let users = await database.getUser()
     let posts = await database.getMyPost()
@@ -81,7 +117,7 @@ app.get("/profile", async (req, res) => {
 })
 
 
-app.get("/likedItems", async (req, res) => {
+app.get("/likedItems", authorized, async (req, res) => {
 
   try {
     let likeList = await database.getUserLikedItems()
@@ -94,7 +130,7 @@ app.get("/likedItems", async (req, res) => {
 })
 
 
-app.get("/createListing", (req, res) => {
+app.get("/createListing", authorized,  (req, res) => {
   try {
     res.render("createListing")
   } catch (error) {
@@ -104,10 +140,10 @@ app.get("/createListing", (req, res) => {
 })
 
 
-app.post('/likedItems', async (req, res) => {
+app.post('/likedItems', authorized, async (req, res) => {
   try {
-    let likeList = await database.getUserLikedItems()
-    let userId = 1;
+    // let likeList = await database.getUserLikedItems()
+    let userId = req.session.userId;
     let direction = req.body.dirX
     let productId = +req.body.productId
     console.log('here:', userId, direction, productId)
@@ -142,14 +178,14 @@ app.post("/createlisting", async (req, res) => {
   let price = axiosData.price;
   let date = luxon.DateTime.now().toISODate()
   let image = axiosData.imageUrl;
-  let user_id = 1;
+  let user_id = req.session.userId;
   let category_id = 1;
   let condition_type_id = 1;
   let id = await database.insertPost(title, description, price, date, image, user_id, category_id, condition_type_id)
   res.json(id)
 })
 
-app.get('/editPost/:id', async (req, res) => {
+app.get('/editPost/:id', authorized, async (req, res) => {
   let postId = +req.params.id;
   let [post] = await database.getPost(postId)
   //console.log(post)
@@ -160,7 +196,7 @@ app.get('/editPost/:id', async (req, res) => {
 })
 
 
-app.post('/editPost/:id', async (req, res) => { 
+app.post('/editPost/:id',authorized, async (req, res) => { 
     let postId = +req.params.id;
     let data = req.body;
     //console.log('dataaa', data)
@@ -183,7 +219,7 @@ app.post('/editPost/:id', async (req, res) => {
 
 
 
-app.get('/showProduct/:id', (req, res) => {
+app.get('/showProduct/:id',authorized, (req, res) => {
   let postId = +req.params.id;
 
 res.render('viewListing', {postId})
@@ -209,7 +245,7 @@ app.post("/deletePost/:id", async (req, res) => {
   let id = +req.params.id
   try {
     let result = await database.deletePost(id)
-    res.redirect("/")
+    res.redirect("/home")
   } catch (error) {
     console.error(error)
     res.status(500).send({ error: "🖕" })

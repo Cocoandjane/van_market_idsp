@@ -1,14 +1,27 @@
-let email = document.querySelector("input.email").value;
-let password = document.querySelector("input.password").value;
 
+import axios from 'https://cdn.skypack.dev/axios'
 
+let loginBtn = document.querySelector(".loginBtn")
 
-let loginForm = document.querySelector("form.login")
-loginForm.addEventListener("sumbit", (event) => {
-    console.log("woing")
-    console.log(email, password)
+loginBtn.addEventListener("click", event => {
+    console.log("working")
+    let email = document.querySelector("input.email").value
+    let password = document.querySelector("input.password").value
+
+    axios.post("/login", { email, password })
+        .then(response => {
+            // console.log(response)
+            if (response.status === 200) {
+                window.location = "/swipe"
+            }
+        })
+
     event.preventDefault();
 })
 
+let signupBtn = document.querySelector("button.signupBtn")
+signupBtn.addEventListener("click", event => {
+    window.location="/signup"
+})
 
 

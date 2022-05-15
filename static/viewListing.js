@@ -1,11 +1,3 @@
-import axios from 'https://cdn.skypack.dev/axios'
-
-let idkSomeArray = location.href.split("/")
-let postId = idkSomeArray[idkSomeArray.length-1]
-axios.get(`/viewListing/${postId}`)
-.then(res => {
-    //console.log(res.data)
-})
 
 let editBtn = document.querySelector("a.edit") 
 editBtn.addEventListener("click", (event) => {
@@ -21,9 +13,9 @@ deleteBtn.addEventListener("click", (event) => {
 
 let yes = document.querySelector("button.yes");
 yes.addEventListener("click", (event) => {
-    let x = yes.action
-    window.alert("product deleted")
-    window.location = x
+//     let x = yes.action
+//    // window.alert("product deleted")
+//     window.location = x
 })
 
 let no = document.querySelector("button.no");

@@ -244,11 +244,7 @@ class Carousel {
             sellerPfp.classList.add('pfp-img')
             sellerInfoSection.classList.add('seller-prdct-info')
 
-            let viewProductButton = document.createElement(['button']);
-            viewProductButton.textContent = "View Product"
-            viewProductButton.className = 'viewProductButton'
-
-            productDescriptionDiv.append(sellerName, productDescription, viewProductButton)
+            productDescriptionDiv.append(sellerName, productDescription)
 
             sellerInfoSection.append(sellerPfp, productDescriptionDiv)
 
