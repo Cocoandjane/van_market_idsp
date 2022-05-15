@@ -36,7 +36,15 @@ app.get("/posts", async (req, res) => {
   }
 })
 
-app.get('/', (req, res) => {
+function forLoginUser(req, res, next) {
+  if (req.session.userId) {
+    res.redirect("/home")
+    return
+  }
+  next()
+}
+
+app.get('/',forLoginUser, (req, res) => {
   res.render('login')
 })
 

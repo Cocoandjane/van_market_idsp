@@ -1,49 +1,25 @@
-body {
-    margin: 0;
+* {
+    box-sizing: border-box;
 }
 
 
-.logo {
-    display: flex;
-    justify-content: center;
-    margin-top: 13%;
-}
 
 main {
     width: 320px;
     margin-left: calc((100% - 320px)/2)
 }
 
-.above-card {
-    width: 320px;
-    margin-left: calc((100vw - 320px)/2);
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 8vh;
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 80px;
-    cursor: pointer;
-}
-
-
 .card {
     width: 320px;
     height: 560px;
     position: absolute;
     top: 50%;
-    margin-top: 30px;
     left: 50%;
     border-radius: 20px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
     background-color: #272727;
-    transform: translateX(-50%) translateY(-50%) scale(0.95);
+    transform: translateX(-50%) translateY(-50%);
 }
 
-
-.swipe_text {
-    display: none;
-}
 
 
 .prdct-image img {
@@ -139,9 +115,4 @@ img.pfp-img {
     margin-left: 10px;
 }
 
-.viewProductButton {
-    height: 20px;
-    width: auto;
-    margin-left: 10%;
 
-}

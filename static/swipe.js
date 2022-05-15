@@ -291,7 +291,9 @@ let board = document.querySelector('#board')
 let carousel = new Carousel(board)
 
 
-let likedItems = document.querySelector('.idkwtf')
-likedItems.addEventListener('click', () => {
+let likedItems = document.querySelector('.wished')
+likedItems.addEventListener('click', (event) => {
+    console.log("clicked")
     location.href = '/likedItems'
+    event.preventDefault()
 })
