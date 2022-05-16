@@ -275,7 +275,7 @@ class Database {
     }
     gerPaidOrders(){
         return this.paidOrders
-    }
+    }    
 }
 
 

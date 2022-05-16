@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
+    <script type="module" src="/login.js" ></script>
     <title>Van Market</title>
 </head>
+
 <body>
-    <h1>we dont need to worry about this page until we finished our app. perhaps?</h1>
+    <h2>Hello!</h2>
+    <p class="big">Welcome to VanMarket</p>
+    <img class="logo" src="icons/Logo.svg">
+
+    <form class="login">
+        <input type="email" placeholder="Email" class="input email">
+        <input type="password" placeholder="Password" class="input password">
+        <p class="forget text small">Forgot you password? click to <a class="redirect" href="">Reset</a> </p>
+        <button  type='submit' class="loginBtn">Login</button>
+    </form>
+
+    <p class="text">or</p>
+
+    <div class="loginFrame">
+        <a href="" class="otherLogin google"> <img class="loginLogos" src="icons/google.svg"> Continue with Google</a>
+        <a href="" class="otherLogin facebook"> <img class="loginLogos" src="icons/facebook.svg"> Continue with
+            Facebook</a>
+    </div>
+
+    <p class="text small">New to VanMarket?</p>
+    <button class="signupBtn">Singup</button>
+
 </body>
+
 </html>

@@ -244,11 +244,7 @@ class Carousel {
             sellerPfp.classList.add('pfp-img')
             sellerInfoSection.classList.add('seller-prdct-info')
 
-            let viewProductButton = document.createElement(['button']);
-            viewProductButton.textContent = "View Product"
-            viewProductButton.className = 'viewProductButton'
-
-            productDescriptionDiv.append(sellerName, productDescription, viewProductButton)
+            productDescriptionDiv.append(sellerName, productDescription)
 
             sellerInfoSection.append(sellerPfp, productDescriptionDiv)
 
@@ -295,7 +291,9 @@ let board = document.querySelector('#board')
 let carousel = new Carousel(board)
 
 
-let likedItems = document.querySelector('.idkwtf')
-likedItems.addEventListener('click', () => {
+let likedItems = document.querySelector('.wished')
+likedItems.addEventListener('click', (event) => {
+    console.log("clicked")
     location.href = '/likedItems'
+    event.preventDefault()
 })

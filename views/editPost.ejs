@@ -12,51 +12,57 @@
 
 <body>
     <main>
-        <div class="afterPanel">
-            <div class="logo">
-                <img src="/icons/logo.svg">
-            </div>
 
-            <div class="new-prdct-form">
-                <form id="form" method="post" action="/editPost/<%= post.post_id %>" method="POST">
-
-                    <label class="details" for="fileUpload">Upload Image</label>
-                    <div class="addImage">
-                        <div class="addImageIcon">
-                            <img src="/icons/addImageIcon.svg" alt="">
-                        </div>
-                        <div>Add Photos and Videos</div>
+        <div class="person">
+            <% for (let user of users) { %>
+                <%if(user.user_id===userId){ %>
+                    <div class="image-cropper">
+                        <img id="profile-pic" src="<%=user.profile_img%>">
                     </div>
-                    <input id="files" class="imageUpload" type="file" name="fileUpload" accept="image/*"
-                        value=<%=post.post_image %>>
+                    <div class="name-text">
+                        <p class="profile">
+                           <span class="name"><%=user.username%></span><br>
+                                <small>Listed on VanMarket <img class="logo" src="/icons/Logo.svg"></small>
+                        </p>
+                    </div>
+                    <% } %>
+                        <%}%>
+        </div>
 
-                    <label class="details" for="title">Title</label>
-                    <% // console.log(post) %>
-                        <input class="title" type="text" name="title" value="<%= post.title %>">
+        <div class="new-prdct-form">
+            <form id="form" method="post" action="createListing">
+                <div class="addImage">
+                    <div class="addImageIcon">
+                        <img src="/icons/addImageIcon.svg" alt="">
+                    </div>
+                    <div>Add Photos</div>
+                </div>
+                <input id="files" class="imageUpload" type="file" name="fileUpload" accept="image/*">
 
-                        <label class="details" for="price">Price</label>
-                        <input class="price" type="number" name="price" value="<%= post.price %>">
+                <label class="details" for="title">Title</label>
+                <input class="title rectangular-input" type="text" name="title">
 
-                        <label class="details" for="condition">Condition</label>
-                        <select name="condition" id="condition" value="<%= post.condition %>">
-                            <option value="choose">Choose</option>
-                            <option value="new">New</option>
-                            <option value="used - like new">Used - Like New</option>
-                            <option value="used - good">Used - Good</option>
-                            <option value="used - fair">Used - Fair</option>
-                        </select>
+                <label class="details" for="price">Price</label>
+                <input class="price rectangular-input" type="number" name="price">
 
-                        <label class="details" for="description">Description</label>
-                        <input class="description" type="text" name="description" value="<%= post.description %>">
+                <label class="details" for="condition">Condition</label>
+                <select name="condition" id="condition" class="rectangular-input">
+                    <option value="new" selected>New</option>
+                    <option value="used - like new">Used - Like New</option>
+                    <option value="used - good">Used - Good</option>
+                    <option value="used - fair">Used - Fair</option>
+                </select>
 
-                        <label class="details" for="location">Location</label>
-                        <input id="autocomplete" type="text" placeholder="Enter a place..." name="location"
-                            value="<%= post.location %>">
+                <label class="details" for="description">Description</label>
+                <input class="description rectangular-input" type="text" name="description">
 
-                        <button id="edit" class="submit-btn" type='submit'>Edit Listing</button>
-                        <!--   -->
-                </form>
-            </div>
+                <label class="details " for="location">Location</label>
+                <input id="autocomplete" class="rectangular-input" type="text" placeholder="Enter a place..."
+                    name="location">
+
+                <button id="create" class="submit-btn" type='submit'> Create Listing <img class="arrow" src="/icons/create.svg"> </button>
+            </form>
+        </div>
     </main>
     <script>
         let autocomplete;

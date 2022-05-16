@@ -2,6 +2,7 @@
 //const database = require('./databaseConnection.js');
 //const passwordPepper = "SeCretPeppa4MySal+";
 import database from './databaseConnection.js'
+import bcrypt from "bcrypt";
 
 export async function getPosts() {
     let query = `
@@ -39,12 +40,23 @@ export async function getUserLikedItems() {
 
 export async function getUser() {
     let query = `
-    SELECT user_id, username, profile_img 
+    SELECT user_id, username, email, profile_img 
     FROM user;  
     `
-    const [rows] = await database.query(query)
-    return rows
+    const [users] = await database.query(query)
+    return users
 }
+
+export async function getUserByEmail(email) {
+    let query = ` SELECT user_id, username, email, password_salt
+    FROM user
+    WHERE email=?;
+    `
+    const [loginUser] = await database.query(query, [email])
+    return loginUser
+}
+
+
 
 export async function getMyPost() {
 
@@ -79,20 +91,7 @@ export async function getMyPost() {
 //     return post
 // }
 
-// export async function addTask(title) {
-//     let query = `INSERT INTO tasks (title) VALUES (?)`
-//     const result = await pool.query(query, [title]) 
-//     console.log(result)
-//     const id = result[0].insertId
-//     return getTask(id)
-// }
-
-
-// export async function insertPost(title, description, price, post_image, user_id, category_id, condition_type_id) {
-//     let query = "INSERT INTO post (title, description, price, post_image, user_id, category_id, condition_type_id) VALUES (?,?,?,?,?,?,?);";
-//     const result = await database.query(query, [title, description, price, post_image, user_id, category_id, condition_type_id])
-//     console.log(result)
-export async function insertPost(title, description, price, date, post_image, user_id, category_id, condition_type_id){
+export async function insertPost(title, description, price, date, post_image, user_id, category_id, condition_type_id) {
     let query = "INSERT INTO post (title, description, price, date, post_image, user_id, category_id, condition_type_id) VALUES (?,?,?,?,?,?,?,?);";
     const result = await database.query(query, [title, description, price, date, post_image, user_id, category_id, condition_type_id])
     //console.log(result)
@@ -113,8 +112,6 @@ export async function getNewPost(id) {
     return newPost
 }
 
-
-
 export async function updatePost(post_id, title, description, price, post_image, user_id, condition_type_id) {
     console.log("haha", post_id)
     let query = `
@@ -126,6 +123,27 @@ export async function updatePost(post_id, title, description, price, post_image,
     return result
 }
 export async function deletePost(id) {
-    let query="DELETE FROM post WHERE post_id = ?;"
+    let query = "DELETE FROM post WHERE post_id = ?;"
     const result = await database.query(query, [id])
+}
+
+
+
+export async function createUser(username, email, plainPass) {
+    const passwordHash = bcrypt.hashSync(plainPass, 8)
+    let query = "INSERT INTO user(username, email, password_hash) VALUE(?,?,?);"
+    const result = await database.query(query, [username, email, passwordHash])
+    return passwordHash
+
+}
+
+
+export async function authenticateUser(email, password) {
+    const query = 'SELECT * FROM user WHERE email = ?';
+    const [foundUser] = await database.query(query, [email]);
+    //console.log('here', foundUser)
+    const authenticationResult = await bcrypt.compareSync(password, foundUser[0].password_hash);
+    if (authenticationResult) {
+        return foundUser;
+    }
 }
