@@ -47,7 +47,8 @@ export async function getWishList(id){
     ON post.post_id = wishlist.post_id
     INNER JOIN user
     ON wishlist.user_id = user.user_id
-    WHERE user.user_id = ?;`
+    WHERE user.user_id = ?
+    ORDER BY timestamp desc;`
     const [rows] = await database.query(query, [id])
     return rows
 }
