@@ -17,6 +17,7 @@ section.top{
 }
 
 div.imgFrame {
+    margin-top: 20px;
     width: 350px;
     height: 250px;
     background-color: rgb(236, 233, 233);

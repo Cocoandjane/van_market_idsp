@@ -141,6 +141,7 @@ app.get("/likedItems", authorized, async (req, res) => {
   try {
     let id = req.session.userId
     let likeList = await database.getWishList(id)
+    // console.log(likeList)
     res.render("likedItems", { likeList })
   } catch (error) {
     console.error(error)

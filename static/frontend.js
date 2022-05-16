@@ -37,7 +37,11 @@ addPostOther.addEventListener('click', () => {
     location.href = '/createListing'
 })
 
-
+let bar = document.querySelector(".bar")
+bar.addEventListener("click", (event)=>{
+    let catagorySlide = document.querySelector("div.createNew")
+    catagorySlide.classList.add("displayNone")
+})
 
 // let viewProductButton = document.querySelector(`.card`); // change this to be the .viewProductButton
 // viewProductButton.addEventListener('click', (e) => {

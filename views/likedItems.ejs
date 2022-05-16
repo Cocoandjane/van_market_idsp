@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Van Market</title>
-    <script src="frontend.js" defer></script>
+    <script src="/frontend.js" defer></script>
+    <script src="/likedItems.js" defer></script>
     <link rel="stylesheet" href="css/likedItems.css">
     <link rel="stylesheet" href="css/nav.css">
 </head>
@@ -30,7 +31,7 @@
 
     <section class="icon_views">
         <%for (let i=0; i < likeList.length; i++) {%>
-            <div class="white_frame">
+            <div class="white_frame" id="<%=likeList[i].post_id%>">
                 <div class="img_cropper">              
                     <img class="liked_img" src="<%= likeList[i].post_image%>">
                 </div>
