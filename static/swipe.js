@@ -216,6 +216,13 @@ class Carousel {
             productImage.draggable = false;
             productImage.classList.add('prdct-img')
             productImageSection.classList.add('prdct-image')
+
+
+            productImageSection.addEventListener("click", evt => {
+                let id=product.post_id;
+                window.location=`/viewListing/${id}`
+            })
+
             productImageSection.append(productImage)
             productImage.src = product.post_image
             let productDescriptionSection = document.createElement('section')

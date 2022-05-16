@@ -15,17 +15,19 @@
 <body>
     <main>
         <section class="top">
-            <% for(let p of post) { %>
                 <div class="postInfo">
+                    <% for(let p of post) { %>
                     <div class="imgFrame">
                         <img class="postImage" src="<%=p.post_image%>">
                     </div>
                     <div class="lineOne">
                         <p class="title">
-                           <strong> <%=p.title%></strong>
+                            <strong>
+                                <%=p.title%>
+                            </strong>
                         </p>
                         <p class="date">
-                           Listed on <%=p.date%>
+                            Listed on <%=p.date%>
                         </p>
                     </div>
 
@@ -40,33 +42,43 @@
 
                     <div class="lineThree">
                         <h3>Details</h3>
-                    <p>
-                        <%=p.description%>
-                    </p>
+                        <p>
+                            <%=p.description%>
+                        </p>
                     </div>
-                    
-                </div <% } %>
+                    <% } %>
+                    <% if (post[0].user_id !== userId) {%>
+                    <div class="name">
+                        <p class="seller" >Contact seller: <a href="" class="sellerName" ><%=user[0].username%></a> 
+                        </p>
+                    </div>
+                    <%}%>
+                </div 
+               
+
         </section>
 
-        <div class="btnFrame">
-            <a href="" class="all delete"><img class="icon" src="/icons/delete.svg">
-                <p> Delete Listing</p>
-            </a>
-            <a href="/editPost/<%=post[0].post_id%>" class="all edit"><img class="icon" src="/icons/edit.svg">
-                <p> Edit Listing</p>
-            </a>
-            <a href="" class="all sold"><img class="icon" src="/icons/sold.svg">
-                <p> Mark as sold</p>
-            </a>
-        </div>
+        <% if (post[0].user_id===userId) {%>
+            <div class="btnFrame">
+                <a href="" class="all delete"><img class="icon" src="/icons/delete.svg">
+                    <p> Delete Listing</p>
+                </a>
+                <a href="/editPost/<%=post[0].post_id%>" class="all edit"><img class="icon" src="/icons/edit.svg">
+                    <p> Edit Listing</p>
+                </a>
+                <a href="" class="all sold"><img class="icon" src="/icons/sold.svg">
+                    <p> Mark as sold</p>
+                </a>
+            </div>
+            <%}%>
     </main>
 
     <nav class="nav">
         <a href="/home" class="nav_link">
             <img src="/icons/Home.svg">
         </a>
-        <a href="" class="nav_link">
-            <img src="/icons/Explore.svg">
+        <a href="" class="nav_link wished">
+            <img src="/icons/wished.svg">
         </a>
         <a href="" class="nav_link postNew">
             <img src="/icons/Add.svg">
@@ -84,8 +96,8 @@
             <p>this can not be undone</p>
             <button class="no">No</button>
             <form action="/deletePost/<%=post[0].post_id%>" method="post">
-            <button class="yes" type="submit" > COMFIRM DELETE</button>
-        </form>
+                <button class="yes" type="submit"> COMFIRM DELETE</button>
+            </form>
         </div>
 
     </section>
@@ -94,11 +106,13 @@
         <p class="create_text">Create New Listing</p>
         <a href="/createListing" class="catagories electronics"><img class="cata_icon"
                 src="/icons/electronics.svg">Electronics</a>
-        <a href="/createListing" class="catagories clothes"> <img class="cata_icon" src="/icons/clothes.svg"> Clothes</a>
-        <a href="/createListing" class="catagories furniture"> <img class="cata_icon" src="/icons/furniture.svg">Funiture</a>
+        <a href="/createListing" class="catagories clothes"> <img class="cata_icon" src="/icons/clothes.svg">
+            Clothes</a>
+        <a href="/createListing" class="catagories furniture"> <img class="cata_icon"
+                src="/icons/furniture.svg">Funiture</a>
         <a href="/createListing" class="catagories other"> <img class="cata_icon" src="/icons/other.svg"> Other</a>
     </div>
-    
+
 </body>
 
 </html>

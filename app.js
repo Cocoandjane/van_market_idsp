@@ -126,22 +126,9 @@ app.get("/profile", authorized, async (req, res) => {
 })
 
 
-app.get("/likedItems", authorized, async (req, res) => {
-
-  try {
-    let likeList = await database.getUserLikedItems()
-    //console.log('likedList', likeList)
-    res.render("likedItems", { likeList })
-  } catch (error) {
-    console.error(error)
-    res.status(500).send({ error: "🖕" })
-  }
-})
-
-
 app.get("/createListing", authorized,  async (req, res) => {
   try {
-    let users = await database.getUser()
+    let users = await database.getPosts()
     let posts = await database.getMyPost()
     res.render("createListing", { users, posts, userId: req.session.userId })
   } catch (error) {
@@ -150,7 +137,18 @@ app.get("/createListing", authorized,  async (req, res) => {
   }
 })
 
+app.get("/likedItems", authorized, async (req, res) => {
+  try {
+    let id = req.session.userId
+    let likeList = await database.getWishList(id)
+    res.render("likedItems", { likeList })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send({ error: "🖕" })
+  }
+})
 
+// insert to wishlist, each person can only like 1 product 1 time
 app.post('/likedItems', authorized, async (req, res) => {
   try {
     // let likeList = await database.getUserLikedItems()
@@ -201,18 +199,20 @@ app.get('/editPost/:id', authorized, async (req, res) => {
   let posts = await database.getMyPost()
   let postId = +req.params.id;
   let [post] = await database.getPost(postId)
+  console.log(post)
   res.render('editPost', { post, users, posts, userId: req.session.userId  }) 
 })
 
 
 app.post('/editPost/:id',authorized, async (req, res) => { 
+  console.log(`this post edit ${req.body}`)
     let postId = +req.params.id;
     let data = req.body;
     let title = req.body.title;
     let description = req.body.description;
     let price = req.body.price;
     let postImage = req.body.imageUrl;
-    let userId = 1;
+    let userId = req.session.userId;
     let categoryId = req.body.category_id;
     let conditionTypeid = 1;
     await database.getPosts(postId)
@@ -234,10 +234,11 @@ app.get("/viewListing/:id", async (req, res) => {
   let id = +req.params.id
   try {
     let posts = await database.getNewPost(id)
+    let user = await database.getUserPostBy(posts[0].user_id)
     if (posts.length === 0) {
       res.status(404).send({ message: "this post doesn't exist" })
     } else {
-      res.render(`viewListing`, { post: posts })
+      res.render(`viewListing`, { post: posts, user, userId: req.session.userId})
     }
   } catch (error) {
     console.error(error)

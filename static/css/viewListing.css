@@ -57,7 +57,14 @@ p.location{
     color:#3E3E3E;
 }
 
+p.seller{
+    margin-left: 20px;
+}
 
+.sellerName{
+    text-decoration: none;
+    color: #DE5A60;
+}
 img.icon{
     width: 36px;
     height: 36px;

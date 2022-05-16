@@ -3,10 +3,11 @@
 //const passwordPepper = "SeCretPeppa4MySal+";
 import database from './databaseConnection.js'
 import bcrypt from "bcrypt";
+import { query } from 'express';
 
 export async function getPosts() {
     let query = `
-    SELECT post.post_id, post.title, post.description, post.price, post.post_image, user.username
+    SELECT post.post_id, post.title, post.description, post.price, post.post_image, post.user_id, user.username
     FROM post
     LEFT JOIN user
     ON post.user_id = user.user_id
@@ -35,6 +36,19 @@ export async function getUserLikedItems() {
     WHERE user.user_id = 1 AND wishlist.user_id = user.user_id AND wishlist.post_id = post.post_id
     `
     const [rows] = await database.query(query)
+    return rows
+}
+
+export async function getWishList(id){
+    let query=`
+    SELECT post.post_id, post.title, post.description, post.post_image, wishlist.user_id, user.username
+    From post
+    INNER JOIN wishlist
+    ON post.post_id = wishlist.post_id
+    INNER JOIN user
+    ON wishlist.user_id = user.user_id
+    WHERE user.user_id = ?;`
+    const [rows] = await database.query(query, [id])
     return rows
 }
 
@@ -110,6 +124,12 @@ export async function getNewPost(id) {
     let query = "SELECT * FROM post where post_id = ?;"
     const [newPost] = await database.query(query, [id])
     return newPost
+}
+
+export async function getUserPostBy(id){
+    let query = "SELECT * FROM user where user_id = ?;"
+    const [user] = await database.query(query, [id])
+    return user
 }
 
 export async function updatePost(post_id, title, description, price, post_image, user_id, condition_type_id) {

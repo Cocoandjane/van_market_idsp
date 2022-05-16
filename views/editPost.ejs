@@ -34,16 +34,17 @@
                 <div class="addImage">
                     <div class="addImageIcon">
                         <img src="/icons/addImageIcon.svg" alt="">
+                      
                     </div>
                     <div>Add Photos</div>
                 </div>
-                <input id="files" class="imageUpload" type="file" name="fileUpload" accept="image/*">
+                <input id="files" class="imageUpload" type="file" name="fileUpload" accept="image/*" multiple>
 
                 <label class="details" for="title">Title</label>
-                <input class="title rectangular-input" type="text" name="title">
+                <input class="title rectangular-input" type="text" name="title" value="<%=post.title%>">
 
                 <label class="details" for="price">Price</label>
-                <input class="price rectangular-input" type="number" name="price">
+                <input class="price rectangular-input" type="number" name="price" value="<%=post.price%>">
 
                 <label class="details" for="condition">Condition</label>
                 <select name="condition" id="condition" class="rectangular-input">
@@ -54,7 +55,7 @@
                 </select>
 
                 <label class="details" for="description">Description</label>
-                <input class="description rectangular-input" type="text" name="description">
+                <input class="description rectangular-input" type="text" name="description" value="post.description">
 
                 <label class="details " for="location">Location</label>
                 <input id="autocomplete" class="rectangular-input" type="text" placeholder="Enter a place..."
