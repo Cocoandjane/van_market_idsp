@@ -3,8 +3,8 @@
 }
 
 
-body {
-    margin: 10px 0 85px 0;
+body { 
+     margin: 0 0 85px 0;
     overflow-x: hidden;
     background-color: #F7F7F7;
     font-family: 'Roboto', sans-serif;
@@ -24,6 +24,7 @@ div.imgFrame {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .postImage{
