@@ -53,6 +53,7 @@ app.get("/login", async (req, res) => {
 })
 
 app.post("/login", async (req, res) =>{
+  console.log(req.body)
   let foundUser = await database.authenticateUser(req.body.email,req.body.password)
   console.log(foundUser)
   let userId = foundUser[0].user_id
@@ -138,9 +139,11 @@ app.get("/likedItems", authorized, async (req, res) => {
 })
 
 
-app.get("/createListing", authorized,  (req, res) => {
+app.get("/createListing", authorized,  async (req, res) => {
   try {
-    res.render("createListing")
+    let users = await database.getUser()
+    let posts = await database.getMyPost()
+    res.render("createListing", { users, posts, userId: req.session.userId })
   } catch (error) {
     console.error(error)
     res.status(500).send({ error: "🖕" })
@@ -194,20 +197,17 @@ app.post("/createlisting", async (req, res) => {
 })
 
 app.get('/editPost/:id', authorized, async (req, res) => {
+  let users = await database.getUser()
+  let posts = await database.getMyPost()
   let postId = +req.params.id;
   let [post] = await database.getPost(postId)
-  //console.log(post)
-  // return;
-
-  //console.log('here', post.post_id)
-  res.render('editPost', { post }) 
+  res.render('editPost', { post, users, posts, userId: req.session.userId  }) 
 })
 
 
 app.post('/editPost/:id',authorized, async (req, res) => { 
     let postId = +req.params.id;
     let data = req.body;
-    //console.log('dataaa', data)
     let title = req.body.title;
     let description = req.body.description;
     let price = req.body.price;
@@ -215,14 +215,10 @@ app.post('/editPost/:id',authorized, async (req, res) => {
     let userId = 1;
     let categoryId = req.body.category_id;
     let conditionTypeid = 1;
-    //console.log("lmao",postId)
     await database.getPosts(postId)
-    // console.log('post', post)
-    // console.log('postid', post.post_id)
     let id = await database.updatePost(postId, title, description, price, postImage, userId, conditionTypeid)
-    console.log('this is the id', postId)
+    //console.log('this is the id', postId)
     res.json(postId)
-    // res.redirect('home')
 })
 
 

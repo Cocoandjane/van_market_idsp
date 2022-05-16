@@ -1,30 +1,75 @@
-.logo {
+main{
+    background-color: #F7F7F7;
+    font-family: 'Roboto', sans-serif;
     display: flex;
-    justify-content: center;
-    margin-top: 13%;
+    flex-direction: column;
+    align-items: center;
 }
 
+img.logo{
+    width:11.5px;
+    height: 13.5;
+}
 
+span.name{
+    font-size: larger;
+}
+
+small{
+    color: #858585;
+}
+
+div.person {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    margin-top: 25px;
+}
+.image-cropper {
+    margin-top: 15px;
+    width: 40px;
+    height: 40px;
+    margin-left: 15px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+#profile-pic {
+    height: auto;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .new-prdct-form {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 5%;
-    width: 90%;
-    margin-top: 15%;
+} 
+
+.rectangular-input{
+    width: 325;
+    height: 35px;
+    margin-top: 0;
+    border: solid 1px #D0D0D0 ;
+    border-radius: 5px;
+}
+
+label{
+    color:#272727;
+    font-size: small;
+    margin-top: 5px;
+    margin-bottom: -5px;
 }
 
 .new-prdct-form form {
-    display: flex;
-    width: 100%;
+    display: flex; 
     flex-direction: column;
     justify-content: space-around;
     row-gap: 8px;
-}
-
-input {
-    height: 30px;
-
 }
 
 input[name="fileUpload"] {
@@ -33,11 +78,11 @@ input[name="fileUpload"] {
 
 div.addImage {
     display: flex;
-    border-style: solid;
-    border-color: #858585;
+    border: solid 1px #D0D0D0;
     align-items: center;
     border-radius: 10px;
     height: 120px;
+    width: 325px;
     align-items: center;
     justify-content: center;
     gap: 8px;
@@ -45,25 +90,17 @@ div.addImage {
 }
 
 
-input#file-upload-button {
-    color: yellow !important;
-}
-
-select#condition {
-    height: 30px
-}
-
-button {
+button#create{
+    background-color:#F37C49;
     width: 180px;
     height: 40px;
-    border: 0ch;
-    border-radius: 20px;
-    background-color: #F37C49;
-    color: white;
-    margin-top: 5%;
+    border: none;
     align-self: center;
-    margin-bottom: 20px;
-    cursor: pointer;
-}
+    color: #ffffff;
+    font-size: large;
+    border-radius: 5px;
+  }
 
-@media all {}
+  img.arrow{
+      margin-left: 5px;
+  }

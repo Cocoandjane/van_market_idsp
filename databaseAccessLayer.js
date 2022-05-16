@@ -139,9 +139,9 @@ export async function createUser(username, email, plainPass) {
 
 
 export async function authenticateUser(email, password) {
-    const query = 'SELECT user_id, username, email, profile_img, password_hash FROM user WHERE email = ?';
+    const query = 'SELECT * FROM user WHERE email = ?';
     const [foundUser] = await database.query(query, [email]);
-    // console.log('here', foundUser)
+    //console.log('here', foundUser)
     const authenticationResult = await bcrypt.compareSync(password, foundUser[0].password_hash);
     if (authenticationResult) {
         return foundUser;

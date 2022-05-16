@@ -38,6 +38,7 @@ addPostOther.addEventListener('click', () => {
 })
 
 
+
 // let viewProductButton = document.querySelector(`.card`); // change this to be the .viewProductButton
 // viewProductButton.addEventListener('click', (e) => {
 //     let cardWithId = e.target.closest("div").id.split("-")[2]
