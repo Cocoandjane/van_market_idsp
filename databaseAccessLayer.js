@@ -7,7 +7,7 @@ import { query } from 'express';
 
 export async function getPosts() {
     let query = `
-    SELECT post.post_id, post.title, post.description, post.price, post.post_image, post.user_id, user.username
+    SELECT post.post_id, post.title, post.description, post.price, post.post_image, post.user_id, user.username , user.profile_img
     FROM post
     LEFT JOIN user
     ON post.user_id = user.user_id

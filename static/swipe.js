@@ -4,6 +4,8 @@ class Carousel {
     constructor(element) {
         axios.get("/api/products")
             .then(response => {
+               console.log(response.data.products)
+
                 this.products = response.data.products
                 this.board = element
                 // add first two cards programmatically
@@ -237,7 +239,11 @@ class Carousel {
 
             let sellerInfoSection = document.createElement('section')
             let sellerPfp = document.createElement('img')
-            sellerPfp.src = 'photos/smw.png';
+            if(product.profile_img){
+                sellerPfp.src = product.profile_img;
+                } else{
+                    sellerPfp.src = 'photos/smw.png';
+                }
             sellerPfp.draggable = false;
             let productDescriptionDiv = document.createElement('div')
             let sellerName = document.createElement('h4')
