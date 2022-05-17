@@ -19,19 +19,47 @@ section.top{
 div.imgFrame {
     margin-top: 20px;
     width: 350px;
-    height: 250px;
+    height: 150px;
     background-color: rgb(236, 233, 233);
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    column-gap: 20px;
     align-items: center;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .postImage{
-width: 80%;
-height: auto;
-border-radius: 30px;
+width: 150px;
+height: 110px;
+border-radius: 5px;
+}
+
+.displayNone{
+display: none;
+}
+
+.submit-btn {
+    position: relative;
+    background-color: #F37C49;
+    border: none;
+    padding: 5px;
+    color: white;
+    border-radius: 5px;
+}
+div.display_image{
+    position: relative;
+    background-color: red;
+    width: 150px;
+    height: 110px;
+    border: 1px solid black;
+    background-size: cover;
+}
+
+.addImgIcon{
+    position: relative;
+}
+.addImgIcon:hover{
+margin-top: -5px;
 }
 
 div.lineOne{

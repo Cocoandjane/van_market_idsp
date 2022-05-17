@@ -39,6 +39,7 @@
                     <div>Add Photos</div>
                 </div>
                 <input id="files" class="imageUpload" type="file" name="fileUpload" accept="image/*" multiple>
+                <input id="imageUrl" type="hidden" value="<%=post.post_image%>">
 
                 <label class="details" for="title">Title</label>
                 <input class="title rectangular-input" type="text" name="title" value="<%=post.title%>">

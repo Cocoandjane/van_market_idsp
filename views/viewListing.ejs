@@ -16,10 +16,24 @@
 <body>
     <main>
         <section class="top">
-                <div class="postInfo">
-                    <% for(let p of post) { %>
+            <div class="postInfo">
+                <% for(let p of post) { %>
                     <div class="imgFrame">
                         <img class="postImage" src="<%=p.post_image%>">
+                        
+                        <% images.forEach(image => { %>
+                            <a target="_blank" href="<%=image.url%>"><img class="postImage" src="<%=image.url%>"></a>
+                      <%  })%>
+
+                      <% if (post[0].user_id===userId) {%>
+                        <form method="post" action="/viewListing/<%=p.post_id%>" id='form' data-id="<%=p.post_id%>" data-name="Yane">
+                            <div class="input-group">
+                                <label for='files'><img class="postImage addImgIcon" src="/icons/addImageIcon.svg"></label>
+                                <input id='files' class="imageUpload" type="file" accept="image/*" hidden>
+                            </div>
+                            <button  class="submit-btn displayNone" type='submit'>Upload</button>
+                        </form>
+                        <%}%>
                     </div>
                     <div class="lineOne">
                         <p class="title">
@@ -48,30 +62,30 @@
                         </p>
                     </div>
                     <% } %>
-                    <% if (post[0].user_id !== userId) {%>
-                    <div class="name">
-                        <p class="seller" >Contact seller: <a href="" class="sellerName" ><%=user[0].username%></a> 
-                        </p>
-                    </div>
-                    <%}%>
-                </div 
-               
-
-        </section>
-
-        <% if (post[0].user_id===userId) {%>
-            <div class="btnFrame">
-                <a href="" class="all delete"><img class="icon" src="/icons/delete.svg">
-                    <p> Delete Listing</p>
-                </a>
-                <a href="/editPost/<%=post[0].post_id%>" class="all edit"><img class="icon" src="/icons/edit.svg">
-                    <p> Edit Listing</p>
-                </a>
-                <a href="" class="all sold"><img class="icon" src="/icons/sold.svg">
-                    <p> Mark as sold</p>
-                </a>
+                        <% if (post[0].user_id !==userId) {%>
+                            <div class="name">
+                                <p class="seller">Contact seller: <a href="" class="sellerName">
+                                        <%=user[0].username%>
+                                    </a>
+                                </p>
+                            </div>
+                            <%}%>
             </div>
-            <%}%>
+
+            <% if (post[0].user_id===userId) {%>
+                <div class="btnFrame">
+                    <a href="" class="all delete"><img class="icon" src="/icons/delete.svg">
+                        <p> Delete Listing</p>
+                    </a>
+                    <a href="/editPost/<%=post[0].post_id%>" class="all edit"><img class="icon" src="/icons/edit.svg">
+                        <p> Edit Listing</p>
+                    </a>
+                    <a href="" class="all sold"><img class="icon" src="/icons/sold.svg">
+                        <p> Mark as sold</p>
+                    </a>
+                </div>
+                <%}%>
+            </section>
     </main>
 
     <nav class="nav">

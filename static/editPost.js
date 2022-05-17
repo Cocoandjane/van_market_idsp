@@ -3,11 +3,8 @@ import axios from 'https://cdn.skypack.dev/axios'
 const imageForm = document.querySelector("#form")
 const imageInput = document.querySelector("#files")
 
-imageForm.addEventListener("submit", async event => {
-    event.preventDefault()
-    const file = imageInput.files[0]
-
-    //get secure url form our server
+async function uplodFile(file) {
+    // get secure url form our server
     const { url } = await fetch("/s3Url").then(res => res.json())
     console.log(url)
     // post the image directly to the s3 bucket
@@ -23,8 +20,17 @@ imageForm.addEventListener("submit", async event => {
     const imageUrl = url.split("?")[0]
     console.log(imageUrl)
 
-    if(imageUrl === ""){
-        imageUrl.value
+    return imageUrl
+}
+
+imageForm.addEventListener("submit", async event => {
+    event.preventDefault()
+    const file = imageInput.files[0]
+    let imageUrl = null
+    if (file) {
+        imageUrl = await uplodFile(file)
+    } else {
+        imageUrl = document.querySelector("#imageUrl").value
     }
 
     let title = document.querySelector(".title").value

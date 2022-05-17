@@ -20,7 +20,7 @@ small{
 }
 
 div.person {
-    align-self: flex-start;
+    margin-left: -130px;
     display: flex;
     flex-direction: row;
     column-gap: 10px;
@@ -104,3 +104,10 @@ button#create{
   img.arrow{
       margin-left: 5px;
   }
+
+div.display_image{
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+

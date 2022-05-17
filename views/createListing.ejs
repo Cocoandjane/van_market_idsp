@@ -25,20 +25,21 @@
                                 <small>Listed on VanMarket <img class="logo" src="icons/Logo.svg"></small>
                         </p>
                     </div>
-                    <% } %>
+                
+                    <%break;} %>
                         <%}%>
         </div>
 
         <div class="new-prdct-form">
             <form id="form" method="post" action="createListing">
-                <div class="addImage">
+                <div class="addImage display_image" >
                     <div class="addImageIcon">
                         <img src="/icons/addImageIcon.svg" alt="">
                     </div>
-                    <div>Add Photos</div>
+                    <div>Add an image</div>
                 </div>
-                <input id="files" class="imageUpload" type="file" name="fileUpload" accept="image/*">
-
+                <input id="files" class="imageUpload" type="file" name="fileUpload" accept="image/*" hidden>
+                
                 <label class="details" for="title">Title</label>
                 <input class="title rectangular-input" type="text" name="title">
 
@@ -69,12 +70,10 @@
         function initMap() {
             autocomplete = new google.maps.places.Autocomplete(
                 document.getElementById('autocomplete'), ({ 'country': [] }))
-
         }
 
         document.querySelector(".addImage").addEventListener("click", () => {
             document.querySelector('.imageUpload').click()
-
         })
 
     </script>
