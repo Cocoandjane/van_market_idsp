@@ -93,7 +93,7 @@ if (image_input) {
     //      deleteFrame.appendChild(a)
     // })
 
-  
+
 
     image_input.addEventListener("change", (event) => {
         event.preventDefault()
@@ -159,12 +159,18 @@ ok.addEventListener("click", (event) => {
     window.location.reload()
 })
 
+requestAnimationFrame(() => {
+    let imageFrame = document.querySelector(".imgFrame")
+    imageFrame.scrollTo(imageFrame.scrollWidth, 0)
+})
+
 
 let removeWish = document.querySelector(".wishLink")
-if(removeWish){
-removeWish.addEventListener("click", (event) => {
-    event.preventDefault()
-    let wishid = removeWish.dataset.wishid
-    axios.post("/removeWishedItem", {wishid})
-    window.location.reload()
-})}
+if (removeWish) {
+    removeWish.addEventListener("click", (event) => {
+        event.preventDefault()
+        let wishid = removeWish.dataset.wishid
+        axios.post("/removeWishedItem", { wishid })
+        window.location.reload()
+    })
+}
