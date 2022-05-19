@@ -20,7 +20,7 @@ let admin = "Admin: ";
 io.on('connection', (socket) => {
     console.log("new WS connection", socket.id)
 
-    io.emit('message', formatMessage(admin, "welcome to Chatroom"));
+    socket.emit('message', formatMessage(admin, "welcome to Chatroom")); // socket.emit?
 
     //when a user disconnects
     socket.on('disconnect', () => {
