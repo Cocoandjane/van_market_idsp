@@ -1,10 +1,15 @@
 main{
-    background-color: #F7F7F7;
-    font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+body {
+    margin: 0 0 100px 0;
+    overflow-x: hidden;
+    background-color: #F7F7F7;
+    font-family: 'Roboto', sans-serif;
+}
+
 
 img.logo{
     width:11.5px;
@@ -82,14 +87,16 @@ div.addImage {
     align-items: center;
     border-radius: 10px;
     height: 120px;
-    width: 325px;
+    width: 300px;
     align-items: center;
     justify-content: center;
     gap: 8px;
     cursor: pointer;
 }
 
-
+textarea#description{
+    height: 120px;
+}
 button#create{
     background-color:#F37C49;
     width: 180px;
@@ -111,3 +118,7 @@ div.display_image{
     background-repeat: no-repeat;
 }
 
+.editImage{
+    width: 100px;
+    
+}

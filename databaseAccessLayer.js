@@ -184,3 +184,21 @@ export async function authenticateUser(email, password) {
         return foundUser;
     }
 }
+
+export async function deleteOneImg(url){
+    const query = `DELETE FROM image WHERE url= ?; `
+    const result = await database.query(query, [url])
+}
+
+export async function checkWishlist(user_Id, post_Id){
+    const query = `SELECT * from wishlist 
+    WHERE user_id=? and post_id=?;`
+    const inWishlist = await database.query(query, [user_Id, post_Id])
+    return inWishlist[0][0]
+}
+
+export async function removeWishItem(wishlist_id){
+    const query =  `DELETE from wishlist 
+    WHERE wishlist_id = ?;`
+    const result = await database.query(query, [wishlist_id])
+}

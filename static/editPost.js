@@ -52,16 +52,21 @@ imageForm.addEventListener("submit", async event => {
         .catch((err) => {
             console.log('ERR', err)
         })
-
-    // post requet to my server with the iamgeUrl
-    // title
-    // price
-    // description
-    // condition
-    // location
-
-    // const img = document.createElement("img")
-    // img.src = imageUrl
-    // document.body.appendChild(img)
 })
 
+const image_input = document.querySelector(".imageUpload");
+//console.log(image_input )
+let uploaded_image ="";
+let oldImg = document.querySelector("div.display_image").dataset.image
+document.querySelector("div.display_image").style.backgroundImage=`url(${oldImg})`
+image_input.addEventListener("change", (event)=>{
+    event.preventDefault()
+    // console.log( image_input.value);
+    const reader = new FileReader();
+    reader.addEventListener("load", ()=>{
+        uploaded_image = reader.result;
+        document.querySelector("div.display_image").style.backgroundImage=`url(${uploaded_image})`
+    })
+    // console.log(image_input)
+    reader.readAsDataURL(image_input.files[0])
+})

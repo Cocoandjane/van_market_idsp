@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/createListing.css">
+    <link rel="stylesheet" href="/css/nav.css">
 
     <title>VanMarket</title>
 </head>
@@ -28,17 +29,17 @@
                     <% } %>
                         <%}%>
         </div>
-
+       
         <div class="new-prdct-form">
             <form id="form" method="post" action="createListing">
-                <div class="addImage">
+                <div class="addImage display_image" data-image ="<%=post.post_image%>">
                     <div class="addImageIcon">
                         <img src="/icons/addImageIcon.svg" alt="">
                       
                     </div>
-                    <div>Add Photos</div>
+                    <div>Change default image</div>
                 </div>
-                <input id="files" class="imageUpload" type="file" name="fileUpload" accept="image/*" multiple>
+                <input id="files" class="imageUpload" type="file" name="fileUpload" accept="image/*" hidden>
                 <input id="imageUrl" type="hidden" value="<%=post.post_image%>">
 
                 <label class="details" for="title">Title</label>
@@ -56,16 +57,35 @@
                 </select>
 
                 <label class="details" for="description">Description</label>
-                <input class="description rectangular-input" type="text" name="description" value="<%=post.description%>">
+                <textarea id="description" maxlength="500" class="description rectangular-input" type="text" name="description">
+                    <%=post.description%>
+                </textarea>
 
                 <label class="details " for="location">Location</label>
                 <input id="autocomplete" class="rectangular-input" type="text" placeholder="Enter a place..."
                     name="location">
 
-                <button id="create" class="submit-btn" type='submit'> Create Listing <img class="arrow" src="/icons/create.svg"> </button>
+                <button id="create" class="submit-btn" type='submit'> Comfirm changes <img class="arrow" src="/icons/create.svg"> </button>
             </form>
         </div>
     </main>
+    <nav class="nav">
+        <a href="/home" class="nav_link">
+            <img src="/icons/Home.svg">
+        </a>
+        <a href="" class="nav_link wished">
+            <img src="/icons/wished.svg">
+        </a>
+        <a href="" class="nav_link postNew">
+            <img src="/icons/add-filled.svg">
+        </a>
+        <a href="" class="nav_link">
+            <img src="/icons/nav_chat.svg">
+        </a>
+        <a href="profile" class="nav_link">
+            <img src="/icons/me.svg">
+        </a>
+    </nav>
     <script>
         let autocomplete;
         function initMap() {

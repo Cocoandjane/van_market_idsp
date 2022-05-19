@@ -1,3 +1,4 @@
+
 import axios from 'https://cdn.skypack.dev/axios'
 let editBtn = document.querySelector("a.edit")
 if (editBtn) {
@@ -40,75 +41,130 @@ const imageInput = document.querySelector("#files")
 // console.log(imageForm.dataset.name)
 // imageForm.dataset.music = 'guitar'
 
-imageForm.addEventListener("submit", async event => {
-    event.preventDefault()
-    const file = imageInput.files[0]
-    //get secure url form our server
-    const { url } = await fetch("/s3Url").then(res => res.json())
-    console.log(url)
-    // post the image directly to the s3 bucket
+if (imageForm) {
+    imageForm.addEventListener("submit", async event => {
+        event.preventDefault()
+        const file = imageInput.files[0]
+        //get secure url form our server
+        const { url } = await fetch("/s3Url").then(res => res.json())
+        console.log(url)
+        // post the image directly to the s3 bucket
 
-    await fetch(url, {
-        method: "PUT",
-        headers: {
-            "Conten_Type": "multipart/form-data"
-        },
-        body: file
-    })
+        await fetch(url, {
+            method: "PUT",
+            headers: {
+                "Conten_Type": "multipart/form-data"
+            },
+            body: file
+        })
 
-    const postId = imageForm.dataset.id
-    console.log(postId)
-    const imageUrl = url.split("?")[0]
-    console.log(imageUrl)
-    axios.post("/addImage", { imageUrl, postId })
+        const postId = imageForm.dataset.id
+        console.log(postId)
+        const imageUrl = url.split("?")[0]
+        console.log(imageUrl)
+        axios.post("/addImage", { imageUrl, postId })
 
-    // window.location.reload()
-
-    requestAnimationFrame(() => {
-        document.querySelector(".submit-btn ").classList.add("displayNone")
-        document.querySelector(".addImgIcon").classList.remove("displayNone")
         requestAnimationFrame(() => {
-            let imageFrame = document.querySelector(".imgFrame")
-            imageFrame.scrollTo(imageFrame.scrollWidth, 0)
+            document.querySelector(".submit-btn ").classList.add("displayNone")
+            document.querySelector(".addImgIcon").classList.remove("displayNone")
+            requestAnimationFrame(() => {
+                let imageFrame = document.querySelector(".imgFrame")
+                imageFrame.scrollTo(imageFrame.scrollWidth, 0)
+            })
         })
     })
-
-})
+}
 
 const image_input = document.querySelector(".imageUpload");
 //console.log(image_input )
 let uploaded_image = "";
-image_input.addEventListener("change", (event) => {
-    event.preventDefault()
-    //console.log( image_input.value);
-    const reader = new FileReader();
-    reader.addEventListener("load", () => {
-        let imageFrame = document.querySelector(".imgFrame")
 
-        
-        let addbutt = document.querySelector("form#form")
-        uploaded_image = reader.result;
-        
-        // let div = document.createElement("div")
-        // div.classList.add("display_image");
-        // div.style.backgroundImage = `url(${uploaded_image})`
-        // imageFrame.insertBefore(div, addbutt)
 
-        let img = document.createElement("img")
-        img.classList.add("postImage");
-        img.src = `${uploaded_image}`
-        imageFrame.insertBefore(img, addbutt)
+if (image_input) {
 
-        requestAnimationFrame(() => {
+    // let deleteFrames = document.querySelectorAll(".deleteFrame")
+    // console.log(deleteFrames)
+    // let a = document.createElement("a")
+    // let icon = document.createElement("img")
+    // icon.src = "/icons/x-butt.svg"
+    // icon.classList.add("deleteButt")
+    // a.append(icon)
+    // deleteFrames.forEach(deleteFrame => {
+    //      deleteFrame.appendChild(a)
+    // })
 
-            document.querySelector(".submit-btn ").classList.remove("displayNone")
-            document.querySelector(".addImgIcon").classList.add("displayNone")
-          requestAnimationFrame(() => {
+  
 
-              imageFrame.scrollTo(imageFrame.scrollWidth, 0)
-          })  
+    image_input.addEventListener("change", (event) => {
+        event.preventDefault()
+        //console.log( image_input.value);
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+            let imageFrame = document.querySelector(".imgFrame")
+
+
+            let addbutt = document.querySelector("form#form")
+            uploaded_image = reader.result;
+
+            // let div = document.createElement("div")
+            // div.classList.add("display_image");
+            // div.style.backgroundImage = `url(${uploaded_image})`
+            // imageFrame.insertBefore(div, addbutt)
+
+            // window.location.reload()
+
+            let img = document.createElement("img")
+            img.classList.add("postImage");
+            img.src = `${uploaded_image}`
+
+            imageFrame.insertBefore(img, addbutt)
+
+            requestAnimationFrame(() => {
+                document.querySelector(".submit-btn ").classList.remove("displayNone")
+                document.querySelector(".addImgIcon").classList.add("displayNone")
+                requestAnimationFrame(() => {
+                    imageFrame.scrollTo(imageFrame.scrollWidth, 0)
+                })
+            })
         })
+        //console.log(image_input)
+        reader.readAsDataURL(image_input.files[0])
     })
-    //console.log(image_input)
-    reader.readAsDataURL(image_input.files[0])
+}
+
+
+let xBtns = document.querySelectorAll(".deleteButt")
+let imageLink;
+xBtns.forEach(xBtn => {
+    xBtn.addEventListener("click", (event) => {
+        event.preventDefault()
+        let card2 = document.querySelector(".card2")
+        card2.classList.remove("displayNone");
+        imageLink = xBtn.dataset.img
+    })
 })
+
+let cancel = document.querySelector(".cancel")
+cancel.addEventListener("click", (event) => {
+    event.preventDefault()
+    let card2 = document.querySelector(".card2")
+    card2.classList.add("displayNone");
+})
+
+let ok = document.querySelector(".ok")
+ok.addEventListener("click", (event) => {
+    event.preventDefault()
+    axios.post(`/deleteImg`, { imageLink })
+    // window.location = ok.action
+    window.location.reload()
+})
+
+
+let removeWish = document.querySelector(".wishLink")
+if(removeWish){
+removeWish.addEventListener("click", (event) => {
+    event.preventDefault()
+    let wishid = removeWish.dataset.wishid
+    axios.post("/removeWishedItem", {wishid})
+    window.location.reload()
+})}

@@ -3,14 +3,14 @@
 }
 
 
-body { 
-     margin: 0 0 85px 0;
+body {
+    margin: 0 0 85px 0;
     overflow-x: hidden;
     background-color: #F7F7F7;
     font-family: 'Roboto', sans-serif;
 }
 
-section.top{
+section.top {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,17 +25,29 @@ div.imgFrame {
     flex-direction: row;
     column-gap: 20px;
     align-items: center;
-    overflow: scroll;
+    overflow-x: scroll;
+
 }
 
-.postImage{
-width: 150px;
-height: 110px;
-border-radius: 5px;
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    height: 5px;
 }
 
-.displayNone{
-display: none;
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #F37C49;
+}
+
+.postImage {
+    margin-left: 5px;
+    width: 150px;
+    height: 110px;
+    border-radius: 5px;
+}
+
+.displayNone {
+    display: none;
 }
 
 .submit-btn {
@@ -46,7 +58,8 @@ display: none;
     color: white;
     border-radius: 5px;
 }
-div.display_image{
+
+div.display_image {
     position: relative;
     background-color: red;
     width: 150px;
@@ -55,14 +68,15 @@ div.display_image{
     background-size: cover;
 }
 
-.addImgIcon{
+.addImgIcon {
     position: relative;
 }
-.addImgIcon:hover{
-margin-top: -5px;
+
+.addImgIcon:hover {
+    margin-top: -5px;
 }
 
-div.lineOne{
+div.lineOne {
     margin-left: 20px;
     display: flex;
     flex-direction: row;
@@ -71,59 +85,60 @@ div.lineOne{
     font-size: large;
 }
 
-div.lineThree{
+div.lineThree {
     margin-left: 20px;
 }
 
-p.date{
-   color:#858585;
+p.date {
+    color: #858585;
 }
 
-p.price{
-    color:#858585;
+p.price {
+    color: #858585;
 }
 
-p.location{
-    color:#3E3E3E;
+p.location {
+    color: #3E3E3E;
 }
 
-p.seller{
+p.seller {
     margin-left: 20px;
 }
 
-.sellerName{
+.sellerName {
     text-decoration: none;
     color: #DE5A60;
 }
-img.icon{
+
+img.icon {
     width: 36px;
     height: 36px;
     margin-left: 20px;
 }
 
-a.all{
+a.all {
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: black;
 }
 
-div.btnFrame{
+div.btnFrame {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
     column-gap: 28px;
- 
+
 }
 
-div.card{
+div.card {
     background-color: white;
     border-radius: 10%;
     width: 300px;
     height: 165px;
     position: absolute;
-    top:50%;
-    left:50%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
@@ -131,22 +146,22 @@ div.card{
     align-items: center;
 }
 
-div.card > strong{
-   padding: 2px;
+div.card>strong {
+    padding: 2px;
 }
 
-div.card > p{
-    color:#858585;
+div.card>p {
+    color: #858585;
     margin-top: -1px;
-   
-    
+
+
 }
 
 button {
     margin: 5px;
 }
 
-button.no{
+button.no {
     color: white;
     background-color: #3E3E3E;
     border: none;
@@ -155,19 +170,100 @@ button.no{
     border-radius: 5px;
 }
 
-button.yes{
+button.yes {
     color: white;
     background-color: #DE5A60;
-    border:none;
+    border: none;
     width: 140px;
     height: 25px;
     border-radius: 5px;
 }
 
-div.card.disapear{
+div.card.disapear {
     display: none;
 }
 
-div.card.displayNone{
+div.card.displayNone {
     display: none;
+}
+
+div.card2.displayNone {
+    display: none;
+}
+div.deleteFrame {
+    width: 182px;
+    height: 130px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 5px;
+}
+
+.singleImg{
+    align-self:center;
+    margin-left: 8px;
+}
+
+div.card2 {
+    background-color: white;
+    border-radius: 10%;
+    width: 200px;
+    height: 165px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+div.choice {
+display: grid;
+grid-template-columns: 50% 50%;
+column-gap: 5px;
+justify-content: center;
+}
+
+.cancel{
+    border: none;
+    background-color: #3E3E3E;;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    width: 70px;
+}
+
+.ok{
+    border: none;
+    background-color: #DE5A60;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    width: 70px;
+}
+
+.wrap{
+    position: relative;
+}
+.defaltImg {
+    position:absolute;
+    left:30px;
+    bottom:0;
+    border:none;
+    color:#858585 ;
+    font-size: smaller;
+    text-decoration: none;
+}
+
+.wishLink{
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+.wishlist{
+    text-decoration: none;
+    color:#858585;
+    font-size: smaller;
 }

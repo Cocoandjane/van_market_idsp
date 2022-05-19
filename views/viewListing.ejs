@@ -14,18 +14,22 @@
 </head>
 
 <body>
+  
     <main>
         <section class="top">
             <div class="postInfo">
                 <% for(let p of post) { %>
-                    <div class="imgFrame">
+                    <div class="wrap imgFrame">
                         <img class="postImage" src="<%=p.post_image%>">
-                        
-                        <% images.forEach(image => { %>
-                            <a target="_blank" href="<%=image.url%>"><img class="postImage" src="<%=image.url%>"></a>
-                      <%  })%>
-
-                      <% if (post[0].user_id===userId) {%>
+                        <a class="defaltImg" href="/editPost/<%=post[0].post_id%>"> change defalt</a>
+                        <% if (post[0].user_id===userId) {%>
+                            <% images.forEach(image => { %>
+                                <div class="deleteFrame">
+                                    <a class="singleImg" data-img="<%=image.url%>" href="<%=image.url%>"><img class="postImage" src="<%=image.url%>"></a>
+                                    <a><img class="deleteButt" data-img="<%=image.url%>"  src="/icons/x-butt.svg"></a> 
+                                </div>
+                                <%  })%>
+                      
                         <form method="post" action="/viewListing/<%=p.post_id%>" id='form' data-id="<%=p.post_id%>" data-name="Yane">
                             <div class="input-group">
                                 <label for='files'><img class="postImage addImgIcon" src="/icons/addImageIcon.svg"></label>
@@ -35,6 +39,10 @@
                         </form>
                         <%}%>
                     </div>
+                    <% if (inWishlist) {%>
+                        <a href="" class="wishLink" data-wishID="<%=inWishlist.wishlist_id%>"><img src="/icons/x-butt.svg"><p class="wishlist">remove from wishlist</p> </a>
+                    
+                        <%}%>
                     <div class="lineOne">
                         <p class="title">
                             <strong>
@@ -114,8 +122,21 @@
                 <button class="yes" type="submit"> COMFIRM DELETE</button>
             </form>
         </div>
-
     </section>
+
+    <section class="delete-sec deleteOne-sec">
+        <div class="card2 displayNone">
+            <strong>Note</strong>
+            <p>Delete this photo?</p>
+            <div class="choice">
+            <button class="cancel">Cancel</button>
+            <form action="/viewListing/<%=post[0].post_id%>" method="post">
+                <button class="ok" type="submit"> OK</button>
+            </form>
+        </div>
+        </div>
+    </section>
+
     <div class="createNew displayNone">
         <div class="bar"></div>
         <p class="create_text">Create New Listing</p>
