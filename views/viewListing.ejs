@@ -21,8 +21,8 @@
                 <% for(let p of post) { %>
                     <div class="wrap imgFrame">
                         <img class="postImage" src="<%=p.post_image%>">
-                        <a class="defaltImg" href="/editPost/<%=post[0].post_id%>"> change defalt</a>
                         <% if (post[0].user_id===userId) {%>
+                        <a class="defaltImg" href="/editPost/<%=post[0].post_id%>"> change default</a>
                             <% images.forEach(image => { %>
                                 <div class="deleteFrame">
                                     <a class="singleImg" data-img="<%=image.url%>" href="<%=image.url%>"><img class="postImage" src="<%=image.url%>"></a>
