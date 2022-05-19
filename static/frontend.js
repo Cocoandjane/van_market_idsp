@@ -10,11 +10,11 @@ addNewPost.addEventListener("click", function (event) {
 
 let main = document.querySelector("main")
 // console.log(main)
-main.addEventListener("click", function (event) {
-    let catagorySlide = document.querySelector("div.createNew")
-    catagorySlide.classList.add("displayNone")
-    event.preventDefault()
-})
+// main.addEventListener("click", function (event) {
+//     let catagorySlide = document.querySelector("div.createNew")
+//     catagorySlide.classList.add("displayNone")
+//     event.preventDefault()
+// })
 
 let addPostElectronics = document.querySelector('.catagories.electronics')
 addPostElectronics.addEventListener('click', () => {

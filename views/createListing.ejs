@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/createListing.css">
     <script type="module" src="/createlisting.js" defer></script>
+    <link rel="stylesheet" href="/css/nav.css">
     <title>VanMarket</title>
 </head>
 
@@ -25,20 +26,21 @@
                                 <small>Listed on VanMarket <img class="logo" src="icons/Logo.svg"></small>
                         </p>
                     </div>
-                    <% } %>
+                
+                    <%break;} %>
                         <%}%>
         </div>
 
         <div class="new-prdct-form">
             <form id="form" method="post" action="createListing">
-                <div class="addImage">
+                <div class="addImage display_image" >
                     <div class="addImageIcon">
                         <img src="/icons/addImageIcon.svg" alt="">
                     </div>
-                    <div>Add Photos</div>
+                    <div>Add an image</div>
                 </div>
-                <input id="files" class="imageUpload" type="file" name="fileUpload" accept="image/*">
-
+                <input id="files" class="imageUpload" type="file" name="fileUpload" accept="image/*" hidden>
+                
                 <label class="details" for="title">Title</label>
                 <input class="title rectangular-input" type="text" name="title">
 
@@ -54,8 +56,8 @@
                 </select>
 
                 <label class="details" for="description">Description</label>
-                <input class="description rectangular-input" type="text" name="description">
-
+                <textarea id="description" maxlength="500" class="description rectangular-input" type="text" name="description">
+                </textarea>
                 <label class="details " for="location">Location</label>
                 <input id="autocomplete" class="rectangular-input" type="text" placeholder="Enter a place..."
                     name="location">
@@ -64,17 +66,33 @@
             </form>
         </div>
     </main>
+
+    <nav class="nav">
+        <a href="/home" class="nav_link">
+            <img src="/icons/Home.svg">
+        </a>
+        <a href="" class="nav_link wished">
+            <img src="/icons/wished.svg">
+        </a>
+        <a href="" class="nav_link postNew">
+            <img src="/icons/add-filled.svg">
+        </a>
+        <a href="" class="nav_link">
+            <img src="/icons/nav_chat.svg">
+        </a>
+        <a href="profile" class="nav_link">
+            <img src="/icons/me.svg">
+        </a>
+    </nav>
     <script>
         let autocomplete;
         function initMap() {
             autocomplete = new google.maps.places.Autocomplete(
                 document.getElementById('autocomplete'), ({ 'country': [] }))
-
         }
 
         document.querySelector(".addImage").addEventListener("click", () => {
             document.querySelector('.imageUpload').click()
-
         })
 
     </script>

@@ -3,11 +3,8 @@ import axios from 'https://cdn.skypack.dev/axios'
 const imageForm = document.querySelector("#form")
 const imageInput = document.querySelector("#files")
 
-imageForm.addEventListener("submit", async event => {
-    event.preventDefault()
-    const file = imageInput.files[0]
-
-    //get secure url form our server
+async function uplodFile(file) {
+    // get secure url form our server
     const { url } = await fetch("/s3Url").then(res => res.json())
     console.log(url)
     // post the image directly to the s3 bucket
@@ -23,8 +20,17 @@ imageForm.addEventListener("submit", async event => {
     const imageUrl = url.split("?")[0]
     console.log(imageUrl)
 
-    if(imageUrl === ""){
-        imageUrl.value
+    return imageUrl
+}
+
+imageForm.addEventListener("submit", async event => {
+    event.preventDefault()
+    const file = imageInput.files[0]
+    let imageUrl = null
+    if (file) {
+        imageUrl = await uplodFile(file)
+    } else {
+        imageUrl = document.querySelector("#imageUrl").value
     }
 
     let title = document.querySelector(".title").value
@@ -46,16 +52,21 @@ imageForm.addEventListener("submit", async event => {
         .catch((err) => {
             console.log('ERR', err)
         })
-
-    // post requet to my server with the iamgeUrl
-    // title
-    // price
-    // description
-    // condition
-    // location
-
-    // const img = document.createElement("img")
-    // img.src = imageUrl
-    // document.body.appendChild(img)
 })
 
+const image_input = document.querySelector(".imageUpload");
+//console.log(image_input )
+let uploaded_image ="";
+let oldImg = document.querySelector("div.display_image").dataset.image
+document.querySelector("div.display_image").style.backgroundImage=`url(${oldImg})`
+image_input.addEventListener("change", (event)=>{
+    event.preventDefault()
+    // console.log( image_input.value);
+    const reader = new FileReader();
+    reader.addEventListener("load", ()=>{
+        uploaded_image = reader.result;
+        document.querySelector("div.display_image").style.backgroundImage=`url(${uploaded_image})`
+    })
+    // console.log(image_input)
+    reader.readAsDataURL(image_input.files[0])
+})

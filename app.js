@@ -129,6 +129,7 @@ app.get("/profile", authorized, async (req, res) => {
 app.get("/createListing", authorized,  async (req, res) => {
   try {
     let users = await database.getPosts()
+    //console.log(users)
     let posts = await database.getMyPost()
     res.render("createListing", { users, posts, userId: req.session.userId })
   } catch (error) {
@@ -156,7 +157,7 @@ app.post('/likedItems', authorized, async (req, res) => {
     let userId = req.session.userId;
     let direction = req.body.dirX
     let productId = +req.body.productId
-    console.log('here:', userId, direction, productId)
+    //console.log('here:', userId, direction, productId)
     if (direction === 1) {
       // let addedToWishList = 
       await database.addToWishlist(userId, productId)
@@ -197,16 +198,14 @@ app.post("/createlisting", async (req, res) => {
 
 app.get('/editPost/:id', authorized, async (req, res) => {
   let users = await database.getUser()
-  let posts = await database.getMyPost()
   let postId = +req.params.id;
   let [post] = await database.getPost(postId)
-  console.log(post)
-  res.render('editPost', { post, users, posts, userId: req.session.userId  }) 
+  res.render('editPost', { post, users, userId: req.session.userId  }) 
 })
 
 
 app.post('/editPost/:id',authorized, async (req, res) => { 
-  console.log(`this post edit ${req.body}`)
+ //console.log(`this post edit ${req.body}`)
     let postId = +req.params.id;
     let data = req.body;
     let title = req.body.title;
@@ -234,17 +233,23 @@ res.render('viewListing', {postId})
 app.get("/viewListing/:id", async (req, res) => {
   let id = +req.params.id
   try {
-    let posts = await database.getNewPost(id)
+    let posts = await database.getNewPost(id) 
     let user = await database.getUserPostBy(posts[0].user_id)
+    let images = await database.getImages(id)
+    let inWishlist = await database.checkWishlist(req.session.userId, id)
     if (posts.length === 0) {
       res.status(404).send({ message: "this post doesn't exist" })
     } else {
-      res.render(`viewListing`, { post: posts, user, userId: req.session.userId})
+      res.render(`viewListing`, { post: posts, inWishlist, user, images, userId: req.session.userId})
     }
   } catch (error) {
     console.error(error)
     res.status(500).send({ error: "🖕" })
   }
+})
+
+app.post("/addImage", async(req, res) => {
+  database.insertImage(req.body.postId,req.body.imageUrl )
 })
 
 app.post("/deletePost/:id", async (req, res) => {
@@ -258,5 +263,12 @@ app.post("/deletePost/:id", async (req, res) => {
   }
 })
 
+app.post("/deleteImg/", async (req, res)=>{
+  let result = await database.deleteOneImg(req.body.imageLink)
+})
+
+app.post("/removeWishedItem", async (req, res) =>{
+  await database.removeWishItem(req.body.wishid)
+})
 
 export default app;

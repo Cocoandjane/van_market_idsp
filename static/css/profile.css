@@ -7,32 +7,23 @@ body {
     overflow-x: hidden;
     background-color: #F7F7F7;
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
 
 .roundPanel {
     position: relative;
-    width: auto;
-    height: 100px;
+    width: 100%;
+    height:100px;
     margin-bottom: 20px;
     background-color: #F37C49;
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 50% 50%;
 }
 
-@media screen and (max-width: 400px) {
-    .roundPanel {
-        position: relative;
-        width: 850px;
-        height: 850px;
-        background-color: #F37C49;
-        border-radius: 850px;
-        margin-top: -720px;
-        margin-left: -235px;
-        margin-bottom: 20px;
-        z-index: 1;
-    }
-}
+
 
 .logo {
     display: flex;

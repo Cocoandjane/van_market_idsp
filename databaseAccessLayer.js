@@ -114,6 +114,13 @@ export async function insertPost(title, description, price, date, post_image, us
     return id
 }
 
+export async function insertImage(post_id, url){
+    let query ="INSERT INTO image(post_id, url)VALUES(?,?);"
+    const result = await database.query(query, [post_id, url])
+    // const id = result[0].insertId
+    // console.log(id)
+    // return id
+}
 
 export async function addToWishlist(user_id, post_id) {
     let query = `INSERT INTO wishlist (user_id, post_id) VALUE (?, ?)`
@@ -133,8 +140,17 @@ export async function getUserPostBy(id){
     return user
 }
 
+export async function getImages(id){
+    let query =`select image.post_id, image.url
+        from image
+        WHERE image.post_id = ?;`
+        const [images]  = await database.query(query, [id])
+        return images
+    }
+
 export async function updatePost(post_id, title, description, price, post_image, user_id, condition_type_id) {
     console.log("haha", post_id)
+    if(post_image){}
     let query = `
     UPDATE post
      SET title = ?, description = ?, price = ?, post_image = ? , user_id = ?, condition_type_id = ?
@@ -167,4 +183,22 @@ export async function authenticateUser(email, password) {
     if (authenticationResult) {
         return foundUser;
     }
+}
+
+export async function deleteOneImg(url){
+    const query = `DELETE FROM image WHERE url= ?; `
+    const result = await database.query(query, [url])
+}
+
+export async function checkWishlist(user_Id, post_Id){
+    const query = `SELECT * from wishlist 
+    WHERE user_id=? and post_id=?;`
+    const inWishlist = await database.query(query, [user_Id, post_Id])
+    return inWishlist[0][0]
+}
+
+export async function removeWishItem(wishlist_id){
+    const query =  `DELETE from wishlist 
+    WHERE wishlist_id = ?;`
+    const result = await database.query(query, [wishlist_id])
 }

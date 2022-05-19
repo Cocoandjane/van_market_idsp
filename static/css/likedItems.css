@@ -7,6 +7,9 @@ body {
     overflow-x: hidden;
     background-color: #F7F7F7;
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .title {
@@ -46,6 +49,7 @@ body {
 }
 
 .icon_views {
+    width: 360px;
     margin-top: 10px;
     display: grid;
     grid-template-columns: 33% 33% 33%;

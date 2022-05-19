@@ -31,7 +31,7 @@ imageForm.addEventListener("submit", async event => {
     //console.log(title, price, condition, description)
     axios.post("/createListing", { title, price, condition, description, imageUrl })
         .then(response => {
-            console.log(response.data)
+           // console.log(response.data)
             let id = response.data
             //location.href = `/viewListing`
             // success go to the next page
@@ -52,3 +52,18 @@ imageForm.addEventListener("submit", async event => {
     // document.body.appendChild(img)
 })
 
+const image_input = document.querySelector(".imageUpload");
+//console.log(image_input )
+let uploaded_image ="";
+
+image_input.addEventListener("change", (event)=>{
+    event.preventDefault()
+    // console.log( image_input.value);
+    const reader = new FileReader();
+    reader.addEventListener("load", ()=>{
+        uploaded_image = reader.result;
+        document.querySelector("div.display_image").style.backgroundImage=`url(${uploaded_image})`
+    })
+    console.log(image_input)
+    reader.readAsDataURL(image_input.files[0])
+})
