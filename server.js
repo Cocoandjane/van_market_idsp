@@ -5,11 +5,7 @@ import { Server } from "socket.io";
 import { formatMessage } from "./utils/messages.js";
 import { response } from "express";
 import axios from "axios";
-// import axios from 'https://cdn.skypack.dev/axios'
-// axios.get("/curentUserName")
-// .then(response => {
-//     console.log(response.data)
-// })
+
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -24,7 +20,7 @@ let admin = "Admin: ";
 io.on('connection', (socket) => {
     console.log("new WS connection", socket.id)
 
-    socket.emit('message', formatMessage(admin, "welcome to Chatroom"));
+    io.emit('message', formatMessage(admin, "welcome to Chatroom"));
 
     //when a user disconnects
     socket.on('disconnect', () => {
