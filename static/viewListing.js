@@ -64,11 +64,34 @@ if (imageForm) {
         console.log(imageUrl)
         axios.post("/addImage", { imageUrl, postId })
 
+        const newImageDeleteFrame = document.createElement("div")
+        newImageDeleteFrame.classList.add("deleteFrame")
+
+        let a = document.createElement("a")
+        let icon = document.createElement("img")
+        icon.src = "/icons/x-butt.svg"
+        icon.classList.add("deleteButt")
+        a.append(icon)
+        deleteButtonClick(icon)
+
+        newImageDeleteFrame.append(a)
+
+        newImageDeleteFrame.innerHTML =
+        `
+        <a class="singleImg" data-img="${imageUrl}" href="${imageUrl}"><img class="postImage" src="${imageUrl}"></a>
+        <a><img class="deleteButt" data-img="${imageUrl}"  src="/icons/x-butt.svg"></a> 
+        `
+
+        let imageFrame = document.querySelector(".imgFrame")
+        let addbutt = document.querySelector("form#form")
+        imageFrame.insertBefore(newImageDeleteFrame, addbutt)
+        window.location.reload()
+
+
         requestAnimationFrame(() => {
             document.querySelector(".submit-btn ").classList.add("displayNone")
             document.querySelector(".addImgIcon").classList.remove("displayNone")
             requestAnimationFrame(() => {
-                let imageFrame = document.querySelector(".imgFrame")
                 imageFrame.scrollTo(imageFrame.scrollWidth, 0)
             })
         })
@@ -76,7 +99,6 @@ if (imageForm) {
 }
 
 const image_input = document.querySelector(".imageUpload");
-//console.log(image_input )
 let uploaded_image = "";
 
 
@@ -113,6 +135,8 @@ if (image_input) {
 
             // window.location.reload()
 
+            
+            
             let img = document.createElement("img")
             img.classList.add("postImage");
             img.src = `${uploaded_image}`
@@ -135,14 +159,15 @@ if (image_input) {
 
 let xBtns = document.querySelectorAll(".deleteButt")
 let imageLink;
-xBtns.forEach(xBtn => {
+function deleteButtonClick (xBtn) {
     xBtn.addEventListener("click", (event) => {
         event.preventDefault()
         let card2 = document.querySelector(".card2")
         card2.classList.remove("displayNone");
         imageLink = xBtn.dataset.img
     })
-})
+}
+xBtns.forEach(deleteButtonClick)
 
 let cancel = document.querySelector(".cancel")
 cancel.addEventListener("click", (event) => {

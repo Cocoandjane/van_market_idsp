@@ -163,6 +163,7 @@ app.post('/likedItems', authorized, async (req, res) => {
       await database.addToWishlist(userId, productId)
       // res.render('likedItems', {addedToWishList, likeList})
     }
+    res.send({})
   } catch (error) {
     console.error(error)
     res.status(500).send({ error: "🖕" })
