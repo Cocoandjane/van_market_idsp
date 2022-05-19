@@ -1,7 +1,7 @@
 import axios from 'https://cdn.skypack.dev/axios'
 const chatForm = document.getElementById('chat-form')
 const chatMessages = document.querySelector('.chat-messages')
-
+const socket = io();
 
 axios.get("/curentUserName")
 .then(response => {
@@ -18,7 +18,7 @@ axios.get("/curentUserName")
     
     // console.log(username)
     
-    const socket = io();
+  
 
 // Message to DOM 
 function appendMessage(message) {
