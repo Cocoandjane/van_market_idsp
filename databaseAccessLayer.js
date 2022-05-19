@@ -62,6 +62,7 @@ export async function getUser() {
     return users
 }
 
+
 export async function getUserByEmail(email) {
     let query = ` SELECT user_id, username, email, password_salt
     FROM user
@@ -202,3 +203,9 @@ export async function removeWishItem(wishlist_id){
     WHERE wishlist_id = ?;`
     const result = await database.query(query, [wishlist_id])
 }
+
+export async function getUserById(user_id) {
+    const query = `SELECT * FROM user WHERE user_id = ?`
+    const user = await database.query(query, [user_id])
+    return user[0][0]
+} 

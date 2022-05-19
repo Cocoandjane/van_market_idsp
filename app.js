@@ -264,12 +264,24 @@ app.post("/deletePost/:id", async (req, res) => {
   }
 })
 
-app.post("/deleteImg/", async (req, res)=>{
+app.post("/deleteImg", async (req, res)=>{
   let result = await database.deleteOneImg(req.body.imageLink)
 })
 
 app.post("/removeWishedItem", async (req, res) =>{
   await database.removeWishItem(req.body.wishid)
+})
+
+
+app.get("/chat",authorized, async (req, res) => {
+  let user = await database.getUserById(req.session.userId)
+   res.render("chat", {username: user.username})
+});
+
+
+app.get("/curentUserName", authorized, async (req, res) => {
+  let user = await database.getUserById(req.session.userId)
+ res.json({username: user.username})
 })
 
 export default app;

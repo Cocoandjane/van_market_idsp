@@ -96,6 +96,7 @@ button.signupBtn{
     border: none;
     border-radius: 10px;
     font-size: large;
+    cursor: pointer;
 }
 /* for signup page */
 

@@ -8,7 +8,9 @@
     "ejs": "^3.1.7",
     "express": "^4.18.0",
     "luxon": "^2.4.0",
-    "mysql2": "^2.3.3"
+    "moment": "^2.29.3",
+    "mysql2": "^2.3.3",
+    "socket.io": "^4.5.1"
   },
   "name": "vanmarket_idsp",
   "version": "1.0.0",
