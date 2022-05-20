@@ -12,7 +12,7 @@ axios.get("/curentUserName")
 // Message to DOM 
 function appendMessage(message) {
     let div = document.createElement('div');
-    div.innerHTML = ` <p class="meta"> ${message.username} <span>${message.time}</span></p>
+    div.innerHTML = ` <p class="meta"> ${curUser} <span>${message.time}</span></p>
                             <p class="text">
                             ${message.text}
                             </p>`
