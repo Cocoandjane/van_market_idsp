@@ -5,6 +5,11 @@ import { Server } from "socket.io";
 import { formatMessage } from "./utils/messages.js";
 import { response } from "express";
 import axios from "axios";
+// import * as database from './databaseAccessLayer.js'
+
+// let user = await database.getUserById(2)
+// let name = user.username
+
 
 
 const server = http.createServer(app);
@@ -19,6 +24,7 @@ let admin = "Admin: ";
 //when a user connects
 io.on('connection', (socket) => {
     console.log("new WS connection", socket.id)
+    // console.log(socket.handshake.headers.cookie)
 
     socket.emit('message', formatMessage(admin, "welcome to Chatroom")); // socket.emit?
 
@@ -28,13 +34,11 @@ io.on('connection', (socket) => {
     });
 
     socket.on('chatMessage', (msg) => {
-        io.emit('message', formatMessage('USER', msg));
+        io.emit('message', formatMessage("USER", msg));
     }) 
 
 })
 
-
-  
 const port = process.env.PORT || 3000
 
 server.listen(port, () => console.log(`server should be running at http://localhost:${port}/`))
