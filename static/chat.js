@@ -3,22 +3,11 @@ const chatForm = document.getElementById('chat-form')
 const chatMessages = document.querySelector('.chat-messages')
 const socket = io();
 
-// axios.get("/curentUserName")
-// .then(response => {
-//     //console.log(response.data.username)
-//     let curUser = response.data.username
-//     console.log(curUser)
-
-
-// console.log(curUser)
-// Get username 
-// const { username } = Qs.parse(location.search, {
-    //     ignoreQueryPrefix: true
-    // })
-    
-    // console.log(username)
-    
-  
+axios.get("/curentUserName")
+.then(response => {
+    //console.log(response.data.username)
+    let curUser = response.data.username
+    console.log(curUser)
 
 // Message to DOM 
 function appendMessage(message) {
@@ -54,4 +43,4 @@ chatForm.addEventListener('submit', (e) => {
     e.target.elements.msg.value = ''
     e.target.elements.msg.focus()
 })
-// })
+})

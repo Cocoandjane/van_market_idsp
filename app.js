@@ -284,4 +284,6 @@ app.get("/curentUserName", authorized, async (req, res) => {
  res.json({username: user.username})
 })
 
+
+
 export default app;
