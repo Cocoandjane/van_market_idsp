@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/editProfile.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <script defer type="module" src="/editProfile.js"></script>
+</head>
+
+<body>
+    <p>Profile</p>
+    <div class="circle">
+        <div class="imgFrame">
+            <img class="profile-pic" src="<%=user.profile_img%>">
+        </div>
+    </div>
+
+    <div class="frame">
+
+        <form id='form'  method="post" action="/editProfile">
+            <div class="addImage display_image" >
+                <div class="edit edit-pic"><img src="/icons/Edit-alt.svg"> Edit profile Picture </div>
+            </div>
+            <input id="files" class="imageUpload" type="file" name="fileUpload" accept="image/*" hidden >
+            <button class="submit-btn displayNone" type='submit'>confirm secleted</button>
+        </form>
+        <p class="name">
+            <%= user.username%>
+        </p>
+        <a href="" class="edit edit-name"> <img src="/icons/Edit-alt.svg">Edit Name</a>
+    </div>
+
+        <form class="nameCard displayNone">
+            <input placeholder="Enter you new name" class="inputName" type="text">
+            <div class="btn">
+            <button class="both cancel">cancel</button>
+            <button class="both confirm" type='submit'>confirm</button>
+            </div>
+        </form>
+    <nav class="nav">
+        <a href="/home" class="nav_link">
+            <img src="/icons/Home.svg">
+        </a>
+        <a href="" class="nav_link wished">
+            <img src="/icons/wished.svg">
+        </a>
+        <a href="/createListing" class="nav_link postNew">
+            <img src="/icons/Add.svg">
+        </a>
+        <a href="/chat" class="nav_link">
+            <img src="/icons/nav_chat.svg">
+        </a>
+        <a href="profile" class="nav_link">
+            <img src="/icons/me-filled.svg">
+        </a>
+    </nav>
+
+    <script>
+        let autocomplete;
+        function initMap() {
+            autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('autocomplete'), ({ 'country': [] }))
+        }
+
+        document.querySelector(".addImage").addEventListener("click", () => {
+            document.querySelector('.imageUpload').click()
+        })
+
+    </script>
+
+</body>
+
+</html>

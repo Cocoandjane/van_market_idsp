@@ -1,0 +1,100 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 30px 0 85px 0;
+    overflow-x: hidden;
+    background-color: #F7F7F7;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.imgFrame {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
+
+.circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 160px;
+    border: 1px solid #F37C49;
+    border-radius: 50%;
+}
+
+img.profile-pic{
+    height: auto;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.edit{
+    padding: 5px 15px 5px 15px;
+    background-color: #F37C49;
+    text-decoration: none;
+    border-radius: 10px;
+    color:white;
+    display: flex;
+    column-gap: 10px;
+}
+
+.name{
+    border-bottom: 1px dashed #F37C49;
+}
+
+.frame{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.displayNone{
+    display: none;
+}
+
+form.nameCard.displayNone {
+    display: none;
+}
+
+form.nameCard {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    background-color: white;
+    padding:30px;
+    border-radius: 10px;
+}
+
+.btn{
+    display: flex;
+    justify-content: space-around;
+}
+
+.inputName{
+    height: 40px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #BFBFBF;
+}
+
+.both {
+    border: none;
+    color: white;
+    background-color: #F37C49;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    
+}
