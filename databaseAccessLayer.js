@@ -195,7 +195,7 @@ export async function removeWishItem(wishlist_id){
 }
 
 export async function getUserById(user_id) {
-    const query = `SELECT * FROM user WHERE user_id = ?`
+    const query = `SELECT user_id, username, profile_img FROM user WHERE user_id = ?`
     const user = await database.query(query, [user_id])
     return user[0][0]
 } 

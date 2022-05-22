@@ -130,8 +130,9 @@ app.get("/profile", authorized, async (req, res) => {
 
 app.get("/createListing", authorized,  async (req, res) => {
   try {
-    let users = await database.getPosts()
-    res.render("createListing", { users, userId: req.session.userId })
+    let user= await database.getUserById(req.session.userId)
+    console.log(user)
+    res.render("createListing", { user, userId: req.session.userId })
   } catch (error) {
     console.error(error)
     res.status(500).send({ error: "🖕" })
@@ -299,3 +300,8 @@ app.post("/editName", authorized, async(req, res) => {
   res.json({})
 })
 export default app;
+
+
+app.post("/addWish", authorized, async (req, res) => {
+  await database.addToWishlist(req.session.userId, req.body.postId)
+})

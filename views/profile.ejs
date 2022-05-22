@@ -33,14 +33,14 @@
         </div>
         <a  href="/editProfile" class="edit-text">edit profile</a>
         </div>
-        <section class="orders">
+      
+        <section  class="orders">
             <p class="listing">My Products</p>
             <% for(let i=0; i< posts.length; i++) {%>
-             <div class="arrowFrame">
-
+             <div class="arrowFrame" data-id="<%= posts[i].post_id%>"  >
                 <div id="product">
                     <div class="img-cropper-rectangle">
-                        <img id="order-pic" src="<%= posts[i].post_image%>" <p>
+                        <img id="order-pic" src="<%= posts[i].post_image%>" >
                     </div>
                     <div class="order-text">
                         <%= posts[i].title%><br>
@@ -51,9 +51,12 @@
                     <img src="icons/Right_arrow.svg">
                 </div>
             </div>
-
                 <%}%>
+               <% if(posts.length === 0){ %>
+               <p class="nopost">you have not poste any products</p>
+               <%}%>
         </section>
+        
     </main>
     <nav class="nav">
 
@@ -61,9 +64,9 @@
             <img src="icons/Home.svg">
         </a>
         <a href="" class="nav_link">
-            <img src="icons/Explore.svg">
+            <img src="icons/wished.svg">
         </a>
-        <a href="" class="nav_link postNew">
+        <a href="/createListing" class="nav_link postNew">
             <img src="icons/Add.svg">
         </a>
         <a href="/chat" class="nav_link">

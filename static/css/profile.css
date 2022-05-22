@@ -91,3 +91,9 @@ div.person {
 .rightArrow{
     align-self: center;
 }
+
+.nopost{
+    
+    font-size: small;
+    color: #BFBFBF;
+}

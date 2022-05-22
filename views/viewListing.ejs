@@ -14,8 +14,7 @@
 </head>
 
 <body>
-  
-    <main>
+    <main >
         <section class="top">
             <div class="postInfo">
                 <% for(let p of post) { %>
@@ -39,10 +38,12 @@
                         </form>
                         <%}%>
                     </div>
+                    <%if( post[0].user_id !== userId ){%>
                     <% if (inWishlist) {%>
-                        <a href="" class="wishLink" data-wishID="<%=inWishlist.wishlist_id%>"><img src="/icons/x-butt.svg"><p class="wishlist">remove from wishlist</p> </a>
-                    
-                        <%}%>
+                        <a href="" class="removeWish wishLink" data-wishID="<%=inWishlist.wishlist_id%>"><img src="/icons/x-butt.svg"><p class="wishlist">remove from wishlist</p> </a>                
+                        <%} else{ %>
+                            <a href="" class="addWish wishLink" id="<%=post[0].post_id%>" > <img src="/icons/tiny-add.svg"><p class="wishlist"> Add to wishList</p></a>
+                           <%}}%>
                     <div class="lineOne">
                         <p class="title">
                             <strong>

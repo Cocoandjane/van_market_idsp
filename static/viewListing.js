@@ -190,12 +190,22 @@ requestAnimationFrame(() => {
 })
 
 
-let removeWish = document.querySelector(".wishLink")
+let removeWish = document.querySelector(".removeWish")
 if (removeWish) {
     removeWish.addEventListener("click", (event) => {
         event.preventDefault()
         let wishid = removeWish.dataset.wishid
         axios.post("/removeWishedItem", { wishid })
+        window.location.reload()
+    })
+}
+
+let addWish = document.querySelector(".addWish")
+if(addWish) {
+    addWish.addEventListener("click", (event) => {
+        event.preventDefault();
+        let postId = addWish.id
+        axios.post("/addWish", { postId })
         window.location.reload()
     })
 }
