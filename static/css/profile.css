@@ -33,6 +33,12 @@ margin-left: -20px;
     transform: translate(-50%, -50%);
 }
 
+.edit-text{
+    text-decoration: none;
+    color: #BFBFBF;
+    font-size: small;
+}
+
 div.person {
     display: flex;
     flex-direction: row;
