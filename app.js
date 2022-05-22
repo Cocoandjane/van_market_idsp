@@ -131,7 +131,6 @@ app.get("/profile", authorized, async (req, res) => {
 app.get("/createListing", authorized,  async (req, res) => {
   try {
     let user= await database.getUserById(req.session.userId)
-    console.log(user)
     res.render("createListing", { user, userId: req.session.userId })
   } catch (error) {
     console.error(error)
