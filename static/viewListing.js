@@ -89,7 +89,7 @@ if (imageForm) {
 
 
         requestAnimationFrame(() => {
-            document.querySelector(".submit-btn ").classList.add("displayNone")
+            // document.querySelector(".submit-btn ").click();
             document.querySelector(".addImgIcon").classList.remove("displayNone")
             requestAnimationFrame(() => {
                 imageFrame.scrollTo(imageFrame.scrollWidth, 0)
@@ -144,10 +144,10 @@ if (image_input) {
             imageFrame.insertBefore(img, addbutt)
 
             requestAnimationFrame(() => {
-                document.querySelector(".submit-btn ").classList.remove("displayNone")
+                document.querySelector(".submit-btn ").click()
                 document.querySelector(".addImgIcon").classList.add("displayNone")
                 requestAnimationFrame(() => {
-                    imageFrame.scrollTo(imageFrame.scrollWidth, 0)
+                    // imageFrame.scrollTo(imageFrame.scrollWidth, 0)
                 })
             })
         })
@@ -184,10 +184,10 @@ ok.addEventListener("click", (event) => {
     window.location.reload()
 })
 
-requestAnimationFrame(() => {
-    let imageFrame = document.querySelector(".imgFrame")
-    imageFrame.scrollTo(imageFrame.scrollWidth, 0)
-})
+// requestAnimationFrame(() => {
+//     let imageFrame = document.querySelector(".imgFrame")
+//     imageFrame.scrollTo(imageFrame.scrollWidth, 0)
+// })
 
 
 let removeWish = document.querySelector(".removeWish")

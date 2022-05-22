@@ -19,19 +19,20 @@
             <div class="postInfo">
                 <% for(let p of post) { %>
                     <div class="wrap imgFrame">
-                        <img class="postImage" src="<%=p.post_image%>">
+                       
+                        <a class="oneimgFrame" href="<%=p.post_image%>"><img class="postImage" src="<%=p.post_image%>"></a>
                         <% if (post[0].user_id===userId) {%>
                         <a class="defaltImg" href="/editPost/<%=post[0].post_id%>"> change default</a>
                             <% images.forEach(image => { %>
                                 <div class="deleteFrame">
-                                    <a class="singleImg" data-img="<%=image.url%>" href="<%=image.url%>"><img class="postImage" src="<%=image.url%>"></a>
-                                    <a><img class="deleteButt" data-img="<%=image.url%>"  src="/icons/x-butt.svg"></a> 
+                                    <a class="singleImg oneimgFrame" data-img="<%=image.url%>" href="<%=image.url%>"><img class="postImage" src="<%=image.url%>"></a>
+                                    <a ><img class="deleteButt" data-img="<%=image.url%>"  src="/icons/x-butt.svg"></a> 
                                 </div>
                                 <%  })%>
                       
                         <form method="post" action="/viewListing/<%=p.post_id%>" id='form' data-id="<%=p.post_id%>" data-name="Yane">
                             <div class="input-group">
-                                <label for='files'><img class="postImage addImgIcon" src="/icons/addImageIcon.svg"></label>
+                                <label for='files'><img class="addIcon addImgIcon" src="/icons/addImageIcon.svg"></label>
                                 <input id='files' class="imageUpload" type="file" accept="image/*" hidden>
                             </div>
                             <button  class="submit-btn displayNone" type='submit'>Upload</button>
