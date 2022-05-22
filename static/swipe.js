@@ -4,8 +4,6 @@ class Carousel {
     constructor(element) {
         axios.get("/api/products")
             .then(response => {
-               console.log(response.data.products)
-
                 this.products = response.data.products
                 this.board = element
                 // add first two cards programmatically
@@ -153,7 +151,7 @@ class Carousel {
 
                 axios.post(('/likedItems'), {successful, productId, dirX})
                 .then((res) => {
-                    console.log('res', res)
+                    // console.log('res', res)
                 })
                 .catch((err) => {
                     console.log('ERR', err)

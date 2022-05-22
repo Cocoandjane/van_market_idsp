@@ -73,21 +73,11 @@ export async function getUserByEmail(email) {
 }
 
 
-
-export async function getMyPost() {
-
-    let query = `
-    SELECT user.user_id, user.username, post.title, image.url
-    FROM user
-    JOIN 
-    post
-    ON user.user_id= post.user_id
-    JOIN 
-    image
-    ON post.post_id = image.image_id;
-    `
-    const [rows] = await database.query(query)
-    return rows
+export async function getPostByUser(id){
+    let query = `SELECT * FROM post
+    WHERE user_id = ?;`
+    const [posts] = await database.query(query, [id])
+    return posts
 }
 
 
@@ -209,3 +199,19 @@ export async function getUserById(user_id) {
     const user = await database.query(query, [user_id])
     return user[0][0]
 } 
+
+export async function updateProfile(imageUrl, user_id){
+    const query = `UPDATE user 
+    SET profile_img = ?
+    WHERE user_id = ?;`
+    const updated = database.query(query, [imageUrl, user_id])
+    return updated
+}
+
+export async function updateName(username, user_id){
+    const query = `UPDATE user 
+    SET username = ?
+    WHERE user_id = ?;`
+    const updated = database.query(query, [username, user_id])
+    return updated
+}

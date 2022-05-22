@@ -8,7 +8,6 @@ async function uplodFile(file) {
     const { url } = await fetch("/s3Url").then(res => res.json())
     console.log(url)
     // post the image directly to the s3 bucket
-
     await fetch(url, {
         method: "PUT",
         headers: {
