@@ -3,7 +3,7 @@
 //const passwordPepper = "SeCretPeppa4MySal+";
 import database from './databaseConnection.js'
 import bcrypt from "bcrypt";
-import { query } from 'express';
+// import express from 'express';
 
 export async function getPosts() {
     let query = `

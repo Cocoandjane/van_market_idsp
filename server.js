@@ -3,7 +3,7 @@ import http from "http"
 import { createServer } from "http"
 import { Server } from "socket.io";
 import { formatMessage } from "./utils/messages.js";
-import { response } from "express";
+// import { response } from "express";
 import axios from "axios";
 // import * as database from './databaseAccessLayer.js'
 
@@ -39,7 +39,7 @@ io.on('connection', (socket) => {
 
 })
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8000
 
 server.listen(port, () => console.log(`server should be running at http://localhost:${port}/`))
 
