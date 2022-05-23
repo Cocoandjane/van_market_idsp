@@ -8,88 +8,55 @@
     <title>Van Market</title>
     <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/nav.css">
-    <script defer type="module" src="/frontend.js"></script>
+    <script defer type="module" src="/profile.js"></script>
 </head>
 
 <body>
-    <div class="roundPanel"></div>
+
     <main>
-        <div class="afterPanel">
-            <div class="logo">
-                <img src="icons/Logo.svg">
-            </div>
-
-            <div class="person">
-                <% for (let user of users) { %>
-                    <%if(user.user_id===1){ %>
-                        <div class="image-cropper">
-                            <img id="profile-pic" src="<%=user.profile_img%>">
-                        </div>
-                        <div class="name-text">
-                            <p class="profile">Hi <strong>
-                                    <%=user.username%>!
-                                </strong><br>
-                                <small>Hope you're having a great day</small>
-                            </p>
-                        </div>
-                        <% } %>
-                            <%}%>
-            </div>
+        <div class="person">
+            <% for (let user of users) { %>
+                <%if(user.user_id===userId){ %>
+                    <div class="image-cropper">
+                        <img id="profile-pic" src="<%=user.profile_img%>"> 
+                    </div>
+                   
+                    <div class="name-text">
+                        <p class="profile">Hi <strong>
+                                <%=user.username%>
+                            </strong><br>
+                            <small>Hope you're having a great day</small>
+                        </p>
+                    </div>
+                    <% } %>
+                        <%}%>
         </div>
-        <section class="orders">
-            <p>My posts</p>
+        <a  href="/editProfile" class="edit-text">edit profile</a>
+        </div>
+      
+        <section  class="orders">
+            <p class="listing">My Products</p>
             <% for(let i=0; i< posts.length; i++) {%>
-                <ul>
-                    <li id="product">
-                        <div class="img-cropper-rectangle">
-                            <img id="order-pic" src="<%= posts[i].url%>" <p>
-                        </div>
-                        <div class="order-text">
-                            <%= posts[i].title%><br>
-                                <small>waiting for seller to ship</small></p>
-                        </div>
-                        <div class="rightArrow">
-                            <img src="icons/Right_arrow.svg">
-                        </div>
-
-                    </li>
-                </ul>
+             <div class="arrowFrame" data-id="<%= posts[i].post_id%>"  >
+                <div id="product">
+                    <div class="img-cropper-rectangle">
+                        <img id="order-pic" src="<%= posts[i].post_image%>" >
+                    </div>
+                    <div class="order-text">
+                        <%= posts[i].title%><br>
+                            <small>posted on: <%=posts[i].date%></small></p>
+                    </div>
+                </div>
+                <div class="rightArrow">
+                    <img src="icons/Right_arrow.svg">
+                </div>
+            </div>
                 <%}%>
+               <% if(posts.length === 0){ %>
+               <p class="nopost">you have not poste any products</p>
+               <%}%>
         </section>
-
-        <div class="account">
-            <a class="account" href="account">Account Settings</a>
-        </div>
-
-        <section class="five_list">
-            <ul class="setting">
-                <li class="setting_list">
-                    <div class="left"><img class="setting_icon" src="icons/Credit_Card.svg"><a href="payment"
-                            class="setting_text">Payment</a> </div>
-                    <div><img class="arrow_icon" src="icons/Right_arrow.svg"></div>
-                </li>
-                <li class="setting_list">
-                    <div class="left"><img class="setting_icon" src="icons/Addresses.svg"><a href="#"
-                            class="setting_text">My Address</a></div>
-                    <div><img class="arrow_icon" src="icons/Right_arrow.svg"></div>
-                </li>
-                <li class="setting_list">
-                    <div class="left"><img class="setting_icon" src="icons/User_icon.svg"> <a href="#"
-                            class="setting_text">Manage your profile</a> </div>
-                    <div><img class="arrow_icon" src="icons/Right_arrow.svg"></div>
-                </li>
-                <li class="setting_list">
-                    <div class="left"><img class="setting_icon" src="icons/Vector.svg"> <a href="#"
-                            class="setting_text">Notification Setting</a> </div>
-                    <div><img class="arrow_icon" src="icons/Right_arrow.svg"></div>
-                </li>
-                <li class="setting_list">
-                    <div class="left"><img class="setting_icon" src="icons/Face_id.svg"> <a href="#"
-                            class="setting_text">Login and Security</a> </div>
-                    <div><img class="arrow_icon" src="icons/Right_arrow.svg"></div>
-                </li>
-            </ul>
-        </section>
+        
     </main>
     <nav class="nav">
 
@@ -97,10 +64,10 @@
             <img src="icons/Home.svg">
         </a>
         <a href="" class="nav_link">
-            <img src="icons/Explore.svg">
+            <img src="icons/wished.svg">
         </a>
-        <a href="" class="nav_link postNew">
-            <img src="icons/Add.svg">
+        <a href="/createListing" class="nav_link postNew">
+            <img src="/icons/Add.svg">
         </a>
         <a href="/chat" class="nav_link">
             <img src="/icons/nav_chat.svg">
@@ -109,16 +76,6 @@
             <img src="icons/me-filled.svg">
         </a>
     </nav>
-
-
-    <div class="createNew displayNone">
-        <div class="bar"></div>
-        <p class="create_text">Create New Listing</p>
-        <a href="#" class="catagories electronics"><img class="cata_icon" src="icons/electronics.svg"> Electronics</a>
-        <a href="#" class="catagories clothes"> <img class="cata_icon" src="icons/clothes.svg"> Clothes</a>
-        <a href="#" class="catagories furniture"> <img class="cata_icon" src="icons/furniture.svg"> Funiture</a>
-        <a href="#" class="catagories other"> <img class="cata_icon" src="icons/other.svg"> Other</a>
-    </div>
 
 
 </body>

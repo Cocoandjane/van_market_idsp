@@ -16,6 +16,7 @@ import { generateUploadURL } from "./s3.js";
 
 //let database = require('./databaseAccessLayer.js');
 import * as database from './databaseAccessLayer.js'
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieSession({
@@ -116,9 +117,10 @@ app.get("/swipe", authorized, (req, res) => {
 
 app.get("/profile", authorized, async (req, res) => {
   try {
+    let userId = req.session.userId
     let users = await database.getUser()
-    let posts = await database.getMyPost()
-    res.render("profile", { users, posts })
+    let posts = await database.getPostByUser(userId)
+    res.render("profile", { users, posts, userId })
   } catch (error) {
     console.error(error)
     res.status(500).send({ error: "🖕" })
@@ -128,10 +130,8 @@ app.get("/profile", authorized, async (req, res) => {
 
 app.get("/createListing", authorized,  async (req, res) => {
   try {
-    let users = await database.getPosts()
-    //console.log(users)
-    let posts = await database.getMyPost()
-    res.render("createListing", { users, posts, userId: req.session.userId })
+    let user= await database.getUserById(req.session.userId)
+    res.render("createListing", { user, userId: req.session.userId })
   } catch (error) {
     console.error(error)
     res.status(500).send({ error: "🖕" })
@@ -284,6 +284,23 @@ app.get("/curentUserName", authorized, async (req, res) => {
  res.json({username: user.username})
 })
 
+app.get("/editProfile",authorized, async(req, res) => {
+  let user = await database.getUserById(req.session.userId)
+  res.render("editProfile", {user})
+})
 
+app.post("/editProfile",authorized, async(req, res) =>{
+  await database.updateProfile(req.body.imageUrl, req.session.userId)
+  res.json({})
+})
 
+app.post("/editName", authorized, async(req, res) => {
+  await database.updateName(req.body.newName, req.session.userId)
+  res.json({})
+})
 export default app;
+
+
+app.post("/addWish", authorized, async (req, res) => {
+  await database.addToWishlist(req.session.userId, req.body.postId)
+})

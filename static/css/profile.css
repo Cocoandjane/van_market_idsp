@@ -3,7 +3,7 @@
 }
 
 body {
-    margin: 0 0 85px 0;
+    margin: 30px 0 85px 0;
     overflow-x: hidden;
     background-color: #F7F7F7;
     font-family: 'Roboto', sans-serif;
@@ -12,29 +12,13 @@ body {
     align-items: center;
 }
 
-
-
-.roundPanel {
-    position: relative;
-    width: 100%;
-    height:100px;
-    margin-bottom: 20px;
-    background-color: #F37C49;
-    border-radius: 0 0 50% 50%;
-}
-
-
-
-.logo {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+main{
+margin-left: -20px;
 }
 
 .image-cropper {
     width: 50px;
     height: 50px;
-    margin-left: 15px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
@@ -49,6 +33,12 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.edit-text{
+    text-decoration: none;
+    color: #BFBFBF;
+    font-size: small;
+}
+
 div.person {
     display: flex;
     flex-direction: row;
@@ -59,16 +49,14 @@ div.person {
     margin-top: -10px;
 }
 
-.orders {
-    margin-left: 10px;
-}
+
 
 .img-cropper-rectangle {
     width: 120px;
-    height: 120px;
-    margin-left: 15px;
+    height: 100px;
     position: relative;
     overflow: hidden;
+    border-radius: 10px;
 
 }
 
@@ -82,64 +70,30 @@ div.person {
     transform: translate(-50%, -50%);
 }
 
-li {
-    margin-top: -2em;
-    margin-left: -2.5em;
+#product{
     display: flex;
     flex-direction: row;
-    list-style: none;
+    column-gap: 20px;
 }
 
-.order-text {
-    margin-left: 20px;
-    margin-top: 30px;
+.order-text{
+    align-self: center;
 }
-
-.rightArrow {
-    margin-left: 35px;
-    margin-top: 30px;
-}
-
-.account {
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-    color: black;
-}
-
-section.five_list {
-    margin-left: 20px;
-    margin-top: 3em;
-}
-
-.left {
+.arrowFrame{
+    position: relative;
+    left:0;
     display: grid;
-    grid-template-columns: 5% 95%;
-
+    grid-template-columns: 95% 5%;
+    column-gap: 30px;
+    margin-top: 10px;
 }
 
-li.setting_list {
-    margin-bottom: 20px;
-    margin-left: -2.5em;
-    display: grid;
-    grid-template-columns: 86% 10%;
-    list-style: none;
+.rightArrow{
+    align-self: center;
 }
 
-.setting_icon {
-    margin-top: 2em;
-}
-
-a.setting_text {
-    margin-left: 2em;
-    margin-top: 2em;
-    text-decoration: none;
-    color: black;
-}
-
-.arrow_icon {
-    margin-top: 30px;
-    margin-right: 40px;
-    width: auto;
-    height: auto;
+.nopost{
+    
+    font-size: small;
+    color: #BFBFBF;
 }
