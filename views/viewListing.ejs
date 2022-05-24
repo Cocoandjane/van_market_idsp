@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/viewListing.css">
-    <script type="module" src="/frontend.js" defer></script>
     <script type="module" src="/likedItems.js" defer></script>
     <script type="module" src="/viewListing.js" defer></script>
     <title>Van Market</title>
@@ -16,10 +15,10 @@
 
 <body>
     <main >
-        <section class="top">
+        <section class="top" data-sellerid="<%=post[0].user_id%>">
             <div class="postInfo">
                 <% for(let p of post) { %>
-                    <div class="wrap imgFrame">
+                    <div  class="wrap imgFrame">
                        
                         <a class="oneimgFrame" href="<%=p.post_image%>"><img class="postImage" src="<%=p.post_image%>"></a>
                         <% if (post[0].user_id===userId) {%>
@@ -109,7 +108,7 @@
         <a href="" class="nav_link postNew">
             <img src="/icons/add-filled.svg">
         </a>
-        <a href="/chat" class="nav_link">
+        <a href="/chatList" class="nav_link">
             <img src="/icons/nav_chat.svg">
         </a>
         <a href="/profile" class="nav_link">

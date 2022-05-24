@@ -45,7 +45,7 @@ function forLoginUser(req, res, next) {
   next()
 }
 
-app.get('/',forLoginUser, (req, res) => {
+app.get('/', forLoginUser, (req, res) => {
   res.render('login')
 })
 
@@ -53,9 +53,9 @@ app.get("/login", async (req, res) => {
   res.render("login")
 })
 
-app.post("/login", async (req, res) =>{
+app.post("/login", async (req, res) => {
   console.log(req.body)
-  let foundUser = await database.authenticateUser(req.body.email,req.body.password)
+  let foundUser = await database.authenticateUser(req.body.email, req.body.password)
   console.log(foundUser)
   let userId = foundUser[0].user_id
   if (foundUser) {
@@ -71,7 +71,7 @@ app.post("/login", async (req, res) =>{
 
 
 app.get("/signup", (req, res) => {
-   res.render("signup", { userId: req.session.userId })
+  res.render("signup", { userId: req.session.userId })
 
 })
 
@@ -83,7 +83,7 @@ app.post("/singup", async (req, res) => {
 
 
 
-app.get('/api/products',  async (req, res) => {
+app.get('/api/products', async (req, res) => {
   try {
     let products = await database.getPosts()
     res.json({ products })
@@ -102,7 +102,7 @@ function authorized(req, res, next) {
   next()
 }
 
-app.get("/home",authorized, (req, res) => {
+app.get("/home", authorized, (req, res) => {
   res.render("home")
 })
 
@@ -128,9 +128,9 @@ app.get("/profile", authorized, async (req, res) => {
 })
 
 
-app.get("/createListing", authorized,  async (req, res) => {
+app.get("/createListing", authorized, async (req, res) => {
   try {
-    let user= await database.getUserById(req.session.userId)
+    let user = await database.getUserById(req.session.userId)
     res.render("createListing", { user, userId: req.session.userId })
   } catch (error) {
     console.error(error)
@@ -201,47 +201,47 @@ app.get('/editPost/:id', authorized, async (req, res) => {
   let users = await database.getUser()
   let postId = +req.params.id;
   let [post] = await database.getPost(postId)
-  res.render('editPost', { post, users, userId: req.session.userId  }) 
+  res.render('editPost', { post, users, userId: req.session.userId })
 })
 
 
-app.post('/editPost/:id',authorized, async (req, res) => { 
- //console.log(`this post edit ${req.body}`)
-    let postId = +req.params.id;
-    let data = req.body;
-    let title = req.body.title;
-    let description = req.body.description;
-    let price = req.body.price;
-    let postImage = req.body.imageUrl;
-    let userId = req.session.userId;
-    let categoryId = req.body.category_id;
-    let conditionTypeid = 1;
-    await database.getPosts(postId)
-    let id = await database.updatePost(postId, title, description, price, postImage, userId, conditionTypeid)
-    //console.log('this is the id', postId)
-    res.json(postId)
+app.post('/editPost/:id', authorized, async (req, res) => {
+  //console.log(`this post edit ${req.body}`)
+  let postId = +req.params.id;
+  let data = req.body;
+  let title = req.body.title;
+  let description = req.body.description;
+  let price = req.body.price;
+  let postImage = req.body.imageUrl;
+  let userId = req.session.userId;
+  let categoryId = req.body.category_id;
+  let conditionTypeid = 1;
+  await database.getPosts(postId)
+  let id = await database.updatePost(postId, title, description, price, postImage, userId, conditionTypeid)
+  //console.log('this is the id', postId)
+  res.json(postId)
 })
 
 
 
-app.get('/showProduct/:id',authorized, (req, res) => {
+app.get('/showProduct/:id', authorized, (req, res) => {
   let postId = +req.params.id;
 
-res.render('viewListing', {postId})
+  res.render('viewListing', { postId })
 })
 
 
 app.get("/viewListing/:id", async (req, res) => {
   let id = +req.params.id
   try {
-    let posts = await database.getNewPost(id) 
+    let posts = await database.getNewPost(id)
     let user = await database.getUserPostBy(posts[0].user_id)
     let images = await database.getImages(id)
     let inWishlist = await database.checkWishlist(req.session.userId, id)
     if (posts.length === 0) {
       res.status(404).send({ message: "this post doesn't exist" })
     } else {
-      res.render(`viewListing`, { post: posts, inWishlist, user, images, userId: req.session.userId})
+      res.render(`viewListing`, { post: posts, inWishlist, user, images, userId: req.session.userId })
     }
   } catch (error) {
     console.error(error)
@@ -249,8 +249,8 @@ app.get("/viewListing/:id", async (req, res) => {
   }
 })
 
-app.post("/addImage", async(req, res) => {
-  database.insertImage(req.body.postId,req.body.imageUrl )
+app.post("/addImage", async (req, res) => {
+  database.insertImage(req.body.postId, req.body.imageUrl)
 })
 
 app.post("/deletePost/:id", async (req, res) => {
@@ -264,37 +264,37 @@ app.post("/deletePost/:id", async (req, res) => {
   }
 })
 
-app.post("/deleteImg", async (req, res)=>{
+app.post("/deleteImg", async (req, res) => {
   let result = await database.deleteOneImg(req.body.imageLink)
 })
 
-app.post("/removeWishedItem", async (req, res) =>{
+app.post("/removeWishedItem", async (req, res) => {
   await database.removeWishItem(req.body.wishid)
 })
 
 
-app.get("/chat",authorized, async (req, res) => {
+app.get("/chat", authorized, async (req, res) => {
   let user = await database.getUserById(req.session.userId)
-   res.render("chat", {username: user.username})
+  res.render("chat", { username: user.username })
 });
 
 
 app.get("/curentUserName", authorized, async (req, res) => {
   let user = await database.getUserById(req.session.userId)
- res.json({username: user.username})
+  res.json({ username: user.username })
 })
 
-app.get("/editProfile",authorized, async(req, res) => {
+app.get("/editProfile", authorized, async (req, res) => {
   let user = await database.getUserById(req.session.userId)
-  res.render("editProfile", {user})
+  res.render("editProfile", { user })
 })
 
-app.post("/editProfile",authorized, async(req, res) =>{
+app.post("/editProfile", authorized, async (req, res) => {
   await database.updateProfile(req.body.imageUrl, req.session.userId)
   res.json({})
 })
 
-app.post("/editName", authorized, async(req, res) => {
+app.post("/editName", authorized, async (req, res) => {
   await database.updateName(req.body.newName, req.session.userId)
   res.json({})
 })
@@ -304,3 +304,49 @@ export default app;
 app.post("/addWish", authorized, async (req, res) => {
   await database.addToWishlist(req.session.userId, req.body.postId)
 })
+
+app.post("/sellerid", authorized, async (req, res) => {
+
+  let sellerId = req.body.sellerid
+  let userId = req.session.userId
+
+  let roomExist = await database.checkRoomExist(userId, sellerId)
+  // console.log(roomExist, userId, sellerId)
+  if (roomExist.length > 0) {
+    res.send({ roomId: roomExist[0].room_id })
+    return
+  }
+  if (roomExist.length === 0) {
+    let roomId = await database.insertToRoom()
+    if (roomId) {
+      let sellerId = req.body.sellerid
+      let userId = req.session.userId
+      await database.insertToRoomUser(sellerId, roomId)
+      await database.insertToRoomUser(userId, roomId)
+      res.send({ roomId });
+    }
+  }
+})
+
+app.get("/chat/:roomId", authorized, async (req, res) => {
+  let roomId = req.params.roomId
+  let user = await database.getUserById(req.session.userId)
+  let peopleInRoom = await database.getUsersByRoom(roomId)
+  let otherUser = peopleInRoom.filter(n => {
+    return n.user_id !== req.session.userId
+  })
+  res.render("chat", {
+    roomId,
+    peopleInRoom,
+    meName: user.username,
+    otherName: otherUser[0].username,
+
+  })
+})
+
+app.get("/chatlist", authorized, async (req, res) => {
+  let chats = await database.getChatList(req.session.userId,req.session.userId)
+  //  console.log(chats)
+  res.render("chatlist", { chats })
+})
+

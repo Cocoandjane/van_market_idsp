@@ -2,15 +2,6 @@ import app from "./app.js"
 import http from "http"
 import { createServer } from "http"
 import { Server } from "socket.io";
-import { formatMessage } from "./utils/messages.js";
-// import { response } from "express";
-import axios from "axios";
-// import * as database from './databaseAccessLayer.js'
-
-// let user = await database.getUserById(2)
-// let name = user.username
-
-
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -19,27 +10,25 @@ const io = new Server(server, {
     },
 });
 
-let admin = "Admin: ";
 
-//when a user connects
-io.on('connection', (socket) => {
-    console.log("new WS connection", socket.id)
-    // console.log(socket.handshake.headers.cookie)
 
-    socket.emit('message', formatMessage(admin, "welcome to Chatroom")); // socket.emit?
-
-    //when a user disconnects
-    socket.on('disconnect', () => {
-        io.emit('messaeg', formatMessage(admin, 'A user has left the chat'));
-    });
-
-    socket.on('chatMessage', (msg) => {
-        io.emit('message', formatMessage("USER", msg));
-    }) 
-
+io.on('connection', socket =>{
+    // console.log(socket.id)
+    socket.on("send-message", (message, room) => {
+        if(room === ""){
+            socket.broadcast.emit('receive-message', message)
+        } else {
+            socket.to(room).emit('receive-message', message)
+        }
+    })
+    socket.on("join-room", (room, cb) =>{
+        socket.join(room)
+        cb(`Joined room ${room}`)
+    })
 })
 
-const port = process.env.PORT || 3000
+
+const port = process.env.PORT || 8000
 
 server.listen(port, () => console.log(`server should be running at http://localhost:${port}/`))
 

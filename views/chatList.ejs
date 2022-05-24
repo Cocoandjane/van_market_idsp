@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="/chatList.js"></script>
+    <link rel="stylesheet" href="/css/nav.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="search"><img src="/icons/search.svg"> </div>
+    <div class="chatPerson">
+       <% for (const chat of chats) { %>
+            <p class="name" data-id="<%=chat.room_id%>"><%=chat.username%></p>
+            <p><%=chat.room_id%></p>
+        <%}%>
+    </div>
+
+
+    <nav class="nav">
+        <a href="/home" class="nav_link">
+          <img src="/icons/Home.svg">
+        </a>
+        <a href="/likedItems" class="nav_link wished">
+          <img src="/icons/wished.svg">
+        </a>
+        <a href="createListing" class="nav_link postNew">
+          <img src="/icons/Add.svg">
+        </a>
+        <a href="/chatList" class="nav_link">
+          <img src="/icons/chat-filled.svg">
+        </a>
+        <a href="profile" class="nav_link">
+          <img src="/icons/me.svg">
+        </a>
+      </nav>
+   
+</body>
+</html>
