@@ -1,6 +1,72 @@
-.chat-container {
+body {
+    margin: 0 0 140px 0;
+    overflow-x: hidden;
+    background-color: #F7F7F7;
+    font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+}
+
+div.talkingTo{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    overflow: scroll;
+}
+
+.otherName {
+    font-size: x-large;
+}
+
+#message-container {
+    width: 280px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  
+}
+
+form#form{
+    border: 1px solid #BFBFBF;
+    height: 36px;
+    bottom: 95px;
+    position: fixed;
+    z-index: 1;
+    overflow: hidden;
+    background-color: #F7F7F7;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+#message-input {
+    font-size: larger;
+    caret-color: #F37C49;
+    width: 250px;
+    height: 36px;
+    border: none;
+    background-color: #F7F7F7;
+}
+
+div.messages{
+    font-size: large;
+    margin: 5px 0 5px 0;
+}
+
+*:focus{
+    outline: none;
+}
+
+#send-button{
+    border: none;
+    background-color: #F7F7F7;
+}
+
+img#msgIcon{
+    margin-top: 5px;
+}
+
+.mytext{
+    align-self: flex-end;
 }

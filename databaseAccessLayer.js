@@ -215,3 +215,61 @@ export async function updateName(username, user_id){
     const updated = database.query(query, [username, user_id])
     return updated
 }
+
+
+export async function insertToRoom(){
+    const query = ` INSERT INTO room (start_datetime) VALUES(CURRENT_TIMESTAMP)`
+    const result = await database.query(query)
+    // console.log(result[0].insertId)
+    const roomId =  result[0].insertId
+    return roomId;
+}
+
+export async function insertToRoomUser(user_id, room_id){
+    const query = `INSERT INTO room_user(user_id, room_id)
+    VALUES(?,?);`
+    const result = await database.query(query, [user_id, room_id])
+    const roomUserId =  result[0].insertId
+    return roomUserId;
+}
+
+export async function getUsersByRoom(room_id){
+    const query = `
+    SELECT  user.username, room_user.room_user_id, room_user.user_id, room_user.room_id
+    FROM user
+    JOIN room_user
+    ON user.user_id=room_user.user_id
+    JOIN room
+    ON room_user.room_id = room.room_id
+    WHERE room.room_id =?;`
+    const peopleInRoom = await database.query(query, [room_id])
+    return peopleInRoom[0]
+}
+
+export async function getChatList(userId, id){
+    const query = `
+    select user.username, user.user_id, user.profile_img, room_user.room_id
+    from user
+    join room_user on room_user.user_id = user.user_id
+    where user.user_id != ?
+    AND room_user.room_id in
+    (
+    select room.room_id 
+    from room
+    JOIN room_user ON room_user.room_id = room.room_id
+    where room_user.user_id = ?
+    ); `
+    const chatList = await database.query(query, [userId, id])
+    return chatList[0]
+}
+
+export async function checkRoomExist(myID, sellerId){
+    const query = `select count(room_user.room_id) total_users_in_room, room_user.room_id
+    from room_user
+    where user_id in (?, ?)
+    group by room_user.room_id
+    having total_users_in_room > 1;
+    `
+    const result = await database.query(query, [myID, sellerId])
+    return result[0]
+}

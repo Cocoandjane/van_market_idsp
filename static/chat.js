@@ -1,51 +1,61 @@
+
+
 import axios from 'https://cdn.skypack.dev/axios'
-const chatForm = document.getElementById('chat-form')
-const chatMessages = document.querySelector('.chat-messages')
+
 const socket = io();
 
-axios.get("/curentUserName")
-    .then(response => {
-        //console.log(response.data.username)
-        let curUser = response.data.username
-        // console.log(curUser)
+const joinRoomButton = document.getElementById
+("room-button")
+const messageInput = document.getElementById
+("message-input")
+const roomInput = document.getElementById("room-input")
+const form = document.getElementById("form")
 
 
-        // Message to DOM 
-        function appendMessage(message) {
-            console.log(message.username)
-            let div = document.createElement('div');
-            //<p class="meta"> ${message.username} <span>${message.time}</span></p>
-            // <p class="meta"> <span>${message.time}</span></p>
-            div.innerHTML = `
-             <p class="text">
-                            ${message.text}
-                            </p>`
-            let chatMessage = document.querySelector('.chat-messages');
-            chatMessage.appendChild(div)
-        }
-
-        socket.on('message', message => {
-            // console.log(message)
-            // Message from server
-            appendMessage(message)
-
-            // Scroll down
-            chatMessages.scrollTop = chatMessages.scrollHeight
-        })
+// socket.on('connect', () => {
+//     // displayMessage(`you connected with id: ${socket.id}`)
+// })
 
 
-        chatForm.addEventListener('submit', (e) => {
-            e.preventDefault()
+socket.on("receive-message", message => {
+    displayMessageReceive(message)
+})
 
-            let msg = e.target.elements.msg.value
-            // console.log(msg)
+let roomId = document.getElementById("message-container").dataset.room
+console.log(roomId)
 
-            //emitting msg to server
-            socket.emit('chatMessage', `${curUser}:`)
-            socket.emit('chatMessage', msg)
+socket.emit('join-room', roomId, message =>{
+    displayMessageSend(message)
+})
 
-            // Clear input
-            e.target.elements.msg.value = ''
-            e.target.elements.msg.focus()
-        })
-    })
+form.addEventListener("submit", e => {
+    e.preventDefault()
+    const message = messageInput.value
+    // const room = roomInput.value
+    const room  = document.getElementById("message-container").dataset.room
+    if(message === "" ) return
+    displayMessageSend(message)
+    socket.emit(`send-message`, message, room)
+    messageInput.value = ""
+})
+
+
+function displayMessageSend(message) {
+    const div = document.createElement("div")
+    div.classList.add("mytext")
+    div.classList.add("messages")
+    div.textContent = message
+    document.getElementById("message-container").append(div)
+
+}
+
+
+function displayMessageReceive(message) {
+    const div = document.createElement("div")
+    div.classList.add("messages")
+    div.textContent = message
+    document.getElementById("message-container").append(div)
+
+}
+
+

@@ -1,5 +1,30 @@
 
+
 import axios from 'https://cdn.skypack.dev/axios'
+
+let section = document.querySelector("section.top")
+let sellerid = section.dataset.sellerid
+
+let sellerName = document.querySelector(".sellerName")
+sellerName.addEventListener("click", (event) => {
+    event.preventDefault()
+    axios.post("/sellerid", { sellerid })
+        .then(response => {
+            // if (response.data.foundRoom===true) {
+            //     window.location = `/chat/${response.data.id}`;
+            //  } 
+            // else {
+                let roomId = response.data.roomId;
+                console.log(roomId)
+                window.location = `/chat/${roomId}`;
+            // }
+
+        })
+})
+
+
+
+
 let editBtn = document.querySelector("a.edit")
 if (editBtn) {
     editBtn.addEventListener("click", (event) => {
@@ -77,7 +102,7 @@ if (imageForm) {
         newImageDeleteFrame.append(a)
 
         newImageDeleteFrame.innerHTML =
-        `
+            `
         <a class="singleImg" data-img="${imageUrl}" href="${imageUrl}"><img class="postImage" src="${imageUrl}"></a>
         <a><img class="deleteButt" data-img="${imageUrl}"  src="/icons/x-butt.svg"></a> 
         `
@@ -135,8 +160,8 @@ if (image_input) {
 
             // window.location.reload()
 
-            
-            
+
+
             let img = document.createElement("img")
             img.classList.add("postImage");
             img.src = `${uploaded_image}`
@@ -159,7 +184,7 @@ if (image_input) {
 
 let xBtns = document.querySelectorAll(".deleteButt")
 let imageLink;
-function deleteButtonClick (xBtn) {
+function deleteButtonClick(xBtn) {
     xBtn.addEventListener("click", (event) => {
         event.preventDefault()
         let card2 = document.querySelector(".card2")
@@ -201,7 +226,7 @@ if (removeWish) {
 }
 
 let addWish = document.querySelector(".addWish")
-if(addWish) {
+if (addWish) {
     addWish.addEventListener("click", (event) => {
         event.preventDefault();
         let postId = addWish.id
@@ -209,3 +234,4 @@ if(addWish) {
         window.location.reload()
     })
 }
+

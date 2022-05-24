@@ -12,46 +12,38 @@
 </head>
 
 <body>
-  <div class="chat-container">
-    <header class="chat-header">
-      <h1> VanMarket Chat</h1>
-    </header>
-    <main class="chat-main">
+  <div class="talkingTo"><img src="/icons/shop.svg"> <p class="otherName"><%=otherName%></p> </div>
+  <div id="message-container" data-room="<%=roomId%>"></div>
+  <form action="" id="form">
+      <input type="text" id="message-input">
+      <button type="submit" id="send-button"> <img id="msgIcon" src="/icons/message.svg"></button><br>
+  </form>
 
-      <div class="chat-messages"></div>
-    </main>
-    <div class="chat-form-container">
-      <form id="chat-form">
-        <input id="msg" type="text" placeholder="Enter Message" required autocomplete="off" />
-        <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
-      </form>
-    </div>
-  </div>
 
   <nav class="nav">
     <a href="/home" class="nav_link">
-        <img src="/icons/Home.svg">
+      <img src="/icons/Home.svg">
     </a>
     <a href="/likedItems" class="nav_link wished">
-        <img src="/icons/wished.svg">
+      <img src="/icons/wished.svg">
     </a>
-    <a href="" class="nav_link postNew">
-        <img src="/icons/Add.svg">
+    <a href="/createListing" class="nav_link postNew">
+      <img src="/icons/Add.svg">
     </a>
-    <a href="/chat" class="nav_link">
-        <img src="/icons/chat-filled.svg">
+    <a href="/chatList" class="nav_link">
+      <img src="/icons/chat-filled.svg">
     </a>
-    <a href="profile" class="nav_link">
-        <img src="/icons/me.svg">
+    <a href="/profile" class="nav_link">
+      <img src="/icons/me.svg">
     </a>
-</nav>
+  </nav>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.3/qs.min.js"
     integrity="sha512-juaCj8zi594KHQqb92foyp87mCSriYjw3BcTHaXsAn4pEB1YWh+z+XQScMxIxzsjfM4BeVFV3Ij113lIjWiC2w=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script type="module" src="/chat.js"></script>
-  
+
 </body>
 
 
