@@ -149,13 +149,13 @@ class Carousel {
                     console.log('went off screen to the right', productId)
                 }
 
-                axios.post(('/likedItems'), {successful, productId, dirX})
-                .then((res) => {
-                    // console.log('res', res)
-                })
-                .catch((err) => {
-                    console.log('ERR', err)
-                })
+                axios.post(('/likedItems'), { successful, productId, dirX })
+                    .then((res) => {
+                        // console.log('res', res)
+                    })
+                    .catch((err) => {
+                        console.log('ERR', err)
+                    })
 
                 // let idkSomeArray = location.href.split("/")
                 // let postId = idkSomeArray[idkSomeArray.length-1]
@@ -168,7 +168,7 @@ class Carousel {
                 // .catch((err) => {
                 //     console.log('ERR', err)
                 // })
-            
+
 
                 // debugger
 
@@ -212,19 +212,22 @@ class Carousel {
             card.classList.add('card')
 
             let productImageSection = document.createElement('section')
-            let productImage = document.createElement('img')
-            productImage.draggable = false;
-            productImage.classList.add('prdct-img')
-            productImageSection.classList.add('prdct-image')
+            // let productImage = document.createElement('img')
+            // productImage.draggable = false;
+            // productImage.classList.add('prdct-img')
+            // productImageSection.classList.add('prdct-image')
 
-
+            let productImageDiv = document.createElement('div')
+            productImageDiv.classList.add('productImageDiv')
+            // productImageDiv.append(productImage)
+            productImageDiv.innerHTML = `<div draggable="false" class="prdct-img" style="background: url(${product.post_image}) center/cover no-repeat"></div>`
             productImageSection.addEventListener("click", evt => {
-                let id=product.post_id;
-                window.location=`/viewListing/${id}`
+                let id = product.post_id;
+                window.location = `/viewListing/${id}`
             })
 
-            productImageSection.append(productImage)
-            productImage.src = product.post_image
+            productImageSection.append(productImageDiv)
+            // productImage.src = product.post_image
             let productDescriptionSection = document.createElement('section')
             let productName = document.createElement('h2')
             productName.textContent = product.title;
@@ -237,11 +240,11 @@ class Carousel {
 
             let sellerInfoSection = document.createElement('section')
             let sellerPfp = document.createElement('img')
-            if(product.profile_img){
+            if (product.profile_img) {
                 sellerPfp.src = product.profile_img;
-                } else{
-                    sellerPfp.src = 'photos/smw.png';
-                }
+            } else {
+                sellerPfp.src = 'photos/smw.png';
+            }
             sellerPfp.draggable = false;
             let productDescriptionDiv = document.createElement('div')
             let sellerName = document.createElement('h4')
@@ -286,10 +289,10 @@ class Carousel {
             chatA.append(chatImg)
             likeA.append(likeImg)
 
-          
+
             // 
             decisionSection.append(dislikeA, chatA, likeA)
-            card.append(productImageSection, productDescriptionSection,  sellerInfoSection, decisionSection)
+            card.append(productImageSection, productDescriptionSection, sellerInfoSection, decisionSection)
 
             this.board.insertBefore(card, this.board.firstChild)
         })
