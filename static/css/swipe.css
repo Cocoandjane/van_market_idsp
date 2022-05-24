@@ -2,13 +2,24 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     margin: 0 0 85px 0;
     overflow-x: hidden;
     background-color: #F7F7F7;
-    font-family: 'Roboto', sans-serif;   
+    font-family: 'Roboto', sans-serif;
 }
 
+
+
+/* 
+.productImageDiv {
+    position: relative;
+}
+
+section.productImageDiv img {
+    height: 100%;
+    width: 100%;
+} */
 
 main {
     width: 320px;
@@ -34,7 +45,7 @@ main {
 
 
 
-.prdct-image img {
+.prdct-img {
     width: 270px;
     height: 261px;
     margin-top: 20px;
@@ -126,4 +137,3 @@ img.pfp-img {
 .prdct-desc {
     margin-left: 10px;
 }
-
