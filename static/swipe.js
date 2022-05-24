@@ -40,7 +40,7 @@ class Carousel {
             this.hammer = new Hammer(this.topCard)
             this.hammer.add(new Hammer.Pan({
                 position: Hammer.position_ALL,
-                threshold: 0.1
+                threshold: 0.1 // connect my phone to swi
             }))
 
             // pass events data to custom callbacks
