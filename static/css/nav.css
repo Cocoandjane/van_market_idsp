@@ -41,3 +41,7 @@ img.back-btn {
     left: 0;
 
 }
+
+img {
+    cursor: pointer;
+}
