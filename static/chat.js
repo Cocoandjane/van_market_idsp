@@ -17,16 +17,25 @@ const form = document.getElementById("form")
 // })
 
 
+
+let dt = DateTime.now()
+console.log(dt.toLocaleString())
+console.log(dt.toLocaleString(DateTime.DATETIME_MED))
+
 socket.on("receive-message", message => {
     displayMessageReceive(message)
 })
 
 let roomId = document.getElementById("message-container").dataset.room
-console.log(roomId)
 
 socket.emit('join-room', roomId, message =>{
-    displayMessageSend(message)
+    // displayMessageSend(message)
 })
+
+// console.log(Date.now().toString)
+
+// let d = new Date(Date.now())
+// console.log(d.toString())
 
 form.addEventListener("submit", e => {
     e.preventDefault()
@@ -34,11 +43,17 @@ form.addEventListener("submit", e => {
     // const room = roomInput.value
     const room  = document.getElementById("message-container").dataset.room
     if(message === "" ) return
+    displayTime(Date.now())
     displayMessageSend(message)
     socket.emit(`send-message`, message, room)
     messageInput.value = ""
 })
 
+function displayTime(time) {
+    const div = document.createElement("div") 
+    div.textContent = time
+    document.getElementById("message-container").append(div)
+}
 
 function displayMessageSend(message) {
     const div = document.createElement("div")
@@ -58,4 +73,7 @@ function displayMessageReceive(message) {
 
 }
 
-
+document.querySelector(".backBtn").addEventListener("click", e =>{
+    e.preventDefault()
+    history.back()
+})

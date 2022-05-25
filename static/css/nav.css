@@ -12,9 +12,6 @@ nav {
     border-bottom: 0;
 }
 
-form.form {
-    border: 1px solid blue;
-}
 
 .nav_link {
     text-decoration: none;
@@ -28,16 +25,3 @@ form.form {
     white-space: nowrap;
 }
 
-
-
-main.container {
-    align-self: center;
-    position: relative;
-
-}
-
-img.back-btn {
-    position: absolute;
-    left: 0;
-
-}

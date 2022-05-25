@@ -6,6 +6,7 @@ let section = document.querySelector("section.top")
 let sellerid = section.dataset.sellerid
 
 let sellerName = document.querySelector(".sellerName")
+if(sellerName){
 sellerName.addEventListener("click", (event) => {
     event.preventDefault()
     axios.post("/sellerid", { sellerid })
@@ -20,7 +21,7 @@ sellerName.addEventListener("click", (event) => {
             // }
 
         })
-})
+})}
 
 
 

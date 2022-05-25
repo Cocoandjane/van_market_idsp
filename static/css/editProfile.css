@@ -12,6 +12,18 @@ body {
     align-items: center;
 }
 
+div.topper{
+    display: flex;
+    flex-direction: row;
+    column-gap: 70px;
+    justify-content: center;
+}
+
+p.profile{
+    margin-left: 50px;
+    font-size: x-large;
+}
+
 div.imgFrame {
     width: 150px;
     height: 150px;
@@ -28,6 +40,14 @@ div.imgFrame {
     height: 160px;
     border: 1px solid #F37C49;
     border-radius: 50%;
+}
+
+button.logout{
+    color:white;
+    border: none;
+    background-color: #F37C49;;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
 }
 
 img.profile-pic{
@@ -97,4 +117,8 @@ form.nameCard {
     padding: 5px 10px 5px 10px;
     border-radius: 5px;
     
+}
+
+.backBtn{
+    align-self: flex-start;
 }
