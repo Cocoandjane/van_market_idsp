@@ -286,3 +286,8 @@ justify-content: center;
     color:#858585;
     font-size: smaller;
 }
+
+
+.sold {
+    color: red;
+}

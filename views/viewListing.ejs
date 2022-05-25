@@ -46,12 +46,14 @@
                             <a href="" class="addWish wishLink" id="<%=post[0].post_id%>" > <img src="/icons/tiny-add.svg"><p class="wishlist"> Add to wishList</p></a>
                            <%}}%>
                     <div class="lineOne">
+                        
                         <p class="title">
                             <strong>
                                 <%=p.title%>
                             </strong>
                         </p>
                         <p class="date">
+                            <% console.log(p.date)  %> 
                             Listed on <%=p.date%>
                         </p>
                     </div>
@@ -138,6 +140,8 @@
         </div>
         </div>
     </section>
+
+        <h4 class="sold ">Sold</h4>
 
 </body>
 

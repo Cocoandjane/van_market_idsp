@@ -335,6 +335,8 @@ app.get("/chat/:roomId", authorized, async (req, res) => {
   let otherUser = peopleInRoom.filter(n => {
     return n.user_id !== req.session.userId
   })
+
+  console.log('murad', roomId)
   res.render("chat", {
     roomId,
     peopleInRoom,
