@@ -13,10 +13,13 @@
 </head>
 
 <body>
-    <main>
+    <main class="container">
+        <img src="icons/Left arrow.svg" alt="" class="back-btn">
+        <script>
+            document.querySelector('img.back-btn').addEventListener('click', () => {history.back()})
+        </script>
 
         <div class="person">
-            
             
                     <div class="image-cropper">
                         <img id="profile-pic" src="<%=user.profile_img%>">
