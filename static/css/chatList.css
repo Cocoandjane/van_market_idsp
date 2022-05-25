@@ -1,0 +1,89 @@
+body {
+    margin: 0 0 140px 0;
+    overflow-x: hidden;
+    background-color: #F7F7F7;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+}
+
+div.container{
+    margin-top: 20px;
+    align-self: center;
+    position: relative;
+    width: 340px;
+}
+*:focus{
+    outline: none;
+}
+
+div.search{
+    margin-top: 30px;
+    align-self: center;
+    border: 1px solid #BFBFBF;
+    width:350px ;
+    height: 35px;
+    z-index: 1;
+    overflow: hidden;
+    background-color: #F7F7F7;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+img.searchIcon{
+    background-color: #F7F7F7;
+    border: none;
+}
+
+input#search-input{
+    background-color: #F7F7F7;
+    font-size: larger;
+    caret-color: #F37C49;
+    width: 310px;
+    height: 35px;
+    border: none;
+}
+
+div.chatPerson{
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    /* justify-content: center; */
+    /* align-items: center; */
+
+}
+
+.image-cropper {
+    width: 41px;
+    height: 41px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+#profile-pic {
+    height: auto;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div.msgNtime{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #858585;
+    margin-left: 50px;
+    margin-top: -30px;
+    font-size: small;
+}
+
+p.name{
+    margin-top: -1px;
+}
+
