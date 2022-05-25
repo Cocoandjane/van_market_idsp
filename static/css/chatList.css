@@ -7,6 +7,7 @@ body {
     flex-direction: column;
     text-align: center;
     position: relative;
+    row-gap: 10px;
 }
 
 div.container{
@@ -23,12 +24,12 @@ div.search{
     margin-top: 30px;
     align-self: center;
     border: 1px solid #BFBFBF;
-    width:350px ;
-    height: 35px;
+    width:300px ;
+    height: 30px;
     z-index: 1;
     overflow: hidden;
     background-color: #F7F7F7;
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
 }
@@ -42,8 +43,8 @@ input#search-input{
     background-color: #F7F7F7;
     font-size: larger;
     caret-color: #F37C49;
-    width: 310px;
-    height: 35px;
+    width: 260px;
+    height: 30px;
     border: none;
 }
 
@@ -51,9 +52,8 @@ div.chatPerson{
     display: flex;
     flex-direction: row;
     column-gap: 10px;
-    /* justify-content: center; */
-    /* align-items: center; */
-
+    margin-bottom: 5px;
+ 
 }
 
 .image-cropper {
@@ -79,10 +79,18 @@ div.msgNtime{
     justify-content: space-between;
     color: #858585;
     margin-left: 50px;
-    margin-top: -30px;
+    margin-top: -35px;
     font-size: small;
 }
 
+hr{
+     margin-top: -10px;
+     margin-left: 50px;
+     margin-bottom: 15px;
+   border-top: 0.1px solid #d8d7d7;
+
+
+}
 p.name{
     margin-top: -1px;
 }

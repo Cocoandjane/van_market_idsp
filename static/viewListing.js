@@ -23,6 +23,22 @@ if (sellerName) {
             })
     })
 }
+if(sellerName){
+sellerName.addEventListener("click", (event) => {
+    event.preventDefault()
+    axios.post("/sellerid", { sellerid })
+        .then(response => {
+            // if (response.data.foundRoom===true) {
+            //     window.location = `/chat/${response.data.id}`;
+            //  } 
+            // else {
+                let roomId = response.data.roomId;
+                console.log(roomId)
+                window.location = `/chat/${roomId}`;
+            // }
+
+        })
+})}
 
 
 
@@ -240,6 +256,6 @@ if (addWish) {
 
 let markAsSold = document.querySelector('img.icon')
 markAsSold.addEventListener('click', () => {
-    
+
 })
 console.log(markAsSold)

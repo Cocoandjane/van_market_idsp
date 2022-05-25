@@ -13,7 +13,13 @@
 </head>
 
 <body>
-    <p>Profile</p>
+    <div class="topper">
+    <img src="/icons/back.svg" class="backBtn" onclick="history.back()">
+    <p class="profile">Profile</p>
+    <form action="/logout" method="post">
+        <button type="submit" class="logout">Log out</button>
+     </form>
+    </div>
     <div class="circle">
         <div class="imgFrame">
             <img class="profile-pic" src="<%=user.profile_img%>">

@@ -1,11 +1,7 @@
 
-import luxon from "luxon";
-// const {DateTime} = 'luxon'
-//const express = require('express')
+// import luxon from "luxon";
 import express from 'express'
 const app = express()
-//const bodyParser = require('body-parser')
-//const mysql = require('mysql2')
 import cookieSession from "cookie-session";
 app.use(express.static("static"))
 app.set('view engine', 'ejs')
@@ -14,8 +10,12 @@ import bodyParser from 'body-parser'
 import mysql from 'mysql2'
 import { generateUploadURL } from "./s3.js";
 
-//let database = require('./databaseAccessLayer.js');
 import * as database from './databaseAccessLayer.js'
+
+import { DateTime } from "luxon";
+// let dt = DateTime.now()
+// console.log(dt.toLocaleString())
+// console.log(dt.toLocaleString(DateTime.DATETIME_MED))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
@@ -329,26 +329,35 @@ app.post("/sellerid", authorized, async (req, res) => {
 })
 
 app.get("/chat/:roomId", authorized, async (req, res) => {
-  let roomId = req.params.roomId
-  let user = await database.getUserById(req.session.userId)
-  let peopleInRoom = await database.getUsersByRoom(roomId)
-  let otherUser = peopleInRoom.filter(n => {
-    return n.user_id !== req.session.userId
-  })
-
-  console.log('murad', roomId)
-  res.render("chat", {
-    roomId,
-    peopleInRoom,
-    meName: user.username,
-    otherName: otherUser[0].username,
-
-  })
+  try {
+    let roomId = req.params.roomId
+    let user = await database.getUserById(req.session.userId)
+    let peopleInRoom = await database.getUsersByRoom(roomId)
+    let otherUser = peopleInRoom.filter(n => {
+      return n.user_id !== req.session.userId
+    })
+    // console.log(otherUser[0].username)
+    let otherName = otherUser[0].username;
+    res.render("chat", {
+      roomId,
+      peopleInRoom,
+      meName: user.username,
+      otherName,
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send({ error: "error" })
+  }
 })
 
 app.get("/chatlist", authorized, async (req, res) => {
-  let chats = await database.getChatList(req.session.userId,req.session.userId)
+  let chats = await database.getChatList(req.session.userId, req.session.userId)
   //  console.log(chats)
   res.render("chatlist", { chats })
+})
+
+app.post('/logout', (req, res) => {
+  req.session = null
+  res.redirect('/');
 })
 
