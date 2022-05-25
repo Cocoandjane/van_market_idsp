@@ -1,6 +1,6 @@
 
 
-let chats = document.querySelectorAll(".name")
+let chats = document.querySelectorAll(".chatPerson")
 
 chats.forEach(chat =>{
     chat.addEventListener("click", (event) => {

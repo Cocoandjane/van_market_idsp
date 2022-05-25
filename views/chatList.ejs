@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="/chatList.js"></script>
-    <link rel="stylesheet" href="/css/nav.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="/chatList.js"></script>
+  <link rel="stylesheet" href="/css/nav.css">
+  <link rel="stylesheet" href="/css/chatList.css">
+  <title>Document</title>
 </head>
+
 <body>
 
-    <div class="search"><img src="/icons/search.svg"> </div>
-    <div class="chatPerson">
-       <% for (const chat of chats) { %>
-            <p class="name" data-id="<%=chat.room_id%>"><%=chat.username%></p>
-            <p><%=chat.room_id%></p>
-        <%}%>
+  <div class="search"><input type="text" id="search-input"><img src="/icons/search.svg" class="searchIcon"> </div>
+  <div class="container">
+  <% for (const chat of chats) { %>
+    <div class="chatPerson" data-id="<%=chat.room_id%>">
+      <div class="image-cropper">
+         <img id="profile-pic" src="<%=chat. profile_img%>" alt="">
+      </div>
+      <p class="name">
+        <%=chat.username%>
+      </p>
     </div>
-
-
-    <nav class="nav">
+    <div class="msgNtime">
+      <p>Most recent message</p> <p class="time">yesterday</p>
+    </div>
+    <%}%>
+  </div>
+      <nav class="nav">
         <a href="/home" class="nav_link">
           <img src="/icons/Home.svg">
         </a>
@@ -36,6 +46,7 @@
           <img src="/icons/me.svg">
         </a>
       </nav>
-   
+
 </body>
+
 </html>

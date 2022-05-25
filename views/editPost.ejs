@@ -57,15 +57,29 @@
                 </select>
 
                 <label class="details" for="description">Description</label>
-                <textarea id="description" maxlength="500" class="description rectangular-input" type="text" name="description">
-                    <%=post.description%>
-                </textarea>
-
-                <label class="details " for="location">Location</label>
-                <input id="autocomplete" class="rectangular-input" type="text" placeholder="Enter a place..."
-                    name="location">
-
+                <textarea selected="" id="description" maxlength="500" class="description rectangular-input" type="text" name="description"><%=post.description%></textarea>
+                    <label class="details" for="cateogty">cateogty</label>
+                    <select name="cateogty" id="cateogty" class="rectangular-input">
+                        <option value="dash" >- -</option>
+                        <option value="new" >Electronics</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Accessories">Accessories</option>
+                        <option value="Other">Other</option>
+                    </select>
+    
+                    <label class="details " for="location">Location</label>
+                    <select  selected="" name="Location" id="Location" class="rectangular-input">
+                        <option value="dash" >- -</option>
+                        <option value="Vancouver" >Vancouver</option>
+                        <option value="Coquitlam">Coquitlam</option>
+                        <option value="Burnaby">Burnaby</option>
+                        <option value="Richmond">Richmond</option>
+                        <option value="Maple Ridge">Maple Ridge</option>
+                        <option value="Surrey">Surrey</option>
+                    </select>
                 <button id="create" class="submit-btn" type='submit'> Comfirm changes <img class="arrow" src="/icons/create.svg"> </button>
+                
             </form>
         </div>
     </main>
