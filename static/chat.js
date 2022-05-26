@@ -26,17 +26,17 @@ socket.emit('join-room', roomId, message => {
 
 
 
-if (!localStorage.getItem("chat")) {
-    localStorage.setItem("chat", JSON.stringify([]));
+if (!localStorage.getItem(roomId)) {
+    localStorage.setItem(roomId, JSON.stringify([]));
 }
 
-let chatHistory = JSON.parse(localStorage.getItem("chat"));
+let chatHistory = JSON.parse(localStorage.getItem(roomId));
 
 
 socket.on("receive-message", message => {
     displayMessageReceive (message.text,message.time)
     chatHistory.push(message);
-    localStorage.setItem("chat", JSON.stringify(chatHistory));
+    localStorage.setItem(roomId, JSON.stringify(chatHistory));
 })
 
 
@@ -56,7 +56,7 @@ form.addEventListener("submit", e => {
     socket.emit(`send-message`, message, roomId)
     messageInput.value = ""
     chatHistory.push(message);
-    localStorage.setItem("chat", JSON.stringify(chatHistory));
+    localStorage.setItem(roomId, JSON.stringify(chatHistory));
     // localData = localStorage.getItem("chat");
     // localData = JSON.parse(localData);
     requestAnimationFrame(() => {
@@ -65,7 +65,7 @@ form.addEventListener("submit", e => {
     })
 })
 
-let allHistory = JSON.parse(localStorage.getItem("chat"))
+let allHistory = JSON.parse(localStorage.getItem(roomId))
     console.log(allHistory)
     for (const message of allHistory) {
         if(message.name === myName){
