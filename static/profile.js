@@ -14,3 +14,4 @@ posts.forEach(post => {
         window.location=`/viewListing/${id}`
     })
 })
+

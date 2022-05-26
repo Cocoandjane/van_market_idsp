@@ -254,9 +254,9 @@ if (addWish) {
 }
 
 
-let markAsSold = document.querySelector('img.icon')
-let sold = document.querySelector('h4.sold')
-markAsSold.addEventListener('click', () => {
-    sold.classList.toggle('sold')
-})
-console.log(markAsSold)
+// let markAsSold = document.querySelector('img.icon')
+// let sold = document.querySelector('h4.sold')
+// markAsSold.addEventListener('click', () => {
+//     sold.classList.toggle('sold')
+// })
+// console.log(markAsSold)
