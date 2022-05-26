@@ -25,3 +25,20 @@ nav {
     white-space: nowrap;
 }
 
+
+
+main.container {
+    align-self: center;
+    position: relative;
+
+}
+
+img.back-btn {
+    position: absolute;
+    left: 0;
+
+}
+
+img.icon {
+    cursor: pointer;
+}

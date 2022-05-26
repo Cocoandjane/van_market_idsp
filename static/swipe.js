@@ -92,12 +92,18 @@ class Carousel {
         let dirX = e.deltaX < 0 ? -1 : 1 // deltaX makes this possible, 
 
 
+        let likeImg = this.topCard.querySelector('.likeImgHeart')
+        let disLikeImg = this.topCard.querySelector('.dislikeImgHeart')
 
-        // if (e.isFinal && dirX === -1) {
-        //     console.log('left')
-        // } else if (e.isFinal && dirX === 1) {
-        //     console.log('right')
-        // }
+        if (dirX === -1) {
+            disLikeImg.src = '/icons/broken_filled_heart.svg';
+            likeImg.src = 'icons/Like.svg';
+            console.log('left')
+        } else if (dirX === 1) {
+            likeImg.src = "/icons/filled_heart.svg";
+            disLikeImg.src = 'icons/Dislike.svg';
+            console.log('right')
+        }
 
         // get degrees of rotation, between 0 and +/- 45
         let deg = this.isDraggingFrom * dirX * Math.abs(propX) * 40
@@ -272,11 +278,13 @@ class Carousel {
             chatA.href = ""
             likeA.href = ""
             let disLikeImg = document.createElement('img')
+            disLikeImg.classList.add('dislikeImgHeart')
             disLikeImg.addEventListener("click", function (e) {
                 disLikeImg.src = 'icons/broken_filled_heart.svg';
             })
             let chatImg = document.createElement('img')
             let likeImg = document.createElement('img')
+            likeImg.classList.add('likeImgHeart')
             likeA.addEventListener("click", function (e) {
                 console.log("working")
                 likeImg.src = "icons/filled_heart.svg";

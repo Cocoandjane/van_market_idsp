@@ -12,7 +12,7 @@ import { generateUploadURL } from "./s3.js";
 
 import * as database from './databaseAccessLayer.js'
 
-import { DateTime } from "luxon";
+import luxon from "luxon";
 // let dt = DateTime.now()
 // console.log(dt.toLocaleString())
 // console.log(dt.toLocaleString(DateTime.DATETIME_MED))

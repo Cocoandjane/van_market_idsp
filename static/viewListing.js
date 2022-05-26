@@ -6,6 +6,23 @@ let section = document.querySelector("section.top")
 let sellerid = section.dataset.sellerid
 
 let sellerName = document.querySelector(".sellerName")
+if (sellerName) {
+    sellerName.addEventListener("click", (event) => {
+        event.preventDefault()
+        axios.post("/sellerid", { sellerid })
+            .then(response => {
+                // if (response.data.foundRoom===true) {
+                //     window.location = `/chat/${response.data.id}`;
+                //  } 
+                // else {
+                    let roomId = response.data.roomId;
+                    console.log(roomId)
+                    window.location = `/chat/${roomId}`;
+                // }
+    
+            })
+    })
+}
 if(sellerName){
 sellerName.addEventListener("click", (event) => {
     event.preventDefault()
@@ -236,3 +253,10 @@ if (addWish) {
     })
 }
 
+
+// let markAsSold = document.querySelector('img.icon')
+// let sold = document.querySelector('h4.sold')
+// markAsSold.addEventListener('click', () => {
+//     sold.classList.toggle('sold')
+// })
+// console.log(markAsSold)
