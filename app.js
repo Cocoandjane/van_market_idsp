@@ -361,3 +361,12 @@ app.post('/logout', (req, res) => {
   res.redirect('/');
 })
 
+// app.post("/message", authorized, async (req, res) => {
+//   let result = await database.getRoomUserId(req.body.roomId, req.session.userId)
+//   let roomUser = result[0][0]
+//   let roomUserId = roomUser.room_user_id
+//   let dt = DateTime.now()
+//   let now = dt.toLocaleString(DateTime.DATETIME_MED)
+//   await database.insertMessage(req.body.message, now , roomUserId)
+// })
+

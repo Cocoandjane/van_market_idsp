@@ -23,6 +23,7 @@ div.talkingTo{
     overflow: hidden;
     position: fixed;
     background-color:white ;
+    z-index: 1;
 }
 
 hr{
@@ -81,7 +82,75 @@ img#msgIcon{
     margin-top: 5px;
 }
 
-.mytext{
+.myFrame{
     align-self: flex-end;
+    border-radius: 10px 10px 10px 10px;
+   
 }
 
+.myFrame::after{
+   content: "";
+    display: block;
+    position: absolute;
+
+    right: -14px;
+    bottom:15px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 2px solid transparent;
+    border-right:15px solid #F37C49;
+    transform: rotateY(180deg);
+}
+
+
+
+
+
+.TheirFrame{
+    align-self: flex-start;
+    border-radius: 10px 10px 10px 10px;
+}
+
+
+.TheirFrame::after{
+    content: "";
+    display: block;
+    position: absolute;
+
+    left: -14px;
+    bottom:15px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 2px solid transparent;
+    border-right:15px solid #F37C49;
+
+}
+
+.frame{
+    color: white;
+    background-color: #F37C49;
+    margin-top: 10px;
+    padding: 5px 10px 5px 10px;
+    width: auto;
+    max-width: 230px;
+    position: relative;
+    border: #F37C49;
+    min-width: 80px;
+    min-height: 50px;
+    padding-bottom: 20px;
+}
+
+.message{
+    font-size: large;
+}
+.time{
+    position: absolute;
+    right: 6px;
+    bottom: 3px;
+    font-size: small;
+    align-self: baseline;
+    margin-right: 0;
+    color: white
+}

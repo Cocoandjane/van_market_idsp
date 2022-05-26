@@ -15,12 +15,13 @@ body {
 div.topper{
     display: flex;
     flex-direction: row;
-    column-gap: 70px;
+    column-gap: 30px;
     justify-content: center;
 }
 
 p.profile{
-    margin-left: 50px;
+    margin-top: 50px;
+    margin-left: 100px;
     font-size: x-large;
 }
 
@@ -43,11 +44,20 @@ div.imgFrame {
 }
 
 button.logout{
-    color:white;
     border: none;
-    background-color: #F37C49;;
     border-radius: 5px;
     padding: 5px 10px 5px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 5px;
+    margin-top: -20px;
+    background-color:#F7F7F7;
+
+}
+
+.logoutText{
+    font-size: large;
 }
 
 img.profile-pic{
