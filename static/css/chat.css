@@ -23,6 +23,7 @@ div.talkingTo{
     overflow: hidden;
     position: fixed;
     background-color:white ;
+    z-index: 1;
 }
 
 hr{
