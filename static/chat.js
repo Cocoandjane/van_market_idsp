@@ -59,7 +59,10 @@ form.addEventListener("submit", e => {
     localStorage.setItem("chat", JSON.stringify(chatHistory));
     // localData = localStorage.getItem("chat");
     // localData = JSON.parse(localData);
-  
+    requestAnimationFrame(() => {
+        let container = document.getElementById("message-container")
+        container.s.animate({ scrollTop: 20000000 }, "slow");
+    })
 })
 
 let allHistory = JSON.parse(localStorage.getItem("chat"))
@@ -100,7 +103,7 @@ function displayMessageReceive(message, time) {
     const frameDiv = document.createElement("div")
     frameDiv.classList.add("frame")
     frameDiv.classList.add("TheirFrame")
-    div.classList.add("messages")
+    div.classList.add("message")
     timeDiv.classList.add("time")
 
     div.textContent = message

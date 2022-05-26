@@ -137,5 +137,20 @@ img#msgIcon{
     max-width: 230px;
     position: relative;
     border: #F37C49;
+    min-width: 80px;
+    min-height: 50px;
+    padding-bottom: 20px;
 }
 
+.message{
+    font-size: large;
+}
+.time{
+    position: absolute;
+    right: 6px;
+    bottom: 3px;
+    font-size: small;
+    align-self: baseline;
+    margin-right: 0;
+    color: white
+}
