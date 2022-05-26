@@ -353,7 +353,7 @@ app.get("/chat/:roomId", authorized, async (req, res) => {
 app.get("/chatlist", authorized, async (req, res) => {
   let chats = await database.getChatList(req.session.userId, req.session.userId)
   //  console.log(chats)
-  res.render("chatlist", { chats })
+  res.render("chatList", { chats })
 })
 
 app.post('/logout', (req, res) => {
