@@ -273,3 +273,20 @@ export async function checkRoomExist(myID, sellerId){
     const result = await database.query(query, [myID, sellerId])
     return result[0]
 }
+
+export async function getRoomUserId(roomId, userId) {
+    const query = `
+    SELECT * FROM room_user where room_id =1 and user_id = 2;
+    `
+    const result = database.query(query, [roomId, userId])
+    return result
+}
+
+export async function insertMessage(message, time, room_user_id){
+    const query = `
+    INSERT INTO message (message, sent_datetime, room_user_id)
+    VALUES(?,?,?)
+    `
+    const result = database.query(query, [message, time, room_user_id])
+    return result
+}

@@ -5,9 +5,9 @@ import axios from 'https://cdn.skypack.dev/axios'
 const socket = io();
 
 const joinRoomButton = document.getElementById
-("room-button")
+    ("room-button")
 const messageInput = document.getElementById
-("message-input")
+    ("message-input")
 const roomInput = document.getElementById("room-input")
 const form = document.getElementById("form")
 
@@ -16,44 +16,65 @@ const form = document.getElementById("form")
 //     // displayMessage(`you connected with id: ${socket.id}`)
 // })
 
-
-
-let dt = DateTime.now()
-console.log(dt.toLocaleString())
-console.log(dt.toLocaleString(DateTime.DATETIME_MED))
-
-socket.on("receive-message", message => {
-    displayMessageReceive(message)
-})
-
 let roomId = document.getElementById("message-container").dataset.room
+let myName = document.getElementById("message-container").dataset.name;
 
-socket.emit('join-room', roomId, message =>{
+
+socket.emit('join-room', roomId, message => {
     // displayMessageSend(message)
 })
 
-// console.log(Date.now().toString)
 
-// let d = new Date(Date.now())
-// console.log(d.toString())
+
+if (!localStorage.getItem("chat")) {
+    localStorage.setItem("chat", JSON.stringify([]));
+}
+let chatHistory = JSON.parse(localStorage.getItem("chat"));
+
+
+socket.on("receive-message", message => {
+    displayMessageReceive(message.text)
+    displayMessageReceive(message.time)
+    localStorage.setItem("chat", JSON.stringify(chatHistory));
+    chatHistory.push(message);
+})
+
 
 form.addEventListener("submit", e => {
     e.preventDefault()
-    const message = messageInput.value
-    // const room = roomInput.value
-    const room  = document.getElementById("message-container").dataset.room
-    if(message === "" ) return
-    displayTime(Date.now())
-    displayMessageSend(message)
-    socket.emit(`send-message`, message, room)
+    let message = {
+        time: luxon.DateTime.now().toLocaleString(luxon.DateTime.DATETIME_MED).split(",")[2],
+        text: messageInput.value,
+        name: myName,
+    }
+    const roomId = document.getElementById("message-container").dataset.room
+
+    if (message.text === "") return
+    displayMessageSend(message.text)
+    displayMessageSend(message.time)
+
+    socket.emit(`send-message`, message, roomId)
     messageInput.value = ""
+    chatHistory.push(message);
+    localStorage.setItem("chat", JSON.stringify(chatHistory));
+    // localData = localStorage.getItem("chat");
+    // localData = JSON.parse(localData);
+  
 })
 
-function displayTime(time) {
-    const div = document.createElement("div") 
-    div.textContent = time
-    document.getElementById("message-container").append(div)
-}
+let allHistory = JSON.parse(localStorage.getItem("chat"))
+    console.log(allHistory)
+    for (const message of allHistory) {
+        if(message.name === myName){
+            displayMessageSend(message.text)
+            displayMessageSend(message.time)
+        }else{
+            displayMessageReceive(message.text) 
+            displayMessageReceive(message.time) 
+        }
+    }
+
+
 
 function displayMessageSend(message) {
     const div = document.createElement("div")
@@ -73,7 +94,9 @@ function displayMessageReceive(message) {
 
 }
 
-document.querySelector(".backBtn").addEventListener("click", e =>{
+document.querySelector(".backBtn").addEventListener("click", e => {
     e.preventDefault()
     history.back()
 })
+
+
