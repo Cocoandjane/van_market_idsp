@@ -29,14 +29,14 @@ socket.emit('join-room', roomId, message => {
 if (!localStorage.getItem("chat")) {
     localStorage.setItem("chat", JSON.stringify([]));
 }
+
 let chatHistory = JSON.parse(localStorage.getItem("chat"));
 
 
 socket.on("receive-message", message => {
-    displayMessageReceive(message.text)
-    displayMessageReceive(message.time)
-    localStorage.setItem("chat", JSON.stringify(chatHistory));
+    displayMessageReceive (message.text,message.time)
     chatHistory.push(message);
+    localStorage.setItem("chat", JSON.stringify(chatHistory));
 })
 
 
@@ -50,8 +50,8 @@ form.addEventListener("submit", e => {
     const roomId = document.getElementById("message-container").dataset.room
 
     if (message.text === "") return
-    displayMessageSend(message.text)
-    displayMessageSend(message.time)
+    displayMessageSend(message.text,message.time)
+    // displayTimeSend(message.time)
 
     socket.emit(`send-message`, message, roomId)
     messageInput.value = ""
@@ -66,33 +66,53 @@ let allHistory = JSON.parse(localStorage.getItem("chat"))
     console.log(allHistory)
     for (const message of allHistory) {
         if(message.name === myName){
-            displayMessageSend(message.text)
-            displayMessageSend(message.time)
+            displayMessageSend(message.text, message.time)
+            // displayMessageSend(message.time)
         }else{
-            displayMessageReceive(message.text) 
-            displayMessageReceive(message.time) 
+            displayMessageReceive(message.text, message.time) 
+            // displayMessageReceive(message.time) s
         }
     }
 
 
 
-function displayMessageSend(message) {
+
+function displayMessageSend(message, time) {
     const div = document.createElement("div")
-    div.classList.add("mytext")
-    div.classList.add("messages")
+    const timeDiv = document.createElement("div")
+    const frameDiv = document.createElement("div")
+    frameDiv.classList.add("myFrame")
+    frameDiv.classList.add("frame")
+    div.classList.add("message")
+    timeDiv.classList.add("time")
     div.textContent = message
-    document.getElementById("message-container").append(div)
+    timeDiv.textContent = time
+
+    frameDiv.append(div,timeDiv)
+    document.getElementById("message-container").append(frameDiv)
 
 }
 
 
-function displayMessageReceive(message) {
+function displayMessageReceive(message, time) {
     const div = document.createElement("div")
+    const timeDiv = document.createElement("div")
+    const frameDiv = document.createElement("div")
+    frameDiv.classList.add("frame")
+    frameDiv.classList.add("TheirFrame")
     div.classList.add("messages")
+    timeDiv.classList.add("time")
+
     div.textContent = message
-    document.getElementById("message-container").append(div)
+    timeDiv.textContent = time
+    frameDiv.append(div,timeDiv)
+    document.getElementById("message-container").append(frameDiv)
 
 }
+
+
+
+
 
 document.querySelector(".backBtn").addEventListener("click", e => {
     e.preventDefault()
