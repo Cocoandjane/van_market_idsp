@@ -301,3 +301,7 @@ justify-content: center;
 .sold {
     color: red;
 }
+
+.red {
+    display: none;
+}
