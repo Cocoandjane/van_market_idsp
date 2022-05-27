@@ -85,7 +85,11 @@ app.post("/singup", async (req, res) => {
 
 app.get('/api/products', async (req, res) => {
   try {
+<<<<<<< HEAD
     let products = await database.getPosts(req.session.userId,req.session.userId)
+=======
+    let products = await database.getPosts(req.session.userId, req.session.userId)
+>>>>>>> f03e6e5575e717ad5809834407cadda897bf9c6b
     res.json({ products })
   } catch (error) {
     console.error(error)
@@ -165,8 +169,9 @@ app.post('/likedItems', authorized, async (req, res) => {
     }
     res.send({})
   } catch (error) {
-    console.error(error)
-    res.status(500).send({ error: "🖕" })
+    res.send({})
+    // console.error('HELOOOOIO', error)
+    // res.status(500).send({ error: "🖕" })
   }
 })
 

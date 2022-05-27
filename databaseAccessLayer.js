@@ -1,9 +1,5 @@
-
-//const database = require('./databaseConnection.js');
-//const passwordPepper = "SeCretPeppa4MySal+";
 import database from './databaseConnection.js'
 import bcrypt from "bcrypt";
-// import express from 'express';
 
 export async function getPosts(userId, id) {
     let query = `
@@ -291,3 +287,5 @@ export async function insertMessage(message, time, room_user_id) {
     const result = database.query(query, [message, time, room_user_id])
     return result
 }
+
+// export async function 

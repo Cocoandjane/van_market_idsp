@@ -297,3 +297,11 @@ justify-content: center;
     font-size: smaller;
 }
 
+
+.sold {
+    color: red;
+}
+
+.red {
+    display: none;
+}
