@@ -11,6 +11,15 @@ const messageInput = document.getElementById
 const roomInput = document.getElementById("room-input")
 const form = document.getElementById("form")
 
+requestAnimationFrame(() => {
+    window.animate({ scrollTop: 20000000 }, "slow");
+    window.scroll({
+        top: 2000000,
+        left: 0,
+        behavior: 'smooth'
+      });
+})
+
 
 // socket.on('connect', () => {
 //     // displayMessage(`you connected with id: ${socket.id}`)
@@ -67,7 +76,7 @@ form.addEventListener("submit", e => {
 })
 
 let allHistory = JSON.parse(localStorage.getItem(roomId))
-    console.log(allHistory)
+    // console.log(allHistory)
     for (const message of allHistory) {
         if(message.name === myName){
             displayMessageSend(message.text, message.time)
