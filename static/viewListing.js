@@ -8,7 +8,8 @@ let sellerid = section.dataset.sellerid
 let backBtn = document.querySelector(".backBtn")
 backBtn.addEventListener("click", (event) =>{
     event.preventDefault()
-    window.location="/likedItems"
+    // window.location="/likedItems"
+    history.back()
 })
 
 let sellerName = document.querySelector(".sellerName")
