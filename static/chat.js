@@ -11,15 +11,6 @@ const messageInput = document.getElementById
 const roomInput = document.getElementById("room-input")
 const form = document.getElementById("form")
 
-requestAnimationFrame(() => {
-    window.animate({ scrollTop: 20000000 }, "slow");
-    window.scroll({
-        top: 2000000,
-        left: 0,
-        behavior: 'smooth'
-      });
-})
-
 
 // socket.on('connect', () => {
 //     // displayMessage(`you connected with id: ${socket.id}`)
@@ -32,7 +23,9 @@ let myName = document.getElementById("message-container").dataset.name;
 socket.emit('join-room', roomId, message => {
     // displayMessageSend(message)
 })
-
+requestAnimationFrame(() => {
+    document.getElementById('message-container').scrollTo(0, document.getElementById('message-container').scrollHeight)
+})
 
 
 if (!localStorage.getItem(roomId)) {
@@ -43,7 +36,7 @@ let chatHistory = JSON.parse(localStorage.getItem(roomId));
 
 
 socket.on("receive-message", message => {
-    displayMessageReceive (message.text,message.time)
+    displayMessageReceive(message.text, message.time)
     chatHistory.push(message);
     localStorage.setItem(roomId, JSON.stringify(chatHistory));
 })
@@ -59,7 +52,7 @@ form.addEventListener("submit", e => {
     const roomId = document.getElementById("message-container").dataset.room
 
     if (message.text === "") return
-    displayMessageSend(message.text,message.time)
+    displayMessageSend(message.text, message.time)
     // displayTimeSend(message.time)
 
     socket.emit(`send-message`, message, roomId)
@@ -68,27 +61,25 @@ form.addEventListener("submit", e => {
     localStorage.setItem(roomId, JSON.stringify(chatHistory));
     // localData = localStorage.getItem("chat");
     // localData = JSON.parse(localData);
-    requestAnimationFrame(() => {
-        window.animate({ scrollTop: 20000000 }, "slow");
-        window.scroll({
-            top: 2000000,
-            left: 0,
-            behavior: 'smooth'
-          });
-    })
+    scrollDown()
 })
 
+function scrollDown() {
+    document.getElementById('message-container').scrollTop =  document.getElementById('message-container').scrollHeight
+}
+
+
 let allHistory = JSON.parse(localStorage.getItem(roomId))
-    // console.log(allHistory)
-    for (const message of allHistory) {
-        if(message.name === myName){
-            displayMessageSend(message.text, message.time)
-            // displayMessageSend(message.time)
-        }else{
-            displayMessageReceive(message.text, message.time) 
-            // displayMessageReceive(message.time) s
-        }
+// console.log(allHistory)
+for (const message of allHistory) {
+    if (message.name === myName) {
+        displayMessageSend(message.text, message.time)
+        // displayMessageSend(message.time)
+    } else {
+        displayMessageReceive(message.text, message.time)
+        // displayMessageReceive(message.time) s
     }
+}
 
 
 
@@ -104,7 +95,7 @@ function displayMessageSend(message, time) {
     div.textContent = message
     timeDiv.textContent = time
 
-    frameDiv.append(div,timeDiv)
+    frameDiv.append(div, timeDiv)
     document.getElementById("message-container").append(frameDiv)
 
 }
@@ -121,14 +112,10 @@ function displayMessageReceive(message, time) {
 
     div.textContent = message
     timeDiv.textContent = time
-    frameDiv.append(div,timeDiv)
+    frameDiv.append(div, timeDiv)
     document.getElementById("message-container").append(frameDiv)
 
 }
-
-
-
-
 
 document.querySelector(".backBtn").addEventListener("click", e => {
     e.preventDefault()

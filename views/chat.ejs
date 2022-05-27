@@ -7,40 +7,27 @@
   <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
     integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
   <link rel="stylesheet" href="/css/chat.css">
-  <link rel="stylesheet" href="/css/nav.css">
   <title>VanMarket Chat</title>
   <link rel="icon" type="image/x-icon" href="/icons/logo.svg">
 </head>
 
 <body>
 
-  <div class="talkingTo"><img src="/icons/back.svg" class="backBtn"><p class="otherName"><%=otherName%></p><img src="/icons/shop.svg">  </div>
+  <div class="talkingTo"><img src="/icons/back.svg" class="backBtn">
+    <div class="imgFrame">
+     <img  class="otherProfile" src="<%=otherProfile%>" alt="" class="otherImg">
+    </div>
+      <p class="otherName"><%=otherName%></p>
+    </div>
   <hr >
-  <div id="message-container" data-name="<%=meName%>" data-room="<%=roomId%>"></div>
+  <div class="container" id="message-container" data-name="<%=meName%>" data-room="<%=roomId%>"></div>
  
+  <div class="buttom">
   <form action="" id="form">
       <input type="text" id="message-input">
       <button type="submit" id="send-button"> <img id="msgIcon" src="/icons/message.svg"></button><br>
   </form>
-
-
-  <nav class="nav">
-    <a href="/home" class="nav_link">
-      <img src="/icons/Home.svg">
-    </a>
-    <a href="/likedItems" class="nav_link wished">
-      <img src="/icons/wished.svg">
-    </a>
-    <a href="/createListing" class="nav_link postNew">
-      <img src="/icons/Add.svg">
-    </a>
-    <a href="/chatList" class="nav_link">
-      <img src="/icons/chat-filled.svg">
-    </a>
-    <a href="/profile" class="nav_link">
-      <img src="/icons/me.svg">
-    </a>
-  </nav>
+</div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.3/qs.min.js"
     integrity="sha512-juaCj8zi594KHQqb92foyp87mCSriYjw3BcTHaXsAn4pEB1YWh+z+XQScMxIxzsjfM4BeVFV3Ij113lIjWiC2w=="

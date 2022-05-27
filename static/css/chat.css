@@ -1,5 +1,5 @@
 body {
-    margin:0 0 140px 0;
+    margin:  0 0 55px 0;
     overflow-x: hidden;
     background-color: #F7F7F7;
     font-family: 'Roboto', sans-serif;
@@ -15,8 +15,8 @@ div.talkingTo{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    column-gap: 90px;
+    justify-content: flex-start;
+    column-gap: 8px;
     height: 60px;
     width: 100%;
     border-bottom: 0.3px solid #BFBFBF;
@@ -24,6 +24,27 @@ div.talkingTo{
     position: fixed;
     background-color:white ;
     z-index: 1;
+}
+
+.backBtn{
+    margin-left: 5px;
+}
+.imgFrame {
+    margin-left: 5px;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.otherProfile {
+    height: auto;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 hr{
@@ -35,19 +56,31 @@ hr{
 }
 
 #message-container {
-    width: 290px;
-    height: auto;
+    width: 330px;
+    height: 550px;
     display: flex;
     flex-direction: column;
     margin-top: 25px;
-  
+    overflow: hidden;
+    overflow: scroll;
+}
+
+div.buttom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    bottom: 0;
+    position: fixed;
+
 }
 
 form#form{
     border: 1px solid #BFBFBF;
     height: 36px;
-    bottom: 95px;
-    position: fixed;
+    bottom: 10px;
     z-index: 1;
     overflow: hidden;
     background-color: #F7F7F7;
@@ -63,6 +96,8 @@ form#form{
     border: none;
     background-color: #F7F7F7;
 }
+
+
 
 div.messages{
     font-size: large;
@@ -83,23 +118,23 @@ img#msgIcon{
 }
 
 .myFrame{
+    background-color: rgba(234, 124, 73, 40%);
     align-self: flex-end;
     border-radius: 10px 10px 10px 10px;
-   
+    margin-right: 15px;
 }
 
 .myFrame::after{
    content: "";
     display: block;
     position: absolute;
-
-    right: -14px;
+    right: -15px;
     bottom:15px;
     width: 0;
     height: 0;
     border-top: 8px solid transparent;
     border-bottom: 2px solid transparent;
-    border-right:15px solid #F37C49;
+    border-right:15px solid rgba(234, 124, 73, 40%);
     transform: rotateY(180deg);
 }
 
@@ -108,6 +143,8 @@ img#msgIcon{
 
 
 .TheirFrame{
+    margin-left: 15px;
+    background-color: white;
     align-self: flex-start;
     border-radius: 10px 10px 10px 10px;
 }
@@ -117,26 +154,22 @@ img#msgIcon{
     content: "";
     display: block;
     position: absolute;
-
-    left: -14px;
+    left: -15px;
     bottom:15px;
     width: 0;
     height: 0;
     border-top: 8px solid transparent;
     border-bottom: 2px solid transparent;
-    border-right:15px solid #F37C49;
+    border-right:15px solid white;
 
 }
 
 .frame{
-    color: white;
-    background-color: #F37C49;
     margin-top: 10px;
     padding: 5px 10px 5px 10px;
     width: auto;
     max-width: 230px;
     position: relative;
-    border: #F37C49;
     min-width: 80px;
     min-height: 50px;
     padding-bottom: 20px;
@@ -146,11 +179,11 @@ img#msgIcon{
     font-size: large;
 }
 .time{
+    color: #858585;
     position: absolute;
     right: 6px;
     bottom: 3px;
     font-size: small;
     align-self: baseline;
     margin-right: 0;
-    color: white
 }

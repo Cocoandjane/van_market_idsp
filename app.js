@@ -13,7 +13,7 @@ import { generateUploadURL } from "./s3.js";
 import * as database from './databaseAccessLayer.js'
 
 import { DateTime } from "luxon";
-// let dt = DateTime.now()
+// let dt = DateTime.now().toLocaleString(DateTime.DATETIME_MED)
 // console.log(dt.toLocaleString())
 // console.log(dt.toLocaleString(DateTime.DATETIME_MED))
 
@@ -85,7 +85,7 @@ app.post("/singup", async (req, res) => {
 
 app.get('/api/products', async (req, res) => {
   try {
-    let products = await database.getPosts()
+    let products = await database.getPosts(req.session.userId,req.session.userId)
     res.json({ products })
   } catch (error) {
     console.error(error)
@@ -188,7 +188,7 @@ app.post("/createlisting", async (req, res) => {
   let title = axiosData.title;
   let description = axiosData.description;
   let price = axiosData.price;
-  let date = luxon.DateTime.now().toISODate()
+  let date = DateTime.now().toLocaleString(DateTime.DATETIME_MED)
   let image = axiosData.imageUrl;
   let user_id = req.session.userId;
   let category_id = 1;
@@ -336,13 +336,14 @@ app.get("/chat/:roomId", authorized, async (req, res) => {
     let otherUser = peopleInRoom.filter(n => {
       return n.user_id !== req.session.userId
     })
-    // console.log(otherUser[0].username)
     let otherName = otherUser[0].username;
+    let otherProfile = otherUser[0].profile_img;
     res.render("chat", {
       roomId,
       peopleInRoom,
       meName: user.username,
       otherName,
+      otherProfile
     })
   } catch (error) {
     console.error(error)
@@ -350,10 +351,14 @@ app.get("/chat/:roomId", authorized, async (req, res) => {
   }
 })
 
-app.get("/chatlist", authorized, async (req, res) => {
+app.get("/chatList", authorized, async (req, res) => {
+  try{
   let chats = await database.getChatList(req.session.userId, req.session.userId)
   //  console.log(chats)
   res.render("chatList", { chats })
+  } catch (error) {
+    console.error(error)
+  }
 })
 
 app.post('/logout', (req, res) => {
