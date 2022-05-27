@@ -62,6 +62,7 @@ body {
     border-radius: 10px;
     background-color: white;
     margin-bottom: 10px;
+    overflow: hidden;
 }
 
 .img_cropper {
@@ -84,10 +85,9 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.item_description{
-    font-size: xx-small;
+.item_description {
+    font-size: small;
     padding: 0 1em 0 1em;
     margin-top: -10px;
     text-align: center;
 }
-

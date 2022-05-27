@@ -48,9 +48,14 @@ class Carousel {
                 this.onPan(e)
             })
 
+            this.hammer.on('panend', (e) => {
+                this.onPanend(e);
+            })
+
         }
 
     }
+
 
     onPan(e) {
 
@@ -70,7 +75,7 @@ class Carousel {
             this.startPosX = mx ? parseFloat(mx[1].split(', ')[4]) : 0
             this.startPosY = mx ? parseFloat(mx[1].split(', ')[5]) : 0
 
-            // get top card bounds
+            // get top card bound
             let bounds = this.topCard.getBoundingClientRect()
 
             // get finger position on top card, top (1) or bottom (-1)
@@ -94,16 +99,24 @@ class Carousel {
 
         let likeImg = this.topCard.querySelector('.likeImgHeart')
         let disLikeImg = this.topCard.querySelector('.dislikeImgHeart')
-
+        console.log('something is happening')
         if (dirX === -1) {
             disLikeImg.src = '/icons/broken_filled_heart.svg';
             likeImg.src = 'icons/Like.svg';
-            console.log('left')
+            // setTimeout(() => {
+            //     disLikeImg.src = 'icons/Dislike.svg'
+            // }, 500)
+            console.log('left', e.deltaX)
         } else if (dirX === 1) {
             likeImg.src = "/icons/filled_heart.svg";
             disLikeImg.src = 'icons/Dislike.svg';
-            console.log('right')
+            // setTimeout(() => {
+            //     likeImg.src = 'icons/Like.svg'
+            // }, 500)
+            console.log('right', e.deltaX)
         }
+
+        // axios
 
         // get degrees of rotation, between 0 and +/- 45
         let deg = this.isDraggingFrom * dirX * Math.abs(propX) * 40
@@ -163,20 +176,6 @@ class Carousel {
                         console.log('ERR', err)
                     })
 
-                // let idkSomeArray = location.href.split("/")
-                // let postId = idkSomeArray[idkSomeArray.length-1]
-                // console.log(postId)
-                // axios.get((`/productPage/`), {successful, productId, dirX})
-                // .then((res) => {
-                //     console.log('res', res)
-                //     productId
-                // })
-                // .catch((err) => {
-                //     console.log('ERR', err)
-                // })
-
-
-                // debugger
 
                 // throw card in the chosen direction
                 this.topCard.style.transform =
@@ -204,6 +203,14 @@ class Carousel {
 
         }
 
+    }
+
+    onPanend(e) {
+        console.log("bloblbo", e.deltaX)
+        let likeImg = this.topCard.querySelector('.likeImgHeart')
+        let disLikeImg = this.topCard.querySelector('.dislikeImgHeart')
+        likeImg.src = 'icons/Like.svg';
+        disLikeImg.src = 'icons/Dislike.svg';
     }
 
     push() {
@@ -256,6 +263,9 @@ class Carousel {
             let sellerName = document.createElement('h4')
             sellerName.classList.add('seller-name')
             sellerName.textContent = product["username"] // username on card
+            console.log()
+            console.log(product.username)
+
             let productDescription = document.createElement('p')
             productDescription.textContent = product.description
             productDescription.classList.add('prdct-desc')
@@ -280,15 +290,22 @@ class Carousel {
             let disLikeImg = document.createElement('img')
             disLikeImg.classList.add('dislikeImgHeart')
             disLikeImg.addEventListener("click", function (e) {
-                disLikeImg.src = 'icons/broken_filled_heart.svg';
+                e.preventDefault()
+                // disLikeImg.src = 'icons/broken_filled_heart.svg';
             })
             let chatImg = document.createElement('img')
             let likeImg = document.createElement('img')
             likeImg.classList.add('likeImgHeart')
+
+
             likeA.addEventListener("click", function (e) {
-                console.log("working")
-                likeImg.src = "icons/filled_heart.svg";
+                e.preventDefault()
             })
+
+
+
+
+
             disLikeImg.src = 'icons/Dislike.svg';
             chatImg.src = 'icons/Chat.svg';
             likeImg.src = 'icons/Like.svg';

@@ -1,18 +1,19 @@
-
-//const database = require('./databaseConnection.js');
-//const passwordPepper = "SeCretPeppa4MySal+";
 import database from './databaseConnection.js'
 import bcrypt from "bcrypt";
-// import express from 'express';
 
-export async function getPosts() {
+
+export async function getPosts(userId, id) {
+
     let query = `
-    SELECT post.post_id, post.title, post.description, post.price, post.post_image, post.user_id, user.username , user.profile_img
-    FROM post
-    LEFT JOIN user
+    SELECT user.username, post.*
+    FROM post 
+    JOIN user
     ON post.user_id = user.user_id
-    ORDER BY post.post_id DESC;`
-    const [rows] = await database.query(query)
+    WHERE post_id 
+    NOT IN (SELECT post_id FROM wishlist WHERE wishlist.user_id = ?) AND post.user_id !=?;
+    ` 
+    // AND post.user_id !=?;
+    const [rows] = await database.query(query, [userId, id])
     return rows
 }
 
@@ -39,8 +40,8 @@ export async function getUserLikedItems() {
     return rows
 }
 
-export async function getWishList(id){
-    let query=`
+export async function getWishList(id) {
+    let query = `
     SELECT post.post_id, post.title, post.description, post.post_image, wishlist.user_id, user.username
     From post
     INNER JOIN wishlist
@@ -73,7 +74,7 @@ export async function getUserByEmail(email) {
 }
 
 
-export async function getPostByUser(id){
+export async function getPostByUser(id) {
     let query = `SELECT * FROM post
     WHERE user_id = ?;`
     const [posts] = await database.query(query, [id])
@@ -105,8 +106,8 @@ export async function insertPost(title, description, price, date, post_image, us
     return id
 }
 
-export async function insertImage(post_id, url){
-    let query ="INSERT INTO image(post_id, url)VALUES(?,?);"
+export async function insertImage(post_id, url) {
+    let query = "INSERT INTO image(post_id, url)VALUES(?,?);"
     const result = await database.query(query, [post_id, url])
     // const id = result[0].insertId
     // console.log(id)
@@ -125,23 +126,23 @@ export async function getNewPost(id) {
     return newPost
 }
 
-export async function getUserPostBy(id){
+export async function getUserPostBy(id) {
     let query = "SELECT * FROM user where user_id = ?;"
     const [user] = await database.query(query, [id])
     return user
 }
 
-export async function getImages(id){
-    let query =`select image.post_id, image.url
+export async function getImages(id) {
+    let query = `select image.post_id, image.url
         from image
         WHERE image.post_id = ?;`
-        const [images]  = await database.query(query, [id])
-        return images
-    }
+    const [images] = await database.query(query, [id])
+    return images
+}
 
 export async function updatePost(post_id, title, description, price, post_image, user_id, condition_type_id) {
     console.log("haha", post_id)
-    if(post_image){}
+    if (post_image) { }
     let query = `
     UPDATE post
      SET title = ?, description = ?, price = ?, post_image = ? , user_id = ?, condition_type_id = ?
@@ -176,20 +177,20 @@ export async function authenticateUser(email, password) {
     }
 }
 
-export async function deleteOneImg(url){
+export async function deleteOneImg(url) {
     const query = `DELETE FROM image WHERE url= ?; `
     const result = await database.query(query, [url])
 }
 
-export async function checkWishlist(user_Id, post_Id){
+export async function checkWishlist(user_Id, post_Id) {
     const query = `SELECT * from wishlist 
     WHERE user_id=? and post_id=?;`
     const inWishlist = await database.query(query, [user_Id, post_Id])
     return inWishlist[0][0]
 }
 
-export async function removeWishItem(wishlist_id){
-    const query =  `DELETE from wishlist 
+export async function removeWishItem(wishlist_id) {
+    const query = `DELETE from wishlist 
     WHERE wishlist_id = ?;`
     const result = await database.query(query, [wishlist_id])
 }
@@ -198,9 +199,9 @@ export async function getUserById(user_id) {
     const query = `SELECT user_id, username, profile_img FROM user WHERE user_id = ?`
     const user = await database.query(query, [user_id])
     return user[0][0]
-} 
+}
 
-export async function updateProfile(imageUrl, user_id){
+export async function updateProfile(imageUrl, user_id) {
     const query = `UPDATE user 
     SET profile_img = ?
     WHERE user_id = ?;`
@@ -208,7 +209,7 @@ export async function updateProfile(imageUrl, user_id){
     return updated
 }
 
-export async function updateName(username, user_id){
+export async function updateName(username, user_id) {
     const query = `UPDATE user 
     SET username = ?
     WHERE user_id = ?;`
@@ -217,23 +218,23 @@ export async function updateName(username, user_id){
 }
 
 
-export async function insertToRoom(){
+export async function insertToRoom() {
     const query = ` INSERT INTO room (start_datetime) VALUES(CURRENT_TIMESTAMP)`
     const result = await database.query(query)
     // console.log(result[0].insertId)
-    const roomId =  result[0].insertId
+    const roomId = result[0].insertId
     return roomId;
 }
 
-export async function insertToRoomUser(user_id, room_id){
+export async function insertToRoomUser(user_id, room_id) {
     const query = `INSERT INTO room_user(user_id, room_id)
     VALUES(?,?);`
     const result = await database.query(query, [user_id, room_id])
-    const roomUserId =  result[0].insertId
+    const roomUserId = result[0].insertId
     return roomUserId;
 }
 
-export async function getUsersByRoom(room_id){
+export async function getUsersByRoom(room_id) {
     const query = `
     SELECT  user.username, room_user.room_user_id, room_user.user_id, room_user.room_id
     FROM user
@@ -246,7 +247,7 @@ export async function getUsersByRoom(room_id){
     return peopleInRoom[0]
 }
 
-export async function getChatList(userId, id){
+export async function getChatList(userId, id) {
     const query = `
     select user.username, user.user_id, user.profile_img, room_user.room_id
     from user
@@ -263,7 +264,7 @@ export async function getChatList(userId, id){
     return chatList[0]
 }
 
-export async function checkRoomExist(myID, sellerId){
+export async function checkRoomExist(myID, sellerId) {
     const query = `select count(room_user.room_id) total_users_in_room, room_user.room_id
     from room_user
     where user_id in (?, ?)
@@ -282,7 +283,7 @@ export async function getRoomUserId(roomId, userId) {
     return result
 }
 
-export async function insertMessage(message, time, room_user_id){
+export async function insertMessage(message, time, room_user_id) {
     const query = `
     INSERT INTO message (message, sent_datetime, room_user_id)
     VALUES(?,?,?)
@@ -290,3 +291,5 @@ export async function insertMessage(message, time, room_user_id){
     const result = database.query(query, [message, time, room_user_id])
     return result
 }
+
+// export async function 

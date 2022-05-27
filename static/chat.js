@@ -60,8 +60,9 @@ form.addEventListener("submit", e => {
     // localData = localStorage.getItem("chat");
     // localData = JSON.parse(localData);
     requestAnimationFrame(() => {
-        let container = document.getElementById("message-container")
-        container.s.animate({ scrollTop: 20000000 }, "slow");
+        let container = document.getElementById("div#message-container")
+        // container.scrollTop = chatMessages.scrollHeight
+        // container.s.animate({ scrollTop: 20000000 }, "slow"); // HERE
     })
 })
 
