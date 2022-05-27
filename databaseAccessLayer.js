@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 
 export async function getPosts(userId, id) {
     let query = `
-    SELECT user.username, post.*
+    SELECT user.username, user.user_id, post.*
     FROM post 
     JOIN user
     ON post.user_id = user.user_id

@@ -12,9 +12,7 @@ body {
     align-items: center;
 }
 
-main{
- margin-left: 20px;
-}
+
 
 .image-cropper {
     width: 50px;
@@ -86,7 +84,7 @@ div.person {
     left:0;
     display: grid;
     grid-template-columns: 95% 5%;
-    column-gap: 30px;
+    column-gap:20px;
     margin-top: 10px;
 }
 

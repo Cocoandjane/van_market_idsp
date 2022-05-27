@@ -5,16 +5,18 @@ import axios from 'https://cdn.skypack.dev/axios'
 let section = document.querySelector("section.top")
 let sellerid = section.dataset.sellerid
 
+let backBtn = document.querySelector(".backBtn")
+backBtn.addEventListener("click", (event) =>{
+    event.preventDefault()
+    window.location="/likedItems"
+})
+
 let sellerName = document.querySelector(".sellerName")
 if (sellerName) {
     sellerName.addEventListener("click", (event) => {
         event.preventDefault()
         axios.post("/sellerid", { sellerid })
             .then(response => {
-                // if (response.data.foundRoom===true) {
-                //     window.location = `/chat/${response.data.id}`;
-                //  } 
-                // else {
                     let roomId = response.data.roomId;
                     console.log(roomId)
                     window.location = `/chat/${roomId}`;
@@ -28,19 +30,11 @@ sellerName.addEventListener("click", (event) => {
     event.preventDefault()
     axios.post("/sellerid", { sellerid })
         .then(response => {
-            // if (response.data.foundRoom===true) {
-            //     window.location = `/chat/${response.data.id}`;
-            //  } 
-            // else {
                 let roomId = response.data.roomId;
                 console.log(roomId)
                 window.location = `/chat/${roomId}`;
-            // }
-
         })
 })}
-
-
 
 
 let editBtn = document.querySelector("a.edit")

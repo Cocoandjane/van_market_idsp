@@ -120,7 +120,10 @@ app.get("/profile", authorized, async (req, res) => {
     let userId = req.session.userId
     let users = await database.getUser()
     let posts = await database.getPostByUser(userId)
-    res.render("profile", { users, posts, userId })
+    // console.log(posts)
+    let date = posts[0].date
+    let d = date.split(",").slice(0, -1).join(",")
+    res.render("profile", { users, d, posts, userId })
   } catch (error) {
     console.error(error)
     res.status(500).send({ error: "🖕" })
@@ -189,7 +192,7 @@ app.post("/createlisting", async (req, res) => {
   let title = axiosData.title;
   let description = axiosData.description;
   let price = axiosData.price;
-  let date = DateTime.now().toLocaleString(DateTime.DATETIME_MED)
+  let date = DateTime.now().toLocaleString(DateTime.DATETIME_MED).split(",").slice(0, -1).join(",")
   let image = axiosData.imageUrl;
   let user_id = req.session.userId;
   let category_id = 1;

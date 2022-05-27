@@ -119,7 +119,7 @@ function displayMessageReceive(message, time) {
 
 document.querySelector(".backBtn").addEventListener("click", e => {
     e.preventDefault()
-    history.back()
+    window.location = "/chatList"
 })
 
 

@@ -10,6 +10,26 @@ body {
     row-gap: 10px;
 }
 
+div.top{
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+hr{
+    border-top: #858585;
+    margin-top: -5px;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+p.idk {
+    font-size: larger;
+}
+
 div.container{
     margin-top: 20px;
     align-self: center;

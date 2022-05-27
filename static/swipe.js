@@ -100,21 +100,21 @@ class Carousel {
 
         let likeImg = this.topCard.querySelector('.likeImgHeart')
         let disLikeImg = this.topCard.querySelector('.dislikeImgHeart')
-        console.log('something is happening')
+        // console.log('something is happening')
         if (dirX === -1) {
             disLikeImg.src = '/icons/broken_filled_heart.svg';
             likeImg.src = 'icons/Like.svg';
             // setTimeout(() => {
             //     disLikeImg.src = 'icons/Dislike.svg'
             // }, 500)
-            console.log('left', e.deltaX)
+            // console.log('left', e.deltaX)
         } else if (dirX === 1) {
             likeImg.src = "/icons/filled_heart.svg";
             disLikeImg.src = 'icons/Dislike.svg';
             // setTimeout(() => {
             //     likeImg.src = 'icons/Like.svg'
             // }, 500)
-            console.log('right', e.deltaX)
+            // console.log('right', e.deltaX)
         }
 
         // axios
@@ -164,9 +164,9 @@ class Carousel {
                 const productId = this.topCard.id.replace("product-id-", "")
 
                 if (dirX === -1) {
-                    console.log('went off screen to the left', productId)
+                    // console.log('went off screen to the left', productId)
                 } else if (dirX === 1) {
-                    console.log('went off screen to the right', productId)
+                    // console.log('went off screen to the right', productId)
                 }
 
                 axios.post(('/likedItems'), { successful, productId, dirX })
@@ -207,7 +207,7 @@ class Carousel {
     }
 
     onPanend(e) {
-        console.log("bloblbo", e.deltaX)
+        // console.log("bloblbo", e.deltaX)
         let likeImg = this.topCard.querySelector('.likeImgHeart')
         let disLikeImg = this.topCard.querySelector('.dislikeImgHeart')
         likeImg.src = 'icons/Like.svg';
@@ -264,8 +264,6 @@ class Carousel {
             let sellerName = document.createElement('h4')
             sellerName.classList.add('seller-name')
             sellerName.textContent = product["username"] // username on card
-            console.log()
-            console.log(product.username)
 
             let productDescription = document.createElement('p')
             productDescription.textContent = product.description
@@ -284,6 +282,23 @@ class Carousel {
 
             let dislikeA = document.createElement('a')
             let chatA = document.createElement('a')
+
+            let sellerid = product.user_id
+            chatA.addEventListener("click", (event) => {
+                event.preventDefault()
+                // console.log(sellerId)
+                axios.post("/sellerid", { sellerid })
+                    .then(response => {
+                        console.log(response)
+                        let roomId = response.data.roomId;
+                        console.log(roomId)
+                        window.location = `/chat/${roomId}`;
+                        // }
+
+                    })
+            })
+
+
             let likeA = document.createElement('a')
             dislikeA.href = ""
             chatA.href = ""
@@ -333,7 +348,6 @@ let carousel = new Carousel(board)
 
 let likedItems = document.querySelector('.wished')
 likedItems.addEventListener('click', (event) => {
-    console.log("clicked")
     location.href = '/likedItems'
     event.preventDefault()
 })
