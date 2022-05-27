@@ -82,6 +82,7 @@ div.chatPerson{
     position: relative;
     overflow: hidden;
     border-radius: 50%;
+    border: 1px solid #858585;;
 }
 
 #profile-pic {
