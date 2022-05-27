@@ -28,13 +28,5 @@ for (let i = 0; i < recentTime.length; i++) {
 
 
 
-// let recentTime = document.querySelectorAll(".time")
-// recentTime.forEach(n => {
-//     let roomIds = n.dataset.id
-//     for (let roomId of roomIds) {
-//         let chatHistery = JSON.parse(localStorage.getItem(roomId))
-//         n.innerHTML = chatHistery[chatHistery.length - 1].time
-//     }    
-// })    
 
 

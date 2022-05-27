@@ -12,15 +12,14 @@
 </head>
 
 <body>
-
   <div class="talkingTo"><img src="/icons/back.svg" class="backBtn">
     <div class="imgFrame">
      <img  class="otherProfile" src="<%=otherProfile%>" alt="" class="otherImg">
     </div>
       <p class="otherName"><%=otherName%></p>
     </div>
-  <hr >
-  <div class="container" id="message-container" data-name="<%=meName%>" data-room="<%=roomId%>"></div>
+  <hr data-id="<%=userId%>">
+  <div class="container" id="message-container"  data-name="<%=meName%>" data-room="<%=roomId%>"></div>
  
   <div class="buttom">
   <form action="" id="form">

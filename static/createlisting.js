@@ -9,7 +9,7 @@ imageForm.addEventListener("submit", async event => {
 
     //get secure url form our server
     const { url } = await fetch("/s3Url").then(res => res.json())
-    console.log(url)
+    // console.log(url)
     // post the image directly to the s3 bucket
 
     await fetch(url, {
@@ -64,6 +64,6 @@ image_input.addEventListener("change", (event)=>{
         uploaded_image = reader.result;
         document.querySelector("div.display_image").style.backgroundImage=`url(${uploaded_image})`
     })
-    console.log(image_input)
+    // console.log(image_input)
     reader.readAsDataURL(image_input.files[0])
 })

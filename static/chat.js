@@ -20,6 +20,44 @@ let roomId = document.getElementById("message-container").dataset.room
 let myName = document.getElementById("message-container").dataset.name;
 
 
+axios.post("/messages", {roomId})
+.then(response => {
+    console.log(response.data)
+    let allHistory = response.data
+    allHistory.forEach(message => {
+        let userId = +document.querySelector("hr").dataset.id;
+        console.log(userId)
+        if (message.user_id === userId) {
+            displayMessageSend(message.message, message.sent_datetime.split(",")[2])
+        } else {
+            displayMessageReceive(message.message, message.sent_datetime.split(",")[2])
+        }
+    })
+
+
+    // for (const message of allHistory) {
+    //     let userId = +document.querySelector("hr").dataset.id;
+    //     console.log(userId)
+    //     if (message.user_id === userId) {
+    //         displayMessageSend(message.message, message.sent_datetime.split(",")[2])
+    //     } else {
+    //         displayMessageReceive(message.message, message.sent_datetime.split(",")[2])
+    //     }
+    // }
+})
+
+// let allHistory = JSON.parse(localStorage.getItem(roomId))
+// for (const message of allHistory) {
+//     if (message.name === myName) {
+//         displayMessageSend(message.text, message.time)
+//     } else {
+//         displayMessageReceive(message.text, message.time)
+//     }
+// }
+
+
+
+
 socket.emit('join-room', roomId, message => {
     // displayMessageSend(message)
 })
@@ -36,31 +74,31 @@ let chatHistory = JSON.parse(localStorage.getItem(roomId));
 
 
 socket.on("receive-message", message => {
-    displayMessageReceive(message.text, message.time)
-    chatHistory.push(message);
-    localStorage.setItem(roomId, JSON.stringify(chatHistory));
+    displayMessageReceive(message.text, message.time.split(",")[2])
+    // chatHistory.push(message);
+    // localStorage.setItem(roomId, JSON.stringify(chatHistory));
 })
 
 
 form.addEventListener("submit", e => {
     e.preventDefault()
     let message = {
-        time: luxon.DateTime.now().toLocaleString(luxon.DateTime.DATETIME_MED).split(",")[2],
+        time: luxon.DateTime.now().toLocaleString(luxon.DateTime.DATETIME_MED),
         text: messageInput.value,
         name: myName,
     }
     const roomId = document.getElementById("message-container").dataset.room
 
     if (message.text === "") return
-    displayMessageSend(message.text, message.time)
-    // displayTimeSend(message.time)
+    displayMessageSend(message.text, message.time.split(",")[2])
 
     socket.emit(`send-message`, message, roomId)
     messageInput.value = ""
-    chatHistory.push(message);
-    localStorage.setItem(roomId, JSON.stringify(chatHistory));
-    // localData = localStorage.getItem("chat");
-    // localData = JSON.parse(localData);
+
+    axios.post("/message", {message, roomId})
+
+    // chatHistory.push(message);
+    // localStorage.setItem(roomId, JSON.stringify(chatHistory));
     scrollDown()
 })
 
@@ -69,17 +107,6 @@ function scrollDown() {
 }
 
 
-let allHistory = JSON.parse(localStorage.getItem(roomId))
-// console.log(allHistory)
-for (const message of allHistory) {
-    if (message.name === myName) {
-        displayMessageSend(message.text, message.time)
-        // displayMessageSend(message.time)
-    } else {
-        displayMessageReceive(message.text, message.time)
-        // displayMessageReceive(message.time) s
-    }
-}
 
 
 
@@ -97,7 +124,6 @@ function displayMessageSend(message, time) {
 
     frameDiv.append(div, timeDiv)
     document.getElementById("message-container").append(frameDiv)
-
 }
 
 

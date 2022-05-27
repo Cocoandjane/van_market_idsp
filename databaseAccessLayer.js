@@ -9,7 +9,7 @@ export async function getPosts(userId, id) {
     ON post.user_id = user.user_id
     WHERE post_id 
     NOT IN (SELECT post_id FROM wishlist WHERE wishlist.user_id = ?) AND post.user_id !=?;`
-    const [rows] = await database.query(query,[userId, id])
+    const [rows] = await database.query(query, [userId, id])
     return rows
 }
 
@@ -273,7 +273,7 @@ export async function checkRoomExist(myID, sellerId) {
 
 export async function getRoomUserId(roomId, userId) {
     const query = `
-    SELECT * FROM room_user where room_id =1 and user_id = 2;
+    SELECT * FROM room_user where room_id =? and user_id = ?;
     `
     const result = database.query(query, [roomId, userId])
     return result
@@ -288,4 +288,16 @@ export async function insertMessage(message, time, room_user_id) {
     return result
 }
 
+export async function getMessagesByRoom(roomId) {
+    const query = `
+    SELECT room_user.user_id, room_user.room_id, message.* 
+    FROM room_user
+    JOIN message
+    ON room_user.room_user_id = message.room_user_id 
+    WHERE room_id =?
+    ORDER BY sent_datetime  DESC;
+    `
+    const result = database.query(query, [roomId])
+    return result
+}
 // export async function 

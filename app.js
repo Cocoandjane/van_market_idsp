@@ -339,7 +339,8 @@ app.get("/chat/:roomId", authorized, async (req, res) => {
       peopleInRoom,
       meName: user.username,
       otherName,
-      otherProfile
+      otherProfile,
+      userId: req.session.userId
     })
   } catch (error) {
     console.error(error)
@@ -361,12 +362,20 @@ app.post('/logout', (req, res) => {
   res.redirect('/');
 })
 
-// app.post("/message", authorized, async (req, res) => {
-//   let result = await database.getRoomUserId(req.body.roomId, req.session.userId)
-//   let roomUser = result[0][0]
-//   let roomUserId = roomUser.room_user_id
-//   let dt = DateTime.now()
-//   let now = dt.toLocaleString(DateTime.DATETIME_MED)
-//   await database.insertMessage(req.body.message, now , roomUserId)
-// })
+app.post("/message", authorized, async (req, res) => {
+  let result = await database.getRoomUserId(req.body.roomId, req.session.userId)
+  // console.log(req.session.userId)
+  let roomUser = result[0][0]
+  let roomUserId = roomUser.room_user_id
+  console.log(roomUser.room_user_id)
+  await database.insertMessage(req.body.message.text, req.body.message.time, roomUserId)
 
+})
+
+app.post("/messages", async (req, res) => {
+
+  let result = await database.getMessagesByRoom(req.body.roomId)
+  let messages = result[0]
+  res.send(messages)
+
+})
