@@ -13,7 +13,7 @@ for (let i = 0; i < recentMsg.length; i++) {
 let roomIds = recentMsg[i].dataset.id
 for (let roomId of roomIds) {
 let chatHistery = JSON.parse(localStorage.getItem(roomId))
-recentMsg[i].innerHTML = chatHistery[recentMsg.length-1].text
+recentMsg[i].innerHTML = chatHistery[chatHistery.length-1].text
 }
 }
 
@@ -22,7 +22,7 @@ for (let i = 0; i < recentTime.length; i++) {
     let roomIds = recentTime[i].dataset.id
     for (let roomId of roomIds) {
     let chatHistery = JSON.parse(localStorage.getItem(roomId))
-    recentTime[i].innerHTML = chatHistery[recentTime.length-1].time
+    recentTime[i].innerHTML = chatHistery[chatHistery.length-1].time
     }
 }
 
