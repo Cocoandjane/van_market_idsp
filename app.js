@@ -13,9 +13,7 @@ import { generateUploadURL } from "./s3.js";
 import * as database from './databaseAccessLayer.js'
 
 import { DateTime } from "luxon";
-// let dt = DateTime.now().toLocaleString(DateTime.DATETIME_MED)
-// console.log(dt.toLocaleString())
-// console.log(dt.toLocaleString(DateTime.DATETIME_MED))
+
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
@@ -54,9 +52,9 @@ app.get("/login", async (req, res) => {
 })
 
 app.post("/login", async (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   let foundUser = await database.authenticateUser(req.body.email, req.body.password)
-  console.log(foundUser)
+  // console.log(foundUser)
   let userId = foundUser[0].user_id
   if (foundUser) {
     req.session.userId = userId
@@ -121,12 +119,10 @@ app.get("/profile", authorized, async (req, res) => {
     let users = await database.getUser()
     let posts = await database.getPostByUser(userId)
     // console.log(posts)
-    let date = posts[0].date
-    let d = date.split(",").slice(0, -1).join(",")
-    res.render("profile", { users, d, posts, userId })
+    res.render("profile", { users, posts, userId })
   } catch (error) {
     console.error(error)
-    res.status(500).send({ error: "🖕" })
+    res.status(500).send({ error: "error" })
   }
 })
 
@@ -178,7 +174,6 @@ app.post('/likedItems', authorized, async (req, res) => {
 app.get("/s3Url", async (req, res) => {
   try {
     const url = await generateUploadURL()
-    // console.log('URLLL ',url)
     res.send({ url })
   } catch (error) {
     console.error('this is the erroe', error)
@@ -210,7 +205,6 @@ app.get('/editPost/:id', authorized, async (req, res) => {
 
 
 app.post('/editPost/:id', authorized, async (req, res) => {
-  //console.log(`this post edit ${req.body}`)
   let postId = +req.params.id;
   let data = req.body;
   let title = req.body.title;
@@ -222,7 +216,6 @@ app.post('/editPost/:id', authorized, async (req, res) => {
   let conditionTypeid = 1;
   await database.getPosts(postId)
   let id = await database.updatePost(postId, title, description, price, postImage, userId, conditionTypeid)
-  //console.log('this is the id', postId)
   res.json(postId)
 })
 
@@ -261,7 +254,7 @@ app.post("/deletePost/:id", async (req, res) => {
   let id = +req.params.id
   try {
     let result = await database.deletePost(id)
-    res.redirect("/home")
+    res.redirect("/profile")
   } catch (error) {
     console.error(error)
     res.status(500).send({ error: "🖕" })
@@ -315,7 +308,6 @@ app.post("/sellerid", authorized, async (req, res) => {
   let userId = req.session.userId
 
   let roomExist = await database.checkRoomExist(userId, sellerId)
-  // console.log(roomExist, userId, sellerId)
   if (roomExist.length > 0) {
     res.send({ roomId: roomExist[0].room_id })
     return
@@ -358,7 +350,6 @@ app.get("/chat/:roomId", authorized, async (req, res) => {
 app.get("/chatList", authorized, async (req, res) => {
   try{
   let chats = await database.getChatList(req.session.userId, req.session.userId)
-  //  console.log(chats)
   res.render("chatList", { chats })
   } catch (error) {
     console.error(error)
