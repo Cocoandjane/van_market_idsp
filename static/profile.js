@@ -15,3 +15,4 @@ posts.forEach(post => {
     })
 })
 
+// console.log(document.querySelectorAll(".date").dataset.date)

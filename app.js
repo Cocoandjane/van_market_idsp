@@ -118,9 +118,8 @@ app.get("/profile", authorized, async (req, res) => {
     let userId = req.session.userId
     let users = await database.getUser()
     let posts = await database.getPostByUser(userId)
-    let date = DateTime.fromISO(posts[0].date).toLocaleString(DateTime.DATE_MED)
     // console.log(posts)
-    res.render("profile", { users, posts, date, userId })
+    res.render("profile", { users, posts, userId })
   } catch (error) {
     console.error(error)
     res.status(500).send({ error: "error" })
