@@ -51,7 +51,7 @@ imageForm.addEventListener("submit", async event => {
             let id = response.data
             //location.href = `/viewListing`
             // success go to the next page
-            // window.location = `/viewListing/${id}`
+            window.location = `/viewListing/${id}`
         })
         .catch((err) => {
             console.log('ERR', err)
