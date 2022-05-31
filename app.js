@@ -206,6 +206,7 @@ app.get('/editPost/:id', authorized, async (req, res) => {
 })
 
 
+
 app.post('/editPost/:id', authorized, async (req, res) => {
   let postId = +req.params.id;
   let data = req.body;
@@ -213,11 +214,14 @@ app.post('/editPost/:id', authorized, async (req, res) => {
   let description = req.body.description;
   let price = req.body.price;
   let postImage = req.body.imageUrl;
+  let date = DateTime.now().toISO();
   let userId = req.session.userId;
   let categoryId = req.body.category_id;
-  let conditionTypeid = 1;
+  let conditionTypeid = data.condition;
+  let location_id = data.location_id;
+  let id = await database.updatePost(postId, title, description, price, date, postImage,userId,categoryId,  conditionTypeid,location_id)
   await database.getPosts(postId)
-  let id = await database.updatePost(postId, title, description, price, postImage, userId, conditionTypeid)
+  console.log(id)
   res.json(postId)
 })
 

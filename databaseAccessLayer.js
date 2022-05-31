@@ -136,17 +136,17 @@ export async function getImages(id) {
     return images
 }
 
-export async function updatePost(post_id, title, description, price, post_image, user_id, condition_type_id) {
-    console.log("haha", post_id)
+export async function updatePost(postId, title, description, price, date, post_image,userId, categoryId,  conditionTypeid,location_id) {
     if (post_image) { }
     let query = `
     UPDATE post
-     SET title = ?, description = ?, price = ?, post_image = ? , user_id = ?, condition_type_id = ?
+     SET title = ?, description = ?, price = ?, date =?, post_image = ? , user_id = ?, location_id =?, condition_type_id = ?, location_id =?
     WHERE post_id = ?;
     `
-    let [result] = await database.query(query, [title, description, price, post_image, user_id, condition_type_id, post_id]) // do these have to be in the same order that they are in the sql statement
+    let [result] = await database.query(query, [postId, title, description, price, date, post_image, userId,categoryId,  conditionTypeid,location_id]) // do these have to be in the same order that they are in the sql statement
     return result
 }
+
 export async function deletePost(id) {
     let query = "DELETE FROM post WHERE post_id = ?;"
     const result = await database.query(query, [id])

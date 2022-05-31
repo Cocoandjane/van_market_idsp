@@ -36,17 +36,22 @@ imageForm.addEventListener("submit", async event => {
     let price = document.querySelector(".price").value
     let condition = document.querySelector("#condition").value
     let description = document.querySelector(".description").value
+    console.log(description)
+    let category_id = document.getElementById("cateogty").value
+    let location_id = document.getElementById("Location").value
     //location
     //console.log(title, price, condition, description)
     let idkSomeArray = location.href.split("/")
     let postId = idkSomeArray[idkSomeArray.length-1]
-    axios.post(`/editPost/${postId}`, {title, price, condition, description, imageUrl })
+
+    
+    axios.post(`/editPost/${postId}`, {title, price, condition, description, imageUrl,category_id ,location_id })
         .then(response => {
-            console.log('responseData', response)
+            // console.log('responseData', response)
             let id = response.data
             //location.href = `/viewListing`
             // success go to the next page
-            window.location = `/viewListing/${id}`
+            // window.location = `/viewListing/${id}`
         })
         .catch((err) => {
             console.log('ERR', err)
