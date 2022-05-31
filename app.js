@@ -351,6 +351,7 @@ app.get("/chat/:roomId", authorized, async (req, res) => {
 app.get("/chatList", authorized, async (req, res) => {
   try{
   let chats = await database.getChatList(req.session.userId, req.session.userId)
+  // console.log(chats)
   res.render("chatList", { chats })
   } catch (error) {
     console.error(error)
@@ -364,13 +365,16 @@ app.post('/logout', (req, res) => {
 
 app.post("/message", authorized, async (req, res) => {
   let result = await database.getRoomUserId(req.body.roomId, req.session.userId)
+  // console.log(req.body.message)
   // console.log(req.session.userId)
   let roomUser = result[0][0]
   let roomUserId = roomUser.room_user_id
-  console.log(roomUser.room_user_id)
+  // console.log(roomUser.room_user_id)
   await database.insertMessage(req.body.message.text, req.body.message.time, roomUserId)
-
+  await database.insertLatestMsg(req.body.message.text, req.body.message.time,req.body.roomId)
 })
+
+
 
 app.post("/messages", async (req, res) => {
 

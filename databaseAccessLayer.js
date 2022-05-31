@@ -245,17 +245,17 @@ export async function getUsersByRoom(room_id) {
 
 export async function getChatList(userId, id) {
     const query = `
-    select user.username, user.user_id, user.profile_img, room_user.room_id
+    select user.username, user.user_id, user.profile_img, room_user.room_id, 
+    room.latest_message, room.latest_time
     from user
     join room_user on room_user.user_id = user.user_id
+    join room on room_user.room_id = room.room_id
     where user.user_id != ?
     AND room_user.room_id in
-    (
-    select room.room_id 
+    (select room.room_id 
     from room
     JOIN room_user ON room_user.room_id = room.room_id
-    where room_user.user_id = ?
-    ); `
+    where room_user.user_id = ?); `
     const chatList = await database.query(query, [userId, id])
     return chatList[0]
 }
@@ -295,9 +295,23 @@ export async function getMessagesByRoom(roomId) {
     JOIN message
     ON room_user.room_user_id = message.room_user_id 
     WHERE room_id =?
-    ORDER BY sent_datetime  DESC;
+    ORDER BY sent_datetime;
     `
     const result = database.query(query, [roomId])
     return result
 }
-// export async function 
+
+export async function insertLatestMsg(message, time, roomId) {
+    const query =`
+    UPDATE room
+    SET latest_message = ?,
+    latest_time = ?
+    WHERE room_id = ?;
+    `
+    const result = database.query(query, [message, time, roomId])
+    return result
+}
+
+
+
+
