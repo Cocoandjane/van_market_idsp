@@ -8,7 +8,7 @@ export async function getPosts(userId, id) {
     JOIN user
     ON post.user_id = user.user_id
     WHERE post_id 
-    NOT IN (SELECT post_id FROM wishlist WHERE wishlist.user_id = ?) AND post.user_id !=?;`
+    NOT IN (SELECT post_id FROM wishlist WHERE wishlist.user_id = ?) AND post.user_id !=?  ORDER BY date DESC;`
     const [rows] = await database.query(query, [userId, id])
     return rows
 }
@@ -72,7 +72,8 @@ export async function getUserByEmail(email) {
 
 export async function getPostByUser(id) {
     let query = `SELECT * FROM post
-    WHERE user_id = ?;`
+    WHERE user_id = ?
+    ORDER BY date DESC;`
     const [posts] = await database.query(query, [id])
     return posts
 }
