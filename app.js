@@ -118,8 +118,13 @@ app.get("/profile", authorized, async (req, res) => {
     let userId = req.session.userId
     let users = await database.getUser()
     let posts = await database.getPostByUser(userId)
+    let dates =[]
+    for (const post of posts) {
+      dates.push (DateTime.fromISO(post.date).toLocaleString(DateTime.DATE_MED))
+    }
+    
     // console.log(posts)
-    res.render("profile", { users, posts, userId })
+    res.render("profile", { users, posts, dates, userId })
   } catch (error) {
     console.error(error)
     res.status(500).send({ error: "error" })
