@@ -12,7 +12,7 @@ import { generateUploadURL } from "./s3.js";
 
 import * as database from './databaseAccessLayer.js'
 
-import { DateTime } from "luxon";
+import {DateTime} from "luxon";
 
 
 app.use(express.json())
@@ -118,8 +118,9 @@ app.get("/profile", authorized, async (req, res) => {
     let userId = req.session.userId
     let users = await database.getUser()
     let posts = await database.getPostByUser(userId)
+    let date = DateTime.fromISO(posts[0].date).toLocaleString(DateTime.DATE_MED)
     // console.log(posts)
-    res.render("profile", { users, posts, userId })
+    res.render("profile", { users, posts, date, userId })
   } catch (error) {
     console.error(error)
     res.status(500).send({ error: "error" })
@@ -187,12 +188,13 @@ app.post("/createlisting", async (req, res) => {
   let title = axiosData.title;
   let description = axiosData.description;
   let price = axiosData.price;
-  let date = DateTime.now().toLocaleString(DateTime.DATETIME_MED).split(",").slice(0, -1).join(",")
+  let date = DateTime.now().toISO()
   let image = axiosData.imageUrl;
   let user_id = req.session.userId;
-  let category_id = 1;
-  let condition_type_id = 1;
-  let id = await database.insertPost(title, description, price, date, image, user_id, category_id, condition_type_id)
+  let category_id = axiosData.category_id;
+  let condition_type_id = axiosData.location_id;
+  let location_id = axiosData.location_id 
+  let id = await database.insertPost(title, description, price, date, image, user_id, category_id, condition_type_id, location_id )
   res.json(id)
 })
 
@@ -232,13 +234,14 @@ app.get("/viewListing/:id", async (req, res) => {
   let id = +req.params.id
   try {
     let posts = await database.getNewPost(id)
+    let date = DateTime.fromISO(posts[0].date).toLocaleString(DateTime.DATE_MED)
     let user = await database.getUserPostBy(posts[0].user_id)
     let images = await database.getImages(id)
     let inWishlist = await database.checkWishlist(req.session.userId, id)
     if (posts.length === 0) {
       res.status(404).send({ message: "this post doesn't exist" })
     } else {
-      res.render(`viewListing`, { post: posts, inWishlist, user, images, userId: req.session.userId })
+      res.render(`viewListing`, { post: posts, date, inWishlist, user, images, userId: req.session.userId })
     }
   } catch (error) {
     console.error(error)

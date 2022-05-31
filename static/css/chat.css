@@ -171,7 +171,8 @@ img#msgIcon{
     max-width: 230px;
     position: relative;
     min-width: 80px;
-    min-height: 50px;
+    /* min-height: 50px; */
+    max-height: auto;
     padding-bottom: 20px;
 }
 

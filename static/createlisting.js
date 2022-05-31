@@ -27,9 +27,12 @@ imageForm.addEventListener("submit", async event => {
     let price = document.querySelector(".price").value
     let condition = document.querySelector("#condition").value
     let description = document.querySelector(".description").value
-    //location
-    //console.log(title, price, condition, description)
-    axios.post("/createListing", { title, price, condition, description, imageUrl })
+    let category_id = document.getElementById("cateogty").value
+    let location_id = document.getElementById("Location").value
+
+ 
+    console.log(title, price, condition, description,category_id,location_id )
+    axios.post("/createListing", { title, price, condition, description, imageUrl, category_id, location_id})
         .then(response => {
            // console.log(response.data)
             let id = response.data
@@ -40,16 +43,6 @@ imageForm.addEventListener("submit", async event => {
         .catch((err) => {
             console.log(err)
         })
-    // post requet to my server with the iamgeUrl
-    // title
-    // price
-    // description
-    // condition
-    // location
-
-    // const img = document.createElement("img")
-    // img.src = imageUrl
-    // document.body.appendChild(img)
 })
 
 const image_input = document.querySelector(".imageUpload");

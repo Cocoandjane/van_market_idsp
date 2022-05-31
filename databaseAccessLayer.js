@@ -94,9 +94,9 @@ export async function getPostByUser(id) {
 //     return post
 // }
 
-export async function insertPost(title, description, price, date, post_image, user_id, category_id, condition_type_id) {
-    let query = "INSERT INTO post (title, description, price, date, post_image, user_id, category_id, condition_type_id) VALUES (?,?,?,?,?,?,?,?);";
-    const result = await database.query(query, [title, description, price, date, post_image, user_id, category_id, condition_type_id])
+export async function insertPost(title, description, price, date, image, user_id, category_id, condition_type_id, location_id ) {
+    let query = "INSERT INTO post (title, description, price, date, post_image, user_id, category_id, condition_type_id, location_id ) VALUES (?,?,?,?,?,?,?,?,?);";
+    const result = await database.query(query, [title, description, price, date, image, user_id, category_id, condition_type_id, location_id ])
     //console.log(result)
     const id = result[0].insertId
     return id
