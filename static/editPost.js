@@ -45,9 +45,8 @@ imageForm.addEventListener("submit", async event => {
     let postId = idkSomeArray[idkSomeArray.length-1]
 
     
-    axios.post(`/editPost/${postId}`, {title, price, condition, description, imageUrl,category_id ,location_id })
+    axios.post(`/editPost/${postId}`, {title, price, condition, description, imageUrl, category_id , location_id})
         .then(response => {
-            // console.log('responseData', response)
             let id = response.data
             //location.href = `/viewListing`
             // success go to the next page

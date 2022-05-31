@@ -34,40 +34,38 @@
 
                 <label class="details" for="condition">Condition</label>
                 <select name="condition" id="condition" class="rectangular-input">
-                    <option value="1">New</option>
+                    <option value="1" selected>New</option>
                     <option value="2">Used - Like New</option>
                     <option value="3">Used - Good</option>
                     <option value="4">Used - Fair</option>
                 </select>
 
                 <label class="details" for="description">Description</label>
-                <label class="details" for="description">Description</label>
                 <textarea selected="" id="description" maxlength="500" class="description rectangular-input" type="text" name="description"><%=post.description%></textarea>
-
-                 <label class="details" for="cateogty">cateogty</label>
-                <select name="cateogty" id="cateogty" class="rectangular-input">
-                    <option value="1" selected>Electronics</option>
-                    <option value="2">Clothing</option>
-                    <option value="3">Furniture</option>
-                    <option value="4">Accessories</option>
-                    <option value="5">Jewellery</option>
-                    <option value="6">Food</option>
-                    <option value="7">Other</option>
-                </select>
-
-                <label class="details " for="location">Location</label>
-                <select name="Location" id="Location" class="rectangular-input">
-                    <option value="1">Vancouver</option>
-                    <option value="2">North Vancouver</option>
-                    <option value="3">Burnaby</option>
-                    <option value="4">Richmond</option>
-                    <option value="5">Surrey</option>
-                    <option value="6">Langley</option>
-                    <option value="7">Coquitlam</option>
-                    <option value="8">Port Coquitlam</option>
-                    <option value="9">Maple Ridge</option>
-                    <option value="10">Abbotsford</option>
-                </select>
+                    <label class="details" for="cateogty">cateogty</label>
+                    <select name="cateogty" id="cateogty" class="rectangular-input">
+                        <option value="1" selected>Electronics</option>
+                        <option value="2">Clothing</option>
+                        <option value="3">Furniture</option>
+                        <option value="4">Accessories</option>
+                        <option value="5">Jewellery</option>
+                        <option value="6">Food</option>
+                        <option value="7">Other</option>
+                    </select>
+    
+                    <label class="details " for="location">Location</label>
+                    <select  selected="" name="Location" id="Location" class="rectangular-input">
+                        <option value="1">Vancouver</option>
+                        <option value="2">North Vancouver</option>
+                        <option value="3">Burnaby</option>
+                        <option value="4">Richmond</option>
+                        <option value="5">Surrey</option>
+                        <option value="6">Langley</option>
+                        <option value="7">Coquitlam</option>
+                        <option value="8">Port Coquitlam</option>
+                        <option value="9">Maple Ridge</option>
+                        <option value="10">Abbotsford</option>
+                    </select>
                 <button id="create" class="submit-btn" type='submit'> Comfirm changes <img class="arrow" src="/icons/create.svg"> </button>
                 
             </form>

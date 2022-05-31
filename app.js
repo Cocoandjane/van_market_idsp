@@ -208,6 +208,7 @@ app.get('/editPost/:id', authorized, async (req, res) => {
 
 
 app.post('/editPost/:id', authorized, async (req, res) => {
+  try{
   let postId = +req.params.id;
   let data = req.body;
   let title = req.body.title;
@@ -218,11 +219,14 @@ app.post('/editPost/:id', authorized, async (req, res) => {
   let userId = req.session.userId;
   let categoryId = req.body.category_id;
   let conditionTypeid = data.condition;
-  let location_id = data.location_id;
-  let id = await database.updatePost(postId, title, description, price, date, postImage,userId,categoryId,  conditionTypeid,location_id)
+  let location_id = +data.location_id;
+  let id = await database.updatePost(title, description, price, date, postImage, userId,categoryId,  conditionTypeid,location_id, postId)
   await database.getPosts(postId)
-  console.log(id)
   res.json(postId)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send({ error: "error" })
+  }
 })
 
 
@@ -249,7 +253,7 @@ app.get("/viewListing/:id", async (req, res) => {
     }
   } catch (error) {
     console.error(error)
-    res.status(500).send({ error: "🖕" })
+    res.status(500).send({ error: "error" })
   }
 })
 
