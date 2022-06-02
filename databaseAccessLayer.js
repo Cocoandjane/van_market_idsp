@@ -258,7 +258,8 @@ export async function getChatList(userId, id) {
     (select room.room_id 
     from room
     JOIN room_user ON room_user.room_id = room.room_id
-    where room_user.user_id = ?); `
+    where room_user.user_id = ?)
+    ORDER BY room.latest_time desc; `
     const chatList = await database.query(query, [userId, id])
     return chatList[0]
 }
