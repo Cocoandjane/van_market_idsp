@@ -310,7 +310,6 @@ app.post("/editName", authorized, async (req, res) => {
   await database.updateName(req.body.newName, req.session.userId)
   res.json({})
 })
-export default app;
 
 
 app.post("/addWish", authorized, async (req, res) => {
@@ -318,10 +317,10 @@ app.post("/addWish", authorized, async (req, res) => {
 })
 
 app.post("/sellerid", authorized, async (req, res) => {
-
+  
   let sellerId = req.body.sellerid
   let userId = req.session.userId
-
+  
   let roomExist = await database.checkRoomExist(userId, sellerId)
   if (roomExist.length > 0) {
     res.send({ roomId: roomExist[0].room_id })
@@ -365,9 +364,9 @@ app.get("/chat/:roomId", authorized, async (req, res) => {
 
 app.get("/chatList", authorized, async (req, res) => {
   try{
-  let chats = await database.getChatList(req.session.userId, req.session.userId)
-  // console.log(chats)
-  res.render("chatList", { chats })
+    let chats = await database.getChatList(req.session.userId, req.session.userId)
+    // console.log(chats)
+    res.render("chatList", { chats })
   } catch (error) {
     console.error(error)
   }
@@ -392,9 +391,11 @@ app.post("/message", authorized, async (req, res) => {
 
 
 app.post("/messages", async (req, res) => {
-
+  
   let result = await database.getMessagesByRoom(req.body.roomId)
   let messages = result[0]
   res.send(messages)
-
+  
 })
+
+export default app;

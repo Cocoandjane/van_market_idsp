@@ -219,7 +219,7 @@ class Carousel {
         // need to change things down there like the src or the images, name of the seller and so on...
 
         this.products.forEach(product => {
-
+            console.log(product)
             let card = document.createElement('div')
             card.setAttribute("id", `product-id-${product.post_id}`)
             card.classList.add('card')
