@@ -21,7 +21,7 @@ imageForm.addEventListener("submit", async event => {
     })
 
     const imageUrl = url.split("?")[0]
-    //console.log(imageUrl)
+    // console.log(imageUrl)
 
     let title = document.querySelector(".title").value
     let price = document.querySelector(".price").value
@@ -31,7 +31,7 @@ imageForm.addEventListener("submit", async event => {
     let location_id = document.getElementById("Location").value
 
  
-    console.log(title, price, condition, description,category_id,location_id )
+    // console.log(title, price, condition, description,category_id,location_id )
     axios.post("/createListing", { title, price, condition, description, imageUrl, category_id, location_id})
         .then(response => {
            // console.log(response.data)

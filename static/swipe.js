@@ -5,6 +5,7 @@ class Carousel {
         axios.get("/api/products")
             .then(response => {
                 this.products = response.data.products
+                console.log(this.products)
                 this.board = element
                 // add first two cards programmatically
                 this.push()
@@ -219,7 +220,6 @@ class Carousel {
         // need to change things down there like the src or the images, name of the seller and so on...
 
         this.products.forEach(product => {
-            console.log(product)
             let card = document.createElement('div')
             card.setAttribute("id", `product-id-${product.post_id}`)
             card.classList.add('card')

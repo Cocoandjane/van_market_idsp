@@ -187,7 +187,7 @@ app.get("/s3Url", async (req, res) => {
 })
 
 
-app.post("/createlisting", async (req, res) => {
+app.post("/createListing", async (req, res) => {
   let axiosData = req.body
   let title = axiosData.title;
   let description = axiosData.description;
