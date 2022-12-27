@@ -2,14 +2,14 @@
 import mysql from 'mysql2'
 //mysql://k23o5dcq3pwfm61i:t3g6tvncln9peoxz@td5l74lo6615qq42.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/hvake130agwnhd4q
 const is_heroku = process.env.IS_HEROKU || false;
-
-const dbConfigHeroku = {	
-	host: "td5l74lo6615qq42.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-	user: "k23o5dcq3pwfm61i",
-	password: "t3g6tvncln9peoxz",
-	database: "hvake130agwnhd4q",
-	multipleStatements: true,
-	namedPlaceholders: true
+const dbConfigHeroku = {
+	user: process.env.MYSQLUSER,
+    host: process.env.MYSQLHOST,
+    password: process.env.MYSQLPASSWORD,
+    database: process.env.MYSQLDATABASE,
+    port: process.env.MYSQLPORT,
+    multipleStatements: false,
+    namedPlaceholders: true	
 };
 
 const dbConfigLocal = {
