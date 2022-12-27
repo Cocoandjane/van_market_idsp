@@ -1,4 +1,4 @@
-import axios from 'https://cdn.skypack.dev/axios'
+import axios from 'https://cdn.skypack.dev/axios@v0.27.2'
 //handling s3 images
 const imageForm = document.querySelector("#form")
 const imageInput = document.querySelector("#files")

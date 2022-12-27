@@ -1,4 +1,5 @@
-import database from './databaseConnection.js'
+// import database from './databaseConnection.js'
+import database from './newDbConnection.js'
 import bcrypt from "bcrypt";
 
 export async function getPosts(userId, id) {

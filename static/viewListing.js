@@ -1,6 +1,6 @@
 
 
-import axios from 'https://cdn.skypack.dev/axios'
+import axios from 'https://cdn.skypack.dev/axios@v0.27.2'
 
 let section = document.querySelector("section.top")
 let sellerid = section.dataset.sellerid

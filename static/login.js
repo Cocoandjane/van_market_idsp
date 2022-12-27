@@ -1,5 +1,6 @@
 
-import axios from 'https://cdn.skypack.dev/axios'
+import axios from 'https://cdn.skypack.dev/axios@v0.27.2'
+
 
 let loginBtn = document.querySelector(".loginBtn")
 
@@ -21,7 +22,8 @@ loginBtn.addEventListener("click", event => {
 
 let signupBtn = document.querySelector("button.signupBtn")
 signupBtn.addEventListener("click", event => {
-    window.location="/signup"
+    console.log("click")
+    window.location = "/signup"
 })
 
 

@@ -1,11 +1,11 @@
-import axios from 'https://cdn.skypack.dev/axios'
+import axios from 'https://cdn.skypack.dev/axios@v0.27.2'
 
 class Carousel {
     constructor(element) {
         axios.get("/api/products")
             .then(response => {
                 this.products = response.data.products
-                console.log(this.products)
+                // console.log(this.products)
                 this.board = element
                 // add first two cards programmatically
                 this.push()

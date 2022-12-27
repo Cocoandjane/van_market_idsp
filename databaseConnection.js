@@ -3,7 +3,7 @@ import mysql from 'mysql2'
 //mysql://k23o5dcq3pwfm61i:t3g6tvncln9peoxz@td5l74lo6615qq42.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/hvake130agwnhd4q
 const is_heroku = process.env.IS_HEROKU || false;
 
-const dbConfigHeroku = {
+const dbConfigHeroku = {	
 	host: "td5l74lo6615qq42.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
 	user: "k23o5dcq3pwfm61i",
 	password: "t3g6tvncln9peoxz",
@@ -21,7 +21,7 @@ const dbConfigLocal = {
 	namedPlaceholders: true
 };
 
-if (is_heroku) {
+if (is_heroku ) {
 	var database = mysql.createPool(dbConfigHeroku).promise();
 }
 else {
