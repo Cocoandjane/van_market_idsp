@@ -6,10 +6,10 @@ const randomBytes = promisify(crypto.randomBytes)
 
 dotenv.config()
 
-const region= process.env.REGION
-const bucketName= process.env.BUCKET_NAME
-const accessKeyId= process.env.ACCESS_KEY
-const secretAccessKey= process.env.SECRET_KEY
+const region= process.env.AWS_DEFAULT_REGION
+const bucketName= process.env.AWS_BUCKET_NAME
+const accessKeyId= process.env.AWS_ACCESS_KEY_ID
+const secretAccessKey= process.env.AWS_SECRET_ACCESS_KEY
 
 const s3 = new aws.S3({
     region,
