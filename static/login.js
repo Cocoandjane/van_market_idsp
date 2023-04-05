@@ -5,7 +5,6 @@ import axios from 'https://cdn.skypack.dev/axios@v0.27.2'
 let loginBtn = document.querySelector(".loginBtn")
 
 loginBtn.addEventListener("click", event => {
-    console.log("working")
     let email = document.querySelector("input.email").value
     let password = document.querySelector("input.password").value
 

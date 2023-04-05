@@ -10,6 +10,7 @@
     "luxon": "^2.4.0",
     "moment": "^2.29.3",
     "mysql2": "^2.3.3",
+    "pg": "^8.10.0",
     "socket.io": "^4.5.1"
   },
   "name": "vanmarket_idsp",

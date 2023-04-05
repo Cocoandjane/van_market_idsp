@@ -171,7 +171,7 @@ export async function authenticateUser(email, password) {
     const query = 'SELECT * FROM user WHERE email = ?';
     const [foundUser] = await database.query(query, [email]);
     //console.log('here', foundUser)
-    const authenticationResult = await bcrypt.compareSync(password, foundUser[0].password_hash);
+    const authenticationResult = bcrypt.compareSync(password, foundUser[0].password_hash);
     if (authenticationResult) {
         return foundUser;
     }
